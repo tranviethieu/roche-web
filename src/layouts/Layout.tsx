@@ -2,13 +2,17 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useIsFetching, useIsMutating } from 'react-query';
+import Spinner from '../components/common/Spinner';
+
 
 const Layout: React.FC = () => {
   const isFetching = useIsFetching();
   const isMutating = useIsMutating();
   return (
     <div>
+      
       <div>
+      <Spinner />
         <h1>
           Fetching status: {isFetching ? 'Fetching data...' : 'No fetching'}
         </h1>

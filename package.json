@@ -16,6 +16,7 @@
     "@types/react-query": "^1.2.9",
     "@types/react-router-dom": "^5.3.3",
     "antd": "^5.18.0",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
+    "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",

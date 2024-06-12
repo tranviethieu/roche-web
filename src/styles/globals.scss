@@ -1,7 +1,25 @@
+@import './theme';
+@import './stylesGlobals';
+@import './configAntd';
+
 :root {
   --toastify-toast-min-height: 56px;
   --header-height: 50px;
   --menu-width: 300px;
+  --size-text: 12px;
+  --size-label: 13px;
+  --size-title: 16px;
+
+  --size-title-xl: 18px;
+  --size-title-components: 20px;
+
+  --font-weight: 400;
+  --font-weight-title: 500;
+  --bg-main: linear-gradient(
+    135deg,
+    rgb(71, 120, 209) 29%,
+    rgb(247, 170, 248) 100%
+  );
 }
 
 html,
@@ -10,4 +28,98 @@ body {
   margin: 0;
   font-family: 'Be Vietnam Pro';
   color: #000;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  line-height: 1.5;
+}
+
+//custom
+
+.Toastify__close-button--light {
+  color: #000;
+  opacity: 0.8 !important;
+}
+
+.toastify-custom {
+  color: var(--light);
+  text-align: center;
+  padding: 6px 12px;
+  line-height: 24px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+}
+
+.toastify-custom-success {
+  text-align: center;
+  padding: 6px 12px;
+  line-height: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #000;
+  font-size: var(--size-text);
+  font-weight: var(--font-weight);
+  line-height: 22px;
+}
+
+.toastify-custom-info {
+  text-align: center;
+  padding: 6px 12px;
+  line-height: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #000;
+  font-size: var(--size-text);
+  font-weight: var(--font-weight);
+  line-height: 22px;
+}
+
+.toastify-custom-error {
+  text-align: center;
+  padding: 6px 12px;
+  line-height: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #000;
+  font-size: var(--size-text);
+  font-weight: var(--font-weight);
+  line-height: 22px;
+}
+
+.toastify-custom-warn {
+  text-align: center;
+  padding: 6px 12px;
+  line-height: 24px;
+  background-color: #fff;
+  border-radius: 4px;
+  color: #000;
+  font-size: var(--size-text);
+  font-weight: var(--font-weight);
+  line-height: 22px;
+}
+.Toastify__toast-body {
+  padding: 0 6px;
 }

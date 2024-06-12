@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from './layouts/Layout';
 import Dashboard from './pages/Dashboard/Dashboard';
 import RequiredAuth from './components/protected/RequiredAuth';
-import Login from './pages/Login/Login';
 import RequiredLogout from './components/protected/RequiredLogout';
 import NotFound from './pages/NotFound';
+import BaseLayout from './layouts/BaseLayout/BaseLayout';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import Login from './pages/auth/Login';
 
 const router = createBrowserRouter([
   {
@@ -13,11 +14,16 @@ const router = createBrowserRouter([
     children: [{ path: '', element: <Login /> }],
   },
   {
+    path: 'forgot-password',
+    element: <RequiredLogout />,
+    children: [{ path: '', element: <ForgotPassword /> }],
+  },
+  {
     element: <RequiredAuth />,
     children: [
       {
         path: '/',
-        element: <Layout />,
+        element: <BaseLayout />,
         children: [
           { path: '/', element: <>aaa</> },
           { path: 'dashboard', element: <Dashboard /> },

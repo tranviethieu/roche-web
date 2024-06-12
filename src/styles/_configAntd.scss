@@ -1,0 +1,24 @@
+* {
+  --color-primary: #4979d1;
+}
+
+.ant-form-item {
+  margin-bottom: 12px !important;
+}
+.ant-form-item .ant-form-item-label > label {
+  font-size: var(--size-text) !important;
+}
+.ant-input,
+.ant-select-single .ant-select-selector,
+.ant-select-dropdown .ant-select-item {
+  font-size: var(--size-text) !important;
+}
+:where(.css-dev-only-do-not-override-3rel02).ant-form-item
+  .ant-form-item-explain,
+:where(.css-dev-only-do-not-override-3rel02).ant-form-item
+  .ant-form-item-extra {
+  font-size: calc(var(--size-text) - 2px) !important;
+}
+.ant-btn-primary {
+  background: var(--color-primary);
+}

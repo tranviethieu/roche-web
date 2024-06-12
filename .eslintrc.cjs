@@ -12,7 +12,9 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: false },
     ],
+    '@typescript-eslint/no-explicit-any': 'off',
+    'no-extra-boolean-cast': 'off',
   },
 };

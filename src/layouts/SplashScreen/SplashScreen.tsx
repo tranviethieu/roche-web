@@ -23,7 +23,7 @@ const SplashScreen: React.FC = () => {
         store.dispatch(setToken(state.token));
         store.dispatch(setStateLogin(state.isLogin));
       }
-
+      console.log(state);
       store.dispatch(setLoading(false));
     })();
   }, []);

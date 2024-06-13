@@ -1,11 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
-import { Button, Checkbox, Form, Input, Select, Space } from 'antd';
+import { Button, Checkbox, Form, Input, Select, Space, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { toastSuccess, toastWarn } from '~/components/common/func/toast';
+import { toastWarn } from '~/components/common/func/toast';
 import { store } from '~/redux/store';
 import { setStateLogin, setToken } from '~/redux/reducer/auth';
 import { delay } from '~/components/common/func/delay';
@@ -44,7 +44,8 @@ const Login: React.FC = () => {
     },
     onSuccess(data) {
       if (data) {
-        toastSuccess({ msg: 'Đăng nhập thành công!' });
+        //toastSuccess({ msg: 'Đăng nhập thành công!' });
+        message.success('Login success');
         store.dispatch(setStateLogin(true));
         store.dispatch(setToken(data.access_token));
         localStorage.setItem('token', data.access_token);

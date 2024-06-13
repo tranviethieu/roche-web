@@ -1,0 +1,26 @@
+.float_label {
+    position: relative;
+  }
+  
+  .label {
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 12px;
+    top: 11px;
+    transition: 0.2s ease all;
+  }
+  
+  .as_placeholder {
+    color: gray;
+  }
+  
+  .as_label {
+    top: -8px;
+    font-size: 12px !important;
+    background: #fff;
+    padding: 0 4px;
+    margin-left: -4px;
+    z-index: 1;
+  }
+  

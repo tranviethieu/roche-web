@@ -1,0 +1,21 @@
+.tabButton {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 90px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    clip-path: polygon(0 100%, 100% 100%, 60% 0, 0 0);
+    
+    &:hover {
+      background-color: #45a049; /* Darker green on hover */
+    }
+  }
+  
+  .active {
+    background-color: #3e8e41;
+  }
+  

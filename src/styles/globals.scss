@@ -4,7 +4,8 @@
 
 :root {
   --toastify-toast-min-height: 56px;
-  --header-height: 50px;
+  --header-height: 3.75rem;
+  --nav-height: 4.375rem;
   --menu-width: 300px;
   --size-text: 12px;
   --size-label: 13px;
@@ -21,6 +22,8 @@
     rgb(247, 170, 248) 100%
   );
   --white-text: #fff;
+  --white-bg: #fff;
+  --white-bg-active: #c8c9cc;
 }
 
 html,
@@ -123,4 +126,30 @@ body {
 }
 .Toastify__toast-body {
   padding: 0 6px;
+}
+.menu_main.ant-menu-light {
+  border-radius: 0px 10px 10px 0px;
+  background: var(--white-bg);
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.25);
+  overflow: auto;
+  height: auto;
+  left: 0;
+  top: 45px;
+  max-width: 300px;
+  max-height: 60vh;
+  z-index: 500;
+  position: absolute;
+  .ant-menu-submenu-title,
+  .ant-menu-title-content {
+    color: rgb(110, 176, 76) !important;
+    font-size: var(--size-text);
+  }
+  .ant-menu.ant-menu-sub.ant-menu-inline {
+    margin: 10px;
+    border-radius: 10px;
+  }
+  .ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child {
+    border-radius: 10px;
+    background: #d9f4ba;
+  }
 }

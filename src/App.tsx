@@ -20,12 +20,12 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div>
+    <>
       <ProgressBar isAnimating={isAnimating} />
       <SplashScreen />
       <ToastContainer autoClose={3000} />
       <RouterProvider router={router} />
-    </div>
+    </>
   );
 }
 

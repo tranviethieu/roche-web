@@ -2,10 +2,7 @@ import { Fragment } from 'react/jsx-runtime';
 import styles from './SplashScreen.module.scss';
 import clsx from 'clsx';
 import { useEffect } from 'react';
-import {
-  getItemStorage,
-  setItemStorage,
-} from '~/components/common/func/localStorage';
+import { getItemStorage, setItemStorage } from '~/common/func/localStorage';
 import { KEY_STORE } from '~/constants/config';
 import { RootState, store } from '~/redux/store';
 import { setStateLogin, setToken } from '~/redux/reducer/auth';

@@ -1,56 +1,73 @@
-// import { Link } from 'react-router-dom';
-// import styles from './ListMenu.module.scss';
-import { Menu, MenuProps } from 'antd';
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
-import { useState } from 'react';
-type MenuItem = Required<MenuProps>['items'][number];
+import { Link, useLocation } from 'react-router-dom';
+import styles from './ListMenu.module.scss';
+import clsx from 'clsx';
+import icons from '~/constants/images/icons';
+import { Img } from 'react-image';
+import { PATH } from '~/constants/config';
+import { useCallback } from 'react';
 
-const items: MenuItem[] = [
+type ListPage = {
+  name: string;
+  path: string;
+  icon: any;
+};
+
+const itemsMenu: ListPage[] = [
   {
-    label: 'Navigation One',
-    key: '/',
-    icon: <MailOutlined />,
+    name: 'Main',
+    path: PATH.Main,
+    icon: <Img src={icons.main} alt="main" />,
   },
   {
-    label: 'Navigation Two',
-    key: 'dashboard',
-    icon: <AppstoreOutlined />,
-    disabled: false,
+    name: 'Administration',
+    path: PATH.Administration,
+    icon: <Img src={icons.administration} alt="administration" />,
+  },
+  {
+    name: 'Monitoring',
+    path: PATH.Monitoring,
+    icon: <Img src={icons.monitoring} alt="monitoring" />,
   },
 ];
+
 const ListMenu = () => {
-  const [current, setCurrent] = useState('/');
-
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
-
-  return (
-    <Menu
-      onClick={onClick}
-      selectedKeys={[current]}
-      mode="horizontal"
-      items={items}
-    />
+  const location = useLocation();
+  const checkActive = useCallback(
+    (pathname: string) => {
+      const currentRoute = location.pathname.split('/')[1];
+      return pathname === `/${currentRoute}`;
+    },
+    [location]
   );
-  //   return (
-  //     <nav className={styles.main}>
-  //       <ul className={styles.ul}>
-  //         <li>
-  //           <Link to="">Home</Link>
-  //         </li>
-  //         <li>
-  //           <Link to="/dashboard">About</Link>
-  //         </li>
-  //         <li>
-  //           <a href="#services">Services</a>
-  //         </li>
-  //         <li>
-  //           <a href="#contact">Contact</a>
-  //         </li>
-  //       </ul>
-  //     </nav>
-  //   );
+  return (
+    <nav className={styles.main}>
+      <ul className={styles.ul}>
+        {itemsMenu.map((item: ListPage, index: number) => (
+          <li key={index}>
+            <Link
+              to={item.path}
+              className={clsx(styles.nav, {
+                [styles.end]: index === itemsMenu.length - 1,
+                [styles.active]: checkActive(item.path),
+              })}
+            >
+              <div className={styles.path}>
+                {item.icon}
+                <span>{item.name}</span>
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <Link
+        to="#search"
+        className={clsx(styles.search, {
+          [styles.active]: location.hash.includes('#search'),
+        })}
+      >
+        Search
+      </Link>
+    </nav>
+  );
 };
 export default ListMenu;

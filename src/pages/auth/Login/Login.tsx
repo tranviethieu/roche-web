@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
-import { Button, Checkbox, Form, Input, Select, Space, message } from 'antd';
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Select,
+  Space,
+  Spin,
+  message,
+} from 'antd';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { toastWarn } from '~/components/common/func/toast';
 import { store } from '~/redux/store';
 import { setStateLogin, setToken } from '~/redux/reducer/auth';
-import { delay } from '~/components/common/func/delay';
+import { delay } from '~/common/func/delay';
 const { Option } = Select;
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const [spinning, setSpinning] = useState(false);
   const [form] = Form.useForm();
   const onFinish = (values: any) => {
     login.mutate({ userName: values?.userName, password: values?.password });
@@ -22,6 +31,7 @@ const Login: React.FC = () => {
   };
   const login = useMutation({
     mutationFn: async (data: { userName: string; password: string }) => {
+      setSpinning(true);
       await delay(500);
       const response = await axios.post(
         'https://api-meapp.benhvien.tech/identity/connect/token',
@@ -44,7 +54,7 @@ const Login: React.FC = () => {
     },
     onSuccess(data) {
       if (data) {
-        //toastSuccess({ msg: 'Đăng nhập thành công!' });
+        setSpinning(false);
         message.success('Login success');
         store.dispatch(setStateLogin(true));
         store.dispatch(setToken(data.access_token));
@@ -55,15 +65,15 @@ const Login: React.FC = () => {
     onError(error: any) {
       if (error?.response?.data) {
         const { data } = error?.response || undefined;
-
-        return toastWarn({
-          msg: data?.error_description || 'Có lỗi xảy ra!',
-        });
+        setSpinning(false);
+        return message.success(data?.error_description || 'Có lỗi xảy ra!');
       }
     },
   });
+
   return (
     <section className={styles.section}>
+      <Spin spinning={spinning} size="large" fullscreen />
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.title}>LOGIN</div>

@@ -1,5 +1,7 @@
-export const MAXIMUM_FILE = 10; //MB
+import { MenuProps } from 'antd';
 
+export const MAXIMUM_FILE = 10; //MB
+export const KEY_STORE = 'ROCHE-SWITCHBOARD';
 export const allowFiles = [
   'application/pdf',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -9,61 +11,48 @@ export const allowFiles = [
 ];
 
 export enum PATH {
-  Any = 'any',
-  Home = '/',
+  Login = '/login',
+  ForgotPassword = 'forgot-password',
+  Main = '/',
+  Administration = '/Administration',
+  Monitoring = '/Monitoring',
 }
 
-export const KEY_STORE = 'ROCHE-SWITCHBOARD';
-
-export const LIST_HOUR: string[] = [
-  '00:00',
-  '00:30',
-  '01:00',
-  '01:30',
-  '02:00',
-  '02:30',
-  '03:00',
-  '03:30',
-  '04:00',
-  '04:30',
-  '05:00',
-  '05:30',
-  '06:00',
-  '06:30',
-  '07:00',
-  '07:30',
-  '08:00',
-  '08:30',
-  '08:00',
-  '08:30',
-  '09:00',
-  '09:30',
-  '10:00',
-  '10:30',
-  '11:00',
-  '11:30',
-  '12:00',
-  '12:30',
-  '13:00',
-  '13:30',
-  '14:00',
-  '14:30',
-  '15:00',
-  '15:30',
-  '16:00',
-  '16:30',
-  '17:00',
-  '17:30',
-  '18:00',
-  '18:30',
-  '19:00',
-  '19:30',
-  '20:00',
-  '20:30',
-  '21:00',
-  '21:30',
-  '22:00',
-  '22:30',
-  '23:00',
-  '23:30',
+type MenuItem = Required<MenuProps>['items'][number];
+export const menuItemSlider: MenuItem[] = [
+  {
+    key: 'sub2',
+    label: 'Lấy mẫu',
+    children: [
+      {
+        key: 'sub3',
+        label: 'Theo dõi lấy mẫu ngoại trú',
+        children: [
+          { key: '7', label: 'Theo dõi lấy mẫu ngoại trú' },
+          { key: '8', label: 'Theo dõi lấy mẫu nội trú' },
+        ],
+      },
+      { key: '9aa', label: 'Lấy số thứ tự' },
+      { key: '9aa1', label: 'Lấy mẫu ngoại trú' },
+      { key: '9aa2', label: 'Lấy mẫu nội trú' },
+    ],
+  },
+  {
+    key: 'sub4',
+    label: 'Giao mẫu',
+    children: [
+      { key: '9', label: 'Theo dõi mẫu giao' },
+      { key: '10', label: 'Giao mẫu đơn' },
+      { key: '11', label: 'Giao mẫu theo batch' },
+      { key: '12', label: 'Option 12' },
+    ],
+  },
+  {
+    key: 'grp',
+    label: 'Nhận mẫu',
+    children: [
+      { key: '13', label: 'Theo dõi nhận mẫu' },
+      { key: '14', label: 'Nhận mẫu ngoại trú' },
+    ],
+  },
 ];

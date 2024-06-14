@@ -4,27 +4,31 @@ import RequiredAuth from './components/protected/RequiredAuth';
 import RequiredLogout from './components/protected/RequiredLogout';
 import NotFound from './pages/NotFound';
 import BaseLayout from './layouts/BaseLayout/BaseLayout';
-//import ForgotPassword from './pages/auth/ForgotPassword';
 import Login from './pages/auth/Login';
 import ForgotPassword from './pages/auth/ForgotPassword';
+import { PATH } from './constants/config';
 
 const router = createBrowserRouter([
   {
     element: <RequiredLogout />,
     children: [
-      { path: 'login', element: <Login /> },
-      { path: 'forgot-password', element: <ForgotPassword /> },
+      { path: PATH.Login, element: <Login /> },
+      { path: PATH.ForgotPassword, element: <ForgotPassword /> },
     ],
   },
   {
     element: <RequiredAuth />,
     children: [
       {
-        path: '',
         element: <BaseLayout />,
         children: [
-          { path: '', element: <>aaa</> },
-          { path: 'dashboard', element: <Dashboard /> },
+          {
+            path: PATH.Main,
+            element: <>aaa</>,
+            children: [{ path: '/:tabId/:id', element: <>bb</> }],
+          },
+          { path: PATH.Administration, element: <Dashboard /> },
+          { path: PATH.Monitoring, element: <Dashboard /> },
         ],
       },
     ],

@@ -1,7 +1,7 @@
 import { logout, setStateLogin, setToken } from '~/redux/reducer/auth';
 
 import { store } from '~/redux/store';
-import { setInfoAccount, setInfoHospital } from '~/redux/reducer/user';
+import { setInfoAccount } from '~/redux/reducer/user';
 import {
   setListMenuAccount,
   setPermissionsAccount,
@@ -11,7 +11,7 @@ import {
   toastInfo,
   toastSuccess,
   toastWarn,
-} from '~/components/common/func/toast';
+} from '~/common/func/toast';
 
 enum RESULT {
   SUCCESSFUL = 0,
@@ -55,7 +55,6 @@ export const httpRequest = async ({
       store.dispatch(logout());
       store.dispatch(setStateLogin(false));
       store.dispatch(setToken(null));
-      store.dispatch(setInfoHospital(null));
       store.dispatch(setInfoAccount(null));
       store.dispatch(setPermissionsAccount([]));
       store.dispatch(setListMenuAccount([]));

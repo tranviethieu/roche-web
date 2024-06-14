@@ -7,20 +7,15 @@ import {
   message,
 } from 'antd';
 import { useState } from 'react';
-//import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
 import { ArrowDown2, ArrowRight2 } from 'iconsax-react';
-
 import { logout } from '~/redux/reducer/auth';
 import { store } from '~/redux/store';
 import { Link } from 'react-router-dom';
 const Header = () => {
   const [isExpand, setIsExpand] = useState<boolean>(true);
-  //const {isLogin} = useSelector((state: RootState) => state.auth)
-  console.log(isExpand);
-
   const confirm: PopconfirmProps['onConfirm'] = () => {
     store.dispatch(logout());
     message.success('Logout success');
@@ -72,23 +67,6 @@ const Header = () => {
           className={styles.notify}
         ></Button>
       </Flex>
-
-      {/* <Link
-        to={'/'}
-        onClick={() => {
-          isExpand && setIsExpand(false);
-        }}
-      >
-        Home
-      </Link>
-      <Link
-        to={'/PageOne'}
-        onClick={() => {
-          isExpand && setIsExpand(false);
-        }}
-      >
-        PageOne
-      </Link> */}
 
       <Flex gap={12}>
         <Select

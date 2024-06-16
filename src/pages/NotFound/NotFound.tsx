@@ -1,14 +1,26 @@
 // src/pages/NotFound.tsx
+import { Button, Result } from 'antd';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NotFound: React.FC = () => {
+  const navigate = useNavigate();
   return (
-    <div>
-      <h1>404 - Page Not Found</h1>
-      <p>The page you are looking for does not exist.</p>
-      <Link to="/">Go to Home</Link>
-    </div>
+    <Result
+      status="404"
+      title="404"
+      subTitle="Sorry, the page you visited does not exist."
+      extra={
+        <Button
+          type="primary"
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          Back Home
+        </Button>
+      }
+    />
   );
 };
 

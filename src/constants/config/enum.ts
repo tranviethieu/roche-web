@@ -1,1 +1,3 @@
-export enum QUERY_KEY {}
+export enum QUERY_KEY {
+  ListDoctors,
+}

@@ -7,6 +7,8 @@ import BaseLayout from './layouts/BaseLayout/BaseLayout';
 import Login from './pages/auth/Login';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import { PATH } from './constants/config';
+import Main from './pages/Main';
+import TrackSampler from './pages/TrackSampler';
 
 const router = createBrowserRouter([
   {
@@ -24,11 +26,12 @@ const router = createBrowserRouter([
         children: [
           {
             path: PATH.Main,
-            element: <>aaa</>,
+            element: <Main />,
             children: [{ path: '/:tabId/:id', element: <>bb</> }],
           },
           { path: PATH.Administration, element: <Dashboard /> },
           { path: PATH.Monitoring, element: <Dashboard /> },
+          { path: `${PATH.TrackSampler}/:tabId`, element: <TrackSampler /> },
         ],
       },
     ],

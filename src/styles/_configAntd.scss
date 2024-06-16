@@ -27,20 +27,46 @@
   margin: 12px;
 }
 
-/* Force update ant style */
-// .ant-input {
-//   padding: 16px 12px 4px 11px;
-// }
-
-// .ant-select .ant-select-selector {
-//   padding: 16px 10px 4px 11px;
-// }
-
-// .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-//   padding: 16px 10px 4px 11px;
-//   height: 48px;
-// }
-
-// .ant-select-single .ant-select-selector .ant-select-selection-search {
-//   top: 16px;
-// }
+.filter_select.ant-select {
+  .ant-select-selector {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 10px;
+    color: var(--white-text) !important;
+    .ant-select-selection-placeholder,
+    .ant-select-clear {
+      color: var(--white-text) !important;
+      font-size: var(--size-text) !important;
+      font-weight: 600;
+    }
+  }
+  .ant-select-arrow {
+    color: var(--white-text) !important;
+  }
+}
+.form_filter_select {
+  .ant-form-item .ant-form-item-label > label {
+    font-size: calc(var(--size-text) + 1px) !important;
+    color: var(--white-text);
+    font-weight: 600;
+    margin-left: 5px;
+  }
+  .ant-col.ant-form-item-label {
+    //padding-bottom: 4px;
+    label {
+      margin-left: 12px !important;
+    }
+  }
+  .ant-form-item {
+    margin: 0 !important;
+  }
+  .ant-col.ant-form-item-label {
+    padding: 0 0 4px !important;
+  }
+}
+//table
+.ant-pagination {
+  padding: 10px;
+  height: 50px;
+  font-size: var(--size-text) !important;
+}

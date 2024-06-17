@@ -5,7 +5,9 @@ import { Pagination, Table, TableColumnsType } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '~/constants/config/enum';
 import { httpRequest } from '~/services';
-import crmAccountServices from '~/services/core/crmAccountServices';
+import crmAccountServices, {
+  getListAccountAll,
+} from '~/services/core/crmAccountServices';
 import FilterTrackSampler from './components/FilterTrackSampler';
 import { useLocation, useParams } from 'react-router-dom';
 //import DoughnutChart from '~/components/common/DoughnutChart/DoughnutChart';
@@ -23,6 +25,23 @@ const TrackSampler: React.FC = () => {
       httpRequest({
         setLoading,
         http: crmAccountServices.getListAccount({
+          paging: {
+            count: pageSize ? Number(pageSize) : 20,
+            from: Number(pageSize || 20) * (Number(page || 1) - 1),
+          },
+          isActive: _status ? (_status == '1' ? true : false) : null,
+          isDoctor: false,
+          keySearch: _keyword ? (_keyword as string) : '',
+          departmentId: _departmentId ? (_departmentId as string) : '',
+        }),
+      }),
+  });
+  useQuery({
+    queryKey: [QUERY_KEY.ListDoctorsAll, _keyword, pageSize, page, _status],
+    queryFn: () =>
+      httpRequest({
+        setLoading,
+        http: getListAccountAll({
           paging: {
             count: pageSize ? Number(pageSize) : 20,
             from: Number(pageSize || 20) * (Number(page || 1) - 1),

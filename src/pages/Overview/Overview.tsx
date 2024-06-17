@@ -75,7 +75,7 @@ const Overview: React.FC = () => {
             </Flex>
             <div>
               <Row align="middle">
-                <Col span={6} xs={12}>
+                <Col span={6} lg={6} xs={12}>
                   <Select
                     defaultValue="Descending"
                     style={{ width: 120 }}
@@ -85,7 +85,7 @@ const Overview: React.FC = () => {
                     options={[{ value: 'Descending', label: 'Descending' }]}
                   />
                 </Col>
-                <Col span={6} xs={12}>
+                <Col span={6} lg={6} xs={12}>
                   <Checkbox
                     onChange={(e) => {
                       console.log(`checked = ${e.target.checked}`);
@@ -94,7 +94,7 @@ const Overview: React.FC = () => {
                     Unread
                   </Checkbox>
                 </Col>
-                <Col span={12} xs={24}>
+                <Col span={12} lg={12} xs={24}>
                   <Flex gap={10}>
                     <Input placeholder="..." style={{ width: '162px' }} />
                     <div>

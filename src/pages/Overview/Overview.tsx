@@ -108,7 +108,7 @@ const Overview: React.FC = () => {
                   data={data}
                   height={ContainerHeight}
                   itemHeight={47}
-                  itemKey="Notification"
+                  itemKey="email"
                   onScroll={onScroll}
                 >
                   {(item: UserItem, index: number) => (

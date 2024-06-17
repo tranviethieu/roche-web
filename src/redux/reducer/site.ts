@@ -14,6 +14,7 @@ export interface IVariableEnv {
 
 export interface SiteState {
   loading: boolean;
+  isOverview: boolean;
   routerPrev: string;
   openLogout: boolean;
   isMobile: boolean;
@@ -28,6 +29,7 @@ const initialState: SiteState = {
   routerPrev: '/',
   openLogout: false,
   isMobile: false,
+  isOverview: false,
   fontSize: 'sm',
   bgColor:
     'linear-gradient(135deg, rgb(71, 120, 209) 29%, rgb(247, 170, 248) 100%)',
@@ -63,6 +65,9 @@ export const siteSlice = createSlice({
     setRouterActive: (state, action: PayloadAction<string>) => {
       state.routerActive = action.payload;
     },
+    setIsOverview: (state, action: PayloadAction<boolean>) => {
+      state.isOverview = action.payload;
+    },
   },
 });
 
@@ -75,6 +80,7 @@ export const {
   setBgColor,
   setVariableEnv,
   setRouterActive,
+  setIsOverview,
 } = siteSlice.actions;
 // Action creators are generated for each case reducer function
 export default siteSlice.reducer;

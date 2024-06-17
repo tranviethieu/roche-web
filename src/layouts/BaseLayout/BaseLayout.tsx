@@ -1,16 +1,22 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import ListMenu from './components/ListMenu';
-import Slider from './components/Slider';
 
+import 'nprogress/nprogress.css'; // Import CSS của nprogress
+import nprogress from 'nprogress';
 const BaseLayout: React.FC = () => {
+  const location = useLocation();
+  useEffect(() => {
+    nprogress.start();
+    nprogress.done();
+  }, [location.pathname]);
+
   return (
     <main>
       <Header />
-      <ListMenu />
-      <Slider />
-      <Outlet />
+      <div className="content_web_roche">
+        <Outlet />
+      </div>
     </main>
   );
 };

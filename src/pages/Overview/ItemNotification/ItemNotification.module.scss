@@ -1,0 +1,9 @@
+.item {
+  border: 1px solid #c8c9cc;
+  height: 50px;
+  padding: 16px;
+  border-right: 0;
+  &.error {
+    border-left: 4px solid #ff1010;
+  }
+}

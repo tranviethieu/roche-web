@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import icons from '~/constants/images/icons';
 import { Img } from 'react-image';
 import { PATH } from '~/constants/config';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 type ListPage = {
   name: string;
@@ -29,8 +29,11 @@ const itemsMenu: ListPage[] = [
     icon: <Img src={icons.monitoring} alt="monitoring" />,
   },
 ];
+interface PopListMenu {
+  checkOverview?: boolean;
+}
 
-const ListMenu = () => {
+const ListMenu: React.FC<PopListMenu> = ({ checkOverview = false }) => {
   const location = useLocation();
   const checkActive = useCallback(
     (pathname: string) => {
@@ -40,14 +43,16 @@ const ListMenu = () => {
     [location]
   );
   return (
-    <nav className={styles.main}>
+    <nav
+      className={clsx(styles.main, { [styles.checkOverview]: checkOverview })}
+    >
       <ul className={styles.ul}>
         {itemsMenu.map((item: ListPage, index: number) => (
           <li key={index}>
             <Link
               to={item.path}
               className={clsx(styles.nav, {
-                [styles.end]: index === itemsMenu.length - 1,
+                [styles.start]: index === 0,
                 [styles.active]: checkActive(item.path),
               })}
             >

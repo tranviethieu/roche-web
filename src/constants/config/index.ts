@@ -19,7 +19,7 @@ export enum PATH {
   TrackSampler = '/track-sampler',
 }
 
-type MenuItem = Required<MenuProps>['items'][number];
+export type MenuItem = Required<MenuProps>['items'][number];
 export const menuItemSlider: MenuItem[] = [
   {
     key: 'sub2',
@@ -30,11 +30,11 @@ export const menuItemSlider: MenuItem[] = [
         label: 'Theo dõi lấy mẫu ngoại trú',
         children: [
           {
-            key: `${PATH.TrackSampler}/ngoai-tru`,
+            key: `${PATH.Administration}${PATH.TrackSampler}/ngoai-tru`,
             label: 'Theo dõi lấy mẫu ngoại trú',
           },
           {
-            key: `${PATH.TrackSampler}/noi-tru`,
+            key: `${PATH.Administration}${PATH.TrackSampler}/noi-tru`,
             label: 'Theo dõi lấy mẫu nội trú',
           },
         ],

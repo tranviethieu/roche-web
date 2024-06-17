@@ -4,12 +4,15 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 //import { useIsFetching, useIsMutating } from 'react-query';
 import SplashScreen from './layouts/SplashScreen';
+import { FloatButton } from 'antd';
+
 function App() {
   return (
     <>
       <SplashScreen />
       <ToastContainer autoClose={3000} />
       <RouterProvider router={router}></RouterProvider>
+      <FloatButton.BackTop />
     </>
   );
 }

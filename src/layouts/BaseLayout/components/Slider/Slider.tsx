@@ -2,11 +2,13 @@ import { Button, Menu, MenuProps } from 'antd';
 import styles from './Slider.module.scss';
 import { useState } from 'react';
 
-import { menuItemSlider } from '~/constants/config';
 import { ArrowRight2 } from 'iconsax-react';
 import clsx from 'clsx';
 import { useNavigate } from 'react-router-dom';
-const Slider: React.FC = () => {
+import { MenuItem } from '~/constants/config';
+const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
+  menuItemSlider,
+}) => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
   const toggleCollapsed = () => {

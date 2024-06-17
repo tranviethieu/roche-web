@@ -11,7 +11,9 @@
 .ant-input,
 .ant-input-affix-wrapper-lg,
 .ant-select-single .ant-select-selector,
-.ant-select-dropdown .ant-select-item {
+.ant-select-dropdown .ant-select-item,
+.ant-row,
+.ant-col {
   font-size: var(--size-text) !important;
 }
 :where(.css-dev-only-do-not-override-3rel02).ant-form-item
@@ -69,4 +71,27 @@
   padding: 10px;
   height: 50px;
   font-size: var(--size-text) !important;
+}
+.ant-table-wrapper .ant-table {
+  font-size: var(--size-text) !important;
+}
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper .ant-table-cell,
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper
+  .ant-table-thead
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper
+  .ant-table-tbody
+  > tr
+  > th,
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper
+  .ant-table-tbody
+  > tr
+  > td,
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper tfoot > tr > th,
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper tfoot > tr > td {
+  padding: 10px 16px;
+}
+.ant-table-wrapper .ant-table {
+  scrollbar-color: transparent !important;
 }

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import styles from './TrackSampler.module.scss';
 import { Pagination, Table, TableColumnsType } from 'antd';
@@ -155,6 +155,21 @@ const TrackSampler: React.FC = () => {
     { value: 30, color: 'blue' },
     { value: 40, color: 'orange' },
   ];
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'F1') {
+        event.preventDefault(); // Prevent the default action of the F1 key (e.g., opening help in browsers)
+        alert('F1 key pressed');
+        // Add your custom action here
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
   return (
     <>
       <FilterTrackSampler />

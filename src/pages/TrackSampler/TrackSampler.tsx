@@ -8,7 +8,7 @@ import { httpRequest } from '~/services';
 import crmAccountServices from '~/services/core/crmAccountServices';
 import FilterTrackSampler from './components/FilterTrackSampler';
 import { useLocation, useParams } from 'react-router-dom';
-import DoughnutChart from '~/components/common/DoughnutChart/DoughnutChart';
+//import DoughnutChart from '~/components/common/DoughnutChart/DoughnutChart';
 const TrackSampler: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -43,7 +43,7 @@ const TrackSampler: React.FC = () => {
       width: 50,
       fixed: 'left',
       align: 'center',
-      render: (value, item, index) => {
+      render: (index) => {
         return (
           <>{(Number(page || 1) - 1) * Number(pageSize || 20) + index + 1}</>
         );
@@ -149,12 +149,12 @@ const TrackSampler: React.FC = () => {
     return data?.list.map((row: any) => ({ ...row, key: row?._id })) || [];
   }, [data]);
   console.log(tabId);
-  const dataChart = [
-    { value: 10, color: 'red' },
-    { value: 20, color: 'green' },
-    { value: 30, color: 'blue' },
-    { value: 40, color: 'orange' },
-  ];
+  // const dataChart = [
+  //   { value: 10, color: 'red' },
+  //   { value: 20, color: 'green' },
+  //   { value: 30, color: 'blue' },
+  //   { value: 40, color: 'orange' },
+  // ];
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'F1') {
@@ -188,7 +188,7 @@ const TrackSampler: React.FC = () => {
           showQuickJumper
           showTotal={(total) => `Total ${total} items`}
         />
-        <DoughnutChart data={dataChart} size={200} innerRadius={50} />
+        {/* <DoughnutChart data={dataChart} size={200} innerRadius={50} /> */}
       </div>
     </>
   );

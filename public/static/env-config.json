@@ -1,0 +1,5 @@
+{
+  "PUBLIC_API": "https://api-meapp.benhvien.tech/core",
+  "PUBLIC_API_DEV": "https://api-meapp.benhvien.tech/core",
+  "PUBLIC_SOCKET": "https://api-meapp.benhvien.tech/core"
+}

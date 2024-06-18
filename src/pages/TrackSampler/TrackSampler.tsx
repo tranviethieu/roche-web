@@ -5,9 +5,7 @@ import { Pagination, Table, TableColumnsType } from 'antd';
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '~/constants/config/enum';
 import { httpRequest } from '~/services';
-import crmAccountServices, {
-  getListAccountAll,
-} from '~/services/core/crmAccountServices';
+import crmAccountServices from '~/services/core/crmAccountServices';
 import FilterTrackSampler from './components/FilterTrackSampler';
 import { useLocation, useParams } from 'react-router-dom';
 //import DoughnutChart from '~/components/common/DoughnutChart/DoughnutChart';
@@ -36,12 +34,12 @@ const TrackSampler: React.FC = () => {
         }),
       }),
   });
-  useQuery({
+  const { data: data2 } = useQuery({
     queryKey: [QUERY_KEY.ListDoctorsAll, _keyword, pageSize, page, _status],
     queryFn: () =>
       httpRequest({
         setLoading,
-        http: getListAccountAll({
+        http: crmAccountServices.getListAccountAll({
           paging: {
             count: pageSize ? Number(pageSize) : 20,
             from: Number(pageSize || 20) * (Number(page || 1) - 1),
@@ -53,7 +51,8 @@ const TrackSampler: React.FC = () => {
         }),
       }),
   });
-
+  console.log(data2);
+  console.log(data);
   const columns: TableColumnsType<any> = [
     {
       title: 'STT',
@@ -209,6 +208,28 @@ const TrackSampler: React.FC = () => {
         />
         {/* <DoughnutChart data={dataChart} size={200} innerRadius={50} /> */}
       </div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
+      <div>aaa</div>
     </>
   );
 };

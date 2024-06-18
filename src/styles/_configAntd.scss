@@ -13,8 +13,9 @@
 .ant-select-single .ant-select-selector,
 .ant-select-dropdown .ant-select-item,
 .ant-row,
-.ant-col {
-  font-size: var(--size-text) !important;
+.ant-col,
+.ant-btn-sm {
+  font-size: var(--size-text);
 }
 :where(.css-dev-only-do-not-override-3rel02).ant-form-item
   .ant-form-item-explain,
@@ -92,6 +93,13 @@
 :where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper tfoot > tr > td {
   padding: 10px 16px;
 }
+
+// custom scrollbar
+.ant-table-wrapper {
+  .ant-table-body::-webkit-scrollbar {
+    width: 4px !important;
+  }
+}
 .ant-table-wrapper .ant-table {
-  scrollbar-color: transparent !important;
+  scrollbar-color: unset;
 }

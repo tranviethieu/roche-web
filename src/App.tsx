@@ -12,7 +12,7 @@ function App() {
       <SplashScreen />
       <ToastContainer autoClose={3000} />
       <RouterProvider router={router}></RouterProvider>
-      <FloatButton.BackTop />
+      <FloatButton.BackTop style={{ width: '30px', height: '30px' }} />
     </>
   );
 }

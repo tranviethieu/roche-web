@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: calc(var(--header-height) + var(--nav-height));
+  height: var(--header-height);
   //background: var(--bg-header);
   background: var(--bg-header);
   display: flex;

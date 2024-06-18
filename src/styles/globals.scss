@@ -4,16 +4,16 @@
 
 :root {
   --toastify-toast-min-height: 56px;
-  --header-height: 3.75rem;
-  --nav-height: 4.375rem;
+  --header-height: 6.75rem;
+  --nav-height: 3.7rem;
   --nav-aside: 58px;
   --menu-width: 300px;
-  --size-text: 12px;
-  --size-label: 13px;
-  --size-title: 16px;
+  --size-text: 0.688rem;
+  --size-label: 0.75rem;
+  --size-title: 1rem;
 
-  --size-title-xl: 18px;
-  --size-title-components: 20px;
+  --size-title-xl: 0.875rem;
+  --size-title-components: 1rem;
 
   --font-weight: 400;
   --font-weight-title: 500;
@@ -49,8 +49,7 @@ body {
   margin: 0;
   font-family: 'Be Vietnam Pro';
   color: #000;
-
-  //background-size: contain;
+  background: var(--bg-main-2);
 }
 
 a {
@@ -257,12 +256,9 @@ body {
     background: #d9f4ba;
   }
 }
-main {
-  height: 100%;
-  background: var(--bg-main-2);
-}
+
 .content_web_roche {
-  padding-top: calc(var(--header-height) + var(--nav-height) + 5px);
+  padding-top: calc(var(--header-height) + 5px);
 }
 .list_overview.ant-list-split .ant-list-item {
   border-block-end: none !important;

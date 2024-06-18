@@ -4,12 +4,11 @@ export interface IVariableEnv {
   publicApi: string;
   publicApiDev: string;
   publicApiSocket: string;
-  publicApiCore: string;
-  publicApiHome: string;
-  publicApiMeApp: string;
-  publicApiMedia: string;
-  publicImgae: string;
-  publicMenuImg: string;
+}
+
+export interface ItemBreadcrumb {
+  title: string;
+  href?: string;
 }
 
 export interface SiteState {
@@ -22,6 +21,7 @@ export interface SiteState {
   bgColor: string;
   variableEnv: IVariableEnv | null;
   routerActive: string;
+  breadcrumb: ItemBreadcrumb[];
 }
 
 const initialState: SiteState = {
@@ -35,6 +35,7 @@ const initialState: SiteState = {
     'linear-gradient(135deg, rgb(71, 120, 209) 29%, rgb(247, 170, 248) 100%)',
   variableEnv: null,
   routerActive: '/',
+  breadcrumb: [],
 };
 
 export const siteSlice = createSlice({
@@ -68,6 +69,9 @@ export const siteSlice = createSlice({
     setIsOverview: (state, action: PayloadAction<boolean>) => {
       state.isOverview = action.payload;
     },
+    setBreadcrumb: (state, action: PayloadAction<ItemBreadcrumb[]>) => {
+      state.breadcrumb = action.payload;
+    },
   },
 });
 
@@ -81,6 +85,7 @@ export const {
   setVariableEnv,
   setRouterActive,
   setIsOverview,
+  setBreadcrumb,
 } = siteSlice.actions;
 // Action creators are generated for each case reducer function
 export default siteSlice.reducer;

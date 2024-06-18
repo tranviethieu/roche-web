@@ -6,22 +6,42 @@ import { getItemStorage, setItemStorage } from '~/common/func/localStorage';
 import { KEY_STORE } from '~/constants/config';
 import { RootState, store } from '~/redux/store';
 import { setStateLogin, setToken } from '~/redux/reducer/auth';
-import { setLoading } from '~/redux/reducer/site';
+import { setLoading, setVariableEnv } from '~/redux/reducer/site';
 import { useSelector } from 'react-redux';
+import { getEnvConfig } from '~/common/func/env';
 const SplashScreen: React.FC = () => {
   const { token, isLogin } = useSelector((state: RootState) => state.auth);
-  const { loading } = useSelector((state: RootState) => state.site);
+  const { loading, variableEnv } = useSelector(
+    (state: RootState) => state.site
+  );
+  //const [isReadSuccess, setIsReadSuccess] = useState<boolean>(false);
   // Set data vào redux từ localStorage
   useEffect(() => {
     (async () => {
       const state = await getItemStorage(KEY_STORE);
-
       if (!!state) {
         store.dispatch(setToken(state.token));
         store.dispatch(setStateLogin(state.isLogin));
+        store.dispatch(setVariableEnv(state.variableEnv));
       }
-      console.log(state);
       store.dispatch(setLoading(false));
+    })();
+  }, []);
+  // Đọc biến env từ folder public
+  useEffect(() => {
+    (async () => {
+      const envConfig = await getEnvConfig();
+      console.log(envConfig);
+      if (envConfig) {
+        store.dispatch(
+          setVariableEnv({
+            publicApi: envConfig.PUBLIC_API,
+            publicApiDev: envConfig.PUBLIC_API_DEV,
+            publicApiSocket: envConfig.PUBLIC_SOCKET,
+          })
+        );
+        //setIsReadSuccess(true); //set đẻ gọi api
+      }
     })();
   }, []);
   // Lưu vào localStorage
@@ -30,9 +50,10 @@ const SplashScreen: React.FC = () => {
       setItemStorage(KEY_STORE, {
         token: token,
         isLogin: isLogin,
+        variableEnv: variableEnv,
       });
     }
-  }, [token, isLogin, loading]);
+  }, [token, isLogin, loading, variableEnv]);
 
   return (
     <Fragment>

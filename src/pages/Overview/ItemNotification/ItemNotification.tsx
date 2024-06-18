@@ -2,13 +2,14 @@ import { Col, Popconfirm, PopconfirmProps, Row, message } from 'antd';
 import React from 'react';
 import styles from './ItemNotification.module.scss';
 import clsx from 'clsx';
+import { convertUtcToUtc7 } from '~/common/func/convertDate';
 interface PropItem {
   name: string;
   code: string;
-  date: Date | null;
+  date: string | null;
   count: number;
 }
-const ItemNotification: React.FC<Partial<PropItem>> = ({ name }) => {
+const ItemNotification: React.FC<Partial<PropItem>> = ({ name, date }) => {
   const confirm: PopconfirmProps['onConfirm'] = (e) => {
     console.log(e);
     message.success('Click on Yes');
@@ -37,7 +38,7 @@ const ItemNotification: React.FC<Partial<PropItem>> = ({ name }) => {
           ~ System ~
         </Col>
         <Col span={3} className={styles.item}>
-          2024-01-28
+          {convertUtcToUtc7(date!, 'DD-MM-YYYY') || '---'}
         </Col>
         <Col span={3} className={styles.item}>
           0

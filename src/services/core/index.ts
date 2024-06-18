@@ -13,8 +13,7 @@ const createAxiosClientCore = () => {
 
   axiosClientCore.interceptors.request.use(async (config) => {
     const token = store.getState().auth.token;
-    //const baseURL = store.getState().site.variableEnv?.publicApiCore;
-    const baseURL = 'https://api-meapp.benhvien.tech/core';
+    const baseURL = store.getState().site.variableEnv?.publicApiDev;
     //const infoHospital = store.getState().user.infoHospital;
 
     // Cập nhật baseURL nếu có sự thay đổi

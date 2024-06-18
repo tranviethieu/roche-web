@@ -4,61 +4,71 @@ import VirtualList from 'rc-virtual-list';
 import { Checkbox, Col, Flex, Input, List, Row, Select, Spin } from 'antd';
 import { SearchNormal1 } from 'iconsax-react';
 import ItemNotification from './ItemNotification';
-interface UserItem {
-  email: string;
-  gender: string;
-  name: {
-    first: string;
-    last: string;
-    title: string;
-  };
-  nat: string;
-  picture: {
-    large: string;
-    medium: string;
-    thumbnail: string;
-  };
+import { useInfiniteQuery } from '@tanstack/react-query';
+import crmAccountServices from '~/services/core/crmAccountServices';
+import { QUERY_KEY } from '~/constants/config/enum';
+interface typeSearch {
+  keyword: string;
 }
-const fakeDataUrl =
-  'https://randomuser.me/api/?results=10&inc=name,gender,email,nat,picture&noinfo';
-const ContainerHeight = 310;
+
 const Overview: React.FC = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<UserItem[]>([]);
-
-  const appendData = () => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((body) => {
-        setData(data.concat(body.results));
-      });
-  };
-
+  //const [loading, setLoading] = useState(false);
+  const [mergedData, setMergedData] = useState<any>([]);
+  const [loadingPage, setLoadingPage] = useState(true);
+  const [keyword, setKeyword] = useState<string>('');
+  const [onSearch, setOnSearch] = useState<typeSearch>({
+    keyword: '',
+  });
   useEffect(() => {
-    appendData();
+    const timer = setTimeout(() => {
+      setLoadingPage(false);
+    }, 2000);
+    return () => clearTimeout(timer);
   }, []);
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: [QUERY_KEY.Notifications, onSearch],
+      queryFn: async ({ pageParam = 0 }) => {
+        const res = await crmAccountServices.fetchAccounts({
+          paging: {
+            from: pageParam,
+            count: 10,
+          },
+          keySearch: onSearch?.keyword ?? '',
+        });
 
-  const onScroll = (e: React.UIEvent<HTMLElement, UIEvent>) => {
-    if (
-      Math.abs(
-        e.currentTarget.scrollHeight -
-          e.currentTarget.scrollTop -
-          ContainerHeight
-      ) <= 1
-    ) {
-      appendData();
+        return {
+          items: res?.data?.list || [],
+          total: res.data.count || 0,
+        };
+      },
+      initialPageParam: 0,
+      getNextPageParam: (lastPage, pages) => {
+        if (pages.length < Math.ceil(lastPage.total / 10)) {
+          return pages.length + 1;
+        }
+        return undefined;
+      },
+      enabled: !loadingPage,
+    });
+  const handleScroll = (e: React.UIEvent<HTMLElement>) => {
+    const target = e.currentTarget;
+    if (target.scrollHeight - target.scrollTop === target.clientHeight) {
+      if (hasNextPage && !isFetchingNextPage) {
+        fetchNextPage();
+      }
     }
   };
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    if (data) {
+      const dataNew = data ? data.pages.flatMap((page) => page.items) : [];
+      setMergedData(dataNew);
+    }
+  }, [data]);
 
-    return () => clearTimeout(timer);
-  }, []);
   return (
     <section className={styles.section}>
-      {loading ? (
+      {loadingPage ? (
         <Flex
           align="center"
           gap="middle"
@@ -96,24 +106,42 @@ const Overview: React.FC = () => {
                 </Col>
                 <Col span={12} lg={12} xs={24}>
                   <Flex gap={10}>
-                    <Input placeholder="..." style={{ width: '162px' }} />
-                    <div>
+                    <Input
+                      placeholder="..."
+                      value={keyword}
+                      style={{ width: '162px' }}
+                      onChange={(e: any) => {
+                        setKeyword(e.target.value);
+                      }}
+                    />
+                    <div
+                      onClick={() => {
+                        setOnSearch({ keyword: keyword });
+                      }}
+                    >
                       <SearchNormal1 size="24" color="#303133" />
                     </div>
                   </Flex>
                 </Col>
               </Row>
-              <List className="list_overview" style={{ margin: '10px 0' }}>
+              <List
+                className="list_overview"
+                style={{ margin: '10px 0' }}
+                //loading={loading}
+              >
                 <VirtualList
-                  data={data}
-                  height={ContainerHeight}
+                  data={mergedData}
+                  height={320}
                   itemHeight={47}
                   itemKey="email"
-                  onScroll={onScroll}
+                  onScroll={handleScroll}
                 >
-                  {(item: UserItem, index: number) => (
-                    <List.Item key={index}>
-                      <ItemNotification key={index} name={item.name.first} />
+                  {(item: any) => (
+                    <List.Item key={item._id}>
+                      <ItemNotification
+                        name={item?._id}
+                        date={item?.createdTime}
+                      />
                     </List.Item>
                   )}
                 </VirtualList>

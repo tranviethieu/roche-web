@@ -2,12 +2,15 @@
   border-radius: 10px;
   background: #fff;
   padding: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   margin: 0 10px;
   height: var(--nav-aside);
   .button_menu {
     padding: 8px 12px;
     justify-content: space-between;
     height: 40px;
+    font-size: var(--size-label);
   }
   .route {
     transition: 0.3s;
@@ -16,4 +19,10 @@
       transform: rotate(90deg);
     }
   }
+}
+.slider_main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }

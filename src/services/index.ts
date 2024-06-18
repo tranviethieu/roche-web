@@ -39,16 +39,21 @@ export const httpRequest = async ({
   try {
     const res: any = await http;
 
-    if (res?.code == RESULT.SUCCESSFUL) {
-      showMessageSuccess && toastSuccess({ msg: msgSuccess || res?.message });
-      return res?.data || true;
-    } else {
-      if (setError) {
-        setError(res?.message);
+    if (!Array.isArray(res)) {
+      if (res?.code == RESULT.SUCCESSFUL) {
+        showMessageSuccess && toastSuccess({ msg: msgSuccess || res?.message });
+        return res?.data || true;
+      } else {
+        if (setError) {
+          setError(res?.message);
+        }
+        onError && onError();
+        showMessageFailed && toastWarn({ msg: res?.message });
+        return res?.data;
       }
-      onError && onError();
-      showMessageFailed && toastWarn({ msg: res?.message });
-      return res?.data;
+    }
+    if (Array.isArray(res)) {
+      return res.map((res: any) => res.data);
     }
   } catch (err: any) {
     if (err?.error?.code == 401 || err?.response?.status == 401) {

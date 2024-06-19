@@ -15,7 +15,7 @@ const BoxAverageTime: React.FC<PropBoxAverageTime> = () => {
 
       <DoughnutChartTime
         total={24}
-        size={200}
+        size={180}
         value={20}
         thickness={30}
         valueFormat={`1h34'`}

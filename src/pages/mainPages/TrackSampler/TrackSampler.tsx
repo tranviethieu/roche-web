@@ -22,9 +22,9 @@ const TrackSampler: React.FC = () => {
         </Button>
       </Flex>
       <div className={styles.main}>
-        <Row gutter={[10, 10]} style={{ width: '100%', height: 'auto' }}>
+        <Row gutter={[10, 10]} style={{ width: '100%' }}>
           <Col span={16}>
-            <Row gutter={[10, 10]} style={{ width: '100%', height: 'auto' }}>
+            <Row gutter={[10, 10]}>
               <Col span={12} xxl={8}>
                 <BoxNotDelivered />
               </Col>
@@ -43,7 +43,7 @@ const TrackSampler: React.FC = () => {
             </Row>
           </Col>
           <Col span={8}>
-            <Row gutter={[10, 10]} style={{ width: '100%', height: 'auto' }}>
+            <Row gutter={[10, 10]}>
               <Col span={24} xxl={24} xl={24}>
                 <BoxTotalSample />
               </Col>

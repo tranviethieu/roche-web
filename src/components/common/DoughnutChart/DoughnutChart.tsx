@@ -4,6 +4,7 @@ type DoughnutChartProps = {
   data: { value: number; color: string }[];
   size: number;
   innerRadius: number;
+  dataSet?: number;
   showTotal?: boolean;
 };
 
@@ -11,6 +12,7 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({
   data,
   size,
   innerRadius,
+  dataSet,
   showTotal = true,
 }) => {
   const radius = size / 2;
@@ -86,7 +88,7 @@ const DoughnutChart: React.FC<DoughnutChartProps> = ({
           fontSize="24"
           fill="black"
         >
-          {total}
+          {dataSet}/{total}
         </text>
       )}
     </svg>

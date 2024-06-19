@@ -17,6 +17,19 @@
 .ant-btn-sm {
   font-size: var(--size-text);
 }
+
+.cls_custom_scroll
+  :where(.css-dev-only-do-not-override-zg0ahe).ant-list
+  .ant-list-item {
+  padding: 10px 0 !important;
+  .ant-list-item-meta-title {
+    font-size: var(--size-text);
+  }
+  .ant-list-item-meta-description {
+    font-size: calc(var(--size-text) - 1px);
+  }
+}
+
 :where(.css-dev-only-do-not-override-3rel02).ant-form-item
   .ant-form-item-explain,
 :where(.css-dev-only-do-not-override-3rel02).ant-form-item
@@ -102,4 +115,7 @@
 }
 .ant-table-wrapper .ant-table {
   scrollbar-color: unset;
+}
+:where(.css-dev-only-do-not-override-zg0ahe).ant-col {
+  font-family: 'Be Vietnam Pro' !important;
 }

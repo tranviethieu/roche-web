@@ -9,6 +9,8 @@ import { setStateLogin, setToken } from '~/redux/reducer/auth';
 import { setLoading, setVariableEnv } from '~/redux/reducer/site';
 import { useSelector } from 'react-redux';
 import { getEnvConfig } from '~/common/func/env';
+import icons from '~/constants/images/icons';
+import { Spin } from 'antd';
 const SplashScreen: React.FC = () => {
   const { token, isLogin } = useSelector((state: RootState) => state.auth);
   const { loading, variableEnv } = useSelector(
@@ -31,7 +33,6 @@ const SplashScreen: React.FC = () => {
   useEffect(() => {
     (async () => {
       const envConfig = await getEnvConfig();
-      console.log(envConfig);
       if (envConfig) {
         store.dispatch(
           setVariableEnv({
@@ -59,11 +60,16 @@ const SplashScreen: React.FC = () => {
     <Fragment>
       <div className={clsx(styles.container, { [styles.close]: !loading })}>
         <div>
-          <img
-            className={styles.logo}
-            src="/static/animation/loadingMeapp.gif"
-            alt="SplashScreen"
-          />
+          <Spin tip="Roche" size="large">
+            <div
+              style={{
+                padding: 50,
+                background: 'rgba(0, 0, 0, 0.05)',
+                borderRadius: 4,
+              }}
+            ></div>
+          </Spin>
+          {/* <img className={styles.logo} src={icons.logo} alt="SplashScreen" /> */}
         </div>
       </div>
     </Fragment>

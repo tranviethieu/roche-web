@@ -38,7 +38,10 @@ const ListMenu: React.FC<PopListMenu> = ({ checkOverview = false }) => {
   const checkActive = useCallback(
     (pathname: string) => {
       const currentRoute = location.pathname.split('/')[1];
-      return pathname === `/${currentRoute}`;
+      return (
+        pathname === `/${currentRoute}` ||
+        (currentRoute == 'main' && pathname == '/')
+      );
     },
     [location]
   );

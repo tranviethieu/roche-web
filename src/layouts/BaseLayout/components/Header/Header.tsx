@@ -78,7 +78,7 @@ const Header = () => {
         <Flex gap={12}>
           <Select
             defaultValue="ROCHE"
-            style={{ width: 162, height: 40 }}
+            style={{ width: 162, height: 32 }}
             onChange={(value: string) => {
               console.log(`selected ${value}`);
             }}
@@ -89,7 +89,7 @@ const Header = () => {
           />
           <Select
             defaultValue="CS1"
-            style={{ width: 162, height: 40 }}
+            style={{ width: 162, height: 32 }}
             onChange={(value: string) => {
               console.log(`selected ${value}`);
             }}
@@ -128,7 +128,12 @@ const Header = () => {
             <QuestionCircleOutlined />
           </Button>
           <Link to="">
-            <img src="/static/images/logo.png" alt="#roche" />
+            <img
+              src="/static/images/logo.png"
+              alt="#roche"
+              width={32}
+              height={32}
+            />
           </Link>
         </Flex>
       </div>

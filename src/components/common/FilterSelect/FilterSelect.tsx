@@ -15,7 +15,6 @@ function FilterSelect({
     [name]: getQueryParamValue(query),
   };
   const onChange = (value: string) => {
-    console.log(`selected ${value}`);
     if (value) {
       updateQueryParam(query, value);
     } else {
@@ -41,7 +40,7 @@ function FilterSelect({
         <Select
           showSearch={isSearch}
           //defaultValue={getQueryParamValue(query)}
-          style={{ width: 260, height: 40, borderRadius: 10 }}
+          style={{ width: 260, height: 32, borderRadius: 4 }}
           optionFilterProp="children"
           onChange={onChange}
           filterOption={filterOption}

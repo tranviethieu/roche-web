@@ -1,0 +1,56 @@
+.card {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  mix-blend-mode: darken;
+  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.5);
+
+  .title {
+    text-align: start;
+    font-size: calc(var(--size-title) - 1px);
+    font-weight: 700;
+    width: 100%;
+    margin-left: 20px;
+  }
+  .chart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .dataChart {
+      position: absolute;
+      right: -80px;
+      bottom: 0;
+    }
+    .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #dcdfe6;
+    }
+  }
+  .value {
+    width: 107px;
+    height: 32px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #dcdfe6;
+    border-radius: 50px;
+    margin: 6px 0;
+    font-size: var(--size-title);
+    font-weight: 500;
+  }
+  .titleSub {
+    justify-content: center;
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+    margin: 6px 0;
+    font-weight: 500;
+  }
+}

@@ -47,7 +47,7 @@ const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
         >
           Menu
           <ArrowRight2
-            size="24"
+            size="20"
             className={clsx(styles.route, { [styles.open]: !collapsed })}
           />
         </Button>

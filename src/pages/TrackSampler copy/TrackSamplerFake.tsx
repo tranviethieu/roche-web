@@ -9,7 +9,7 @@ import crmAccountServices from '~/services/core/crmAccountServices';
 import FilterTrackSampler from './components/FilterTrackSampler';
 import { useLocation, useParams } from 'react-router-dom';
 //import DoughnutChart from '~/components/common/DoughnutChart/DoughnutChart';
-const TrackSampler: React.FC = () => {
+const TrackSamplerFake: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { tabId } = useParams();
@@ -234,4 +234,4 @@ const TrackSampler: React.FC = () => {
   );
 };
 
-export default TrackSampler;
+export default TrackSamplerFake;

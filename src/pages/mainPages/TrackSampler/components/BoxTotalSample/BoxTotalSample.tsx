@@ -27,7 +27,7 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
           <DoughnutChart
             data={data}
             dataSet={data[0].value}
-            size={220}
+            size={210}
             innerRadius={70}
           />
           <div className={styles.dataChart}>

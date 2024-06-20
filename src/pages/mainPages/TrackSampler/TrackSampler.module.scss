@@ -3,7 +3,7 @@
   height: 100%;
   .main {
     margin: 10px;
-
+    overflow-x: hidden;
     height: calc(
       100vh - (var(--header-height) + var(--nav-aside) + 84px + 36px)
     );

@@ -119,3 +119,8 @@
 :where(.css-dev-only-do-not-override-zg0ahe).ant-col {
   font-family: 'Be Vietnam Pro' !important;
 }
+:where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper
+  .ant-table-tbody-virtual
+  .ant-table-cell {
+  border-color: transparent;
+}

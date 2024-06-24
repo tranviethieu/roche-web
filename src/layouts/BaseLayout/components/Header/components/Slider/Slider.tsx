@@ -1,19 +1,18 @@
-import { Breadcrumb, Button, Menu, MenuProps } from 'antd';
+import { Button, Menu, MenuProps } from 'antd';
 import styles from './Slider.module.scss';
-import { useState } from 'react';
-
+import { useMemo, useState } from 'react';
 import { ArrowRight2 } from 'iconsax-react';
 import clsx from 'clsx';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { MenuItem } from '~/constants/config';
-import { useSelector } from 'react-redux';
-import { RootState, store } from '~/redux/store';
+import { store } from '~/redux/store';
 import { ItemBreadcrumb, setBreadcrumb } from '~/redux/reducer/site';
 
 const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
   menuItemSlider,
 }) => {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
   // const { breadcrumb } = useSelector((state: RootState) => state.site);
   const navigate = useNavigate();
 
@@ -37,6 +36,10 @@ const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
     store.dispatch(setBreadcrumb(items));
     setCollapsed(false);
   };
+
+  const defaultSelectedKeys = useMemo(() => {
+    return location.pathname;
+  }, [location.pathname]);
   return (
     <div className={styles.main}>
       <div className={styles.slider_main}>
@@ -54,6 +57,7 @@ const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
         <Menu
           mode="inline"
           theme="light"
+          defaultSelectedKeys={[defaultSelectedKeys]}
           inlineCollapsed={!collapsed}
           className="menu_main"
           items={menuItemSlider}

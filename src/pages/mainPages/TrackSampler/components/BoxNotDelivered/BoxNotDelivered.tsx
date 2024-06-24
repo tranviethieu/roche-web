@@ -16,7 +16,7 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
       const res = await crmAccountServices.fetchAccounts({
         paging: {
           from: pageParam,
-          count: 10,
+          count: 20,
         },
         keySearch: '',
       });
@@ -39,14 +39,13 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.title}>MẪU ĐÃ LẤY NHƯNG CHƯA GIAO</div>
+      <div className={styles.boxTitle}>
+        <div className={styles.title}>MẪU ĐÃ LẤY NHƯNG CHƯA GIAO</div>
+      </div>
       <div className={styles.box}></div>
       <div
         id="scrollableBoxNotDelivered"
         className={clsx(styles.scrollable, 'cls_custom_scroll')}
-        style={{
-          height: 240,
-        }}
       >
         <InfiniteScroll
           dataLength={data?.pages.flat().length || 0}

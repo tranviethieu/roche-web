@@ -6,4 +6,5 @@ export interface PropFilterSelect {
   isSearch?: boolean;
   disabled?: boolean;
   backgroundBlue?: boolean;
+  color?: boolean;
 }

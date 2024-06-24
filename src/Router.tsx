@@ -12,6 +12,7 @@ import LayoutMain from './layouts/BaseLayout/components/LayoutMain';
 import LayoutMonitoring from './layouts/BaseLayout/components/LayoutMonitoring';
 import TrackSampler from './pages/mainPages/TrackSampler';
 import Main from './pages/mainPages/Main';
+import DetailSampler from './pages/mainPages/DetailSampler';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
             element: <LayoutMain />,
             children: [
               { path: PATH.Main, element: <Main /> },
+              { path: '/main/detailSampler', element: <DetailSampler /> },
               {
                 path: `${PATH.TrackSampler}/:tabId`,
                 element: <TrackSampler />,

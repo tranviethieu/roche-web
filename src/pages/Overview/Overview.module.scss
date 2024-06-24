@@ -14,3 +14,10 @@
   width: 20px;
   margin: 12px auto;
 }
+.scrollable {
+  width: 100%;
+  overflow: auto;
+  margin: 10px 0;
+  // border-top: 1px solid rgba(140, 140, 140, 0.35);
+  height: 300px;
+}

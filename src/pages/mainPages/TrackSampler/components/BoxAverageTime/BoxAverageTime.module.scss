@@ -6,18 +6,18 @@
   align-items: center;
   gap: 10px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.2);
   mix-blend-mode: darken;
-  box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 0.5px solid rgba(0, 90, 180, 0.5);
 
   .title {
     //text-align: center;
-    font-size: calc(var(--size-title) - 1px);
+    font-size: calc(var(--size-title));
     font-weight: 700;
-    margin-left: 20px;
+    //margin-left: 10px;
   }
   .moreOutlined {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 600;
     cursor: pointer;
   }

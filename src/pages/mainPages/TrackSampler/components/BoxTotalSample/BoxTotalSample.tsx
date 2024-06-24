@@ -22,14 +22,14 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
   return (
     <div className={styles.card}>
       <div className={styles.title}>Tổng lượng mẫu</div>
-      <div className={styles.chart}>
-        <div style={{ position: 'relative' }}>
-          <DoughnutChart
-            data={data}
-            dataSet={data[0].value}
-            size={210}
-            innerRadius={70}
-          />
+      <Flex justify="space-between" style={{ width: '100%' }} gap={20}>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+          }}
+        >
           <div className={styles.dataChart}>
             {dataWithPercentages.map((item, index) => (
               <Flex
@@ -47,22 +47,34 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
               </Flex>
             ))}
           </div>
+          {dataWithPercentages.map((item, index) => (
+            <Row key={index} gutter={[50, 10]}>
+              <Col span={12} className={styles.titleSub}>
+                {item.title}
+              </Col>
+              <Col span={12}>
+                <div
+                  className={styles.value}
+                  style={{ background: item?.color }}
+                >
+                  {item.value}
+                </div>
+              </Col>
+            </Row>
+          ))}
         </div>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-        {dataWithPercentages.map((item, index) => (
-          <Row key={index} gutter={[50, 10]}>
-            <Col span={12} className={styles.titleSub}>
-              {item.title}
-            </Col>
-            <Col span={12}>
-              <div className={styles.value} style={{ background: item?.color }}>
-                {item.value}
-              </div>
-            </Col>
-          </Row>
-        ))}
-      </div>
+        <div className={styles.chart}>
+          <div style={{ position: 'relative' }}>
+            <DoughnutChart
+              data={data}
+              dataSet={data[0].value}
+              size={260}
+              innerRadius={90}
+            />
+            {/*  */}
+          </div>
+        </div>
+      </Flex>
     </div>
   );
 };

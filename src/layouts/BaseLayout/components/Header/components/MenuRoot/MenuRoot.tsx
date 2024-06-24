@@ -3,6 +3,8 @@ import { Button, Flex, Menu, MenuProps } from 'antd';
 import { Home } from 'iconsax-react';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import 'nprogress/nprogress.css';
+import nprogress from 'nprogress';
 import {
   PATH,
   MenuItem,
@@ -44,10 +46,12 @@ const MenuRoot = () => {
     setCollapsed(!collapsed);
   };
   const firstPathSegment: MenuItemRoot = useMemo(() => {
+    nprogress.start();
     const segments = location.pathname.split('/');
     let segment = `/${segments[1]}`;
     if (segment === 'main') segment = '/';
     const item = items.find((item) => item?.key == segment);
+    nprogress.done();
     return item || items[0];
   }, [location.pathname]);
   const handleClickMenu: MenuProps['onClick'] = (e) => {
@@ -81,17 +85,13 @@ const MenuRoot = () => {
           background: 'transparent',
           border: 'none',
           outline: 'none',
+          margin: 'auto',
         }}
       >
         {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
       </Button>
       {firstPathSegment.key && (
-        <Flex
-          wrap
-          align="center"
-          gap={5}
-          style={{ color: '#fff', minWidth: '110px' }}
-        >
+        <Flex wrap align="center" gap={5} style={{ color: '#fff' }}>
           {firstPathSegment?.icon}
           <h5>{firstPathSegment?.label}</h5>
         </Flex>

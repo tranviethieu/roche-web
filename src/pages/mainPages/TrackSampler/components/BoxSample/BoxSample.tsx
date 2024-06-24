@@ -40,7 +40,9 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.title}>{title}</div>
+      <div className={styles.boxTitle}>
+        <div className={styles.title}>{title}</div>
+      </div>
       <Row gutter={8} style={{ width: '100%' }}>
         <Col span={12}>
           <div
@@ -69,9 +71,6 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
         className={clsx(styles.scrollable, 'cls_custom_scroll', {
           [styles.active]: active,
         })}
-        style={{
-          height: 240,
-        }}
       >
         <InfiniteScroll
           dataLength={data?.pages.flat().length || 0}

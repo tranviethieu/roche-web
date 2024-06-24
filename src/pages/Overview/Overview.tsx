@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Overview.module.scss';
 import VirtualList from 'rc-virtual-list';
-import { Checkbox, Col, Flex, Input, List, Row, Select, Spin } from 'antd';
+import {
+  Checkbox,
+  Col,
+  Divider,
+  Flex,
+  Input,
+  List,
+  Row,
+  Select,
+  Skeleton,
+  Spin,
+} from 'antd';
 import { SearchNormal1 } from 'iconsax-react';
 import ItemNotification from './ItemNotification';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import crmAccountServices from '~/services/core/crmAccountServices';
 import { QUERY_KEY } from '~/constants/config/enum';
+import clsx from 'clsx';
+import InfiniteScroll from 'react-infinite-scroll-component';
 interface typeSearch {
   keyword: string;
 }
@@ -124,7 +137,39 @@ const Overview: React.FC = () => {
                   </Flex>
                 </Col>
               </Row>
-              <List
+              <div
+                id="scrollOverview"
+                className={clsx(styles.scrollable, 'cls_custom_scroll')}
+              >
+                <InfiniteScroll
+                  dataLength={data?.pages.flat().length || 0}
+                  next={fetchNextPage}
+                  hasMore={!!hasNextPage}
+                  loader={<Skeleton title paragraph={{ rows: 1 }} active />}
+                  endMessage={
+                    <Divider plain>It is all, nothing more 🤐</Divider>
+                  }
+                  scrollableTarget="scrollOverview"
+                >
+                  <List
+                    dataSource={
+                      data?.pages
+                        .flat()
+                        .map((page) => page.items)
+                        .flat() || []
+                    }
+                    renderItem={(item: any) => (
+                      <List.Item key={item._id}>
+                        <ItemNotification
+                          name={item?._id}
+                          date={item?.createdTime}
+                        />
+                      </List.Item>
+                    )}
+                  />
+                </InfiniteScroll>
+              </div>
+              {/* <List
                 className="list_overview"
                 style={{ margin: '10px 0' }}
                 //loading={loading}
@@ -145,7 +190,7 @@ const Overview: React.FC = () => {
                     </List.Item>
                   )}
                 </VirtualList>
-              </List>
+              </List> */}
             </div>
             <Flex gap={10} align="center" style={{ marginBottom: '10px' }}>
               <div>Favoties</div>

@@ -1,0 +1,8 @@
+.title_h1 {
+  font-size: var(--size-title);
+  color: var(--white-text);
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

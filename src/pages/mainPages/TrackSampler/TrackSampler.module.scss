@@ -4,11 +4,9 @@
   .main {
     margin: 10px;
     overflow-x: hidden;
-    height: calc(
-      100vh - (var(--header-height) + var(--nav-aside) + 84px + 36px)
-    );
+    height: auto;
     background-color: var(--white-text);
-    border-radius: 10px;
+    border-radius: var(--border-radius);
     overflow-y: auto;
     padding: 10px;
   }

@@ -141,6 +141,7 @@ const Login: React.FC = () => {
             <Select
               placeholder="Possition"
               //onChange={onPossitionChange}
+              //size="middle"
               allowClear
             >
               <Option value="1">Phlebotomy (Lấy mẫu)</Option>

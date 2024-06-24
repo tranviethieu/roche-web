@@ -6,23 +6,38 @@
   --toastify-toast-min-height: 56px;
   --header-height: 42px;
   --nav-height: 3.7rem;
+  --height-filter: 74px;
+  --height-filter-mobi: 140px;
   --nav-aside: 50px;
   --menu-width: 300px;
-  --size-text: 9px;
-  --size-label: 11.4px;
-  --size-title: 10px;
-
+  --size-text: 10px;
+  --size-label: 11px;
+  --size-title: 11px;
+  --border-radius: 5px;
   --size-title-xl: 15px;
   --size-title-components: 1rem;
 
   --font-weight: 400;
   --font-weight-title: 500;
   --bg-main: rgba(0, 57, 114, 0.9);
-  --bg-main-2: rgba(0, 57, 114, 0.9);
-  --bg-header: rgba(0, 57, 114, 0.9);
+
   --white-text: #fff;
   --white-bg: #fff;
   --white-bg-active: #c8c9cc;
+  //
+  --light: #fff;
+  --dark: #000;
+  --primary: #4979d1;
+  --grey: #ccc;
+  //
+  --warning: rgb(247, 160, 0);
+  --light-warning: rgba(251, 165, 0, 0.1);
+
+  --danger: #f85050;
+  --light-danger: rgba(242, 77, 77, 0.1);
+
+  --green: rgba(24, 188, 60, 1);
+  --light-green: rgba(11, 204, 111, 0.1);
 }
 
 html,
@@ -79,7 +94,7 @@ h2 {
 }
 
 #nprogress .bar {
-  background: #fff;
+  background: #fff !important;
 
   position: fixed;
   z-index: 1031;
@@ -99,7 +114,7 @@ h2 {
   height: 100%;
   box-shadow:
     0 0 10px #fff,
-    0 0 5px #fff;
+    0 0 5px #fff !important;
   opacity: 1;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -122,8 +137,8 @@ h2 {
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: #fff;
-  border-left-color: #fff;
+  border-top-color: #fff !important;
+  border-left-color: #fff !important;
   border-radius: 50%;
 
   -webkit-animation: nprogress-spinner 400ms linear infinite;

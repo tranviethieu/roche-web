@@ -2,6 +2,7 @@ import { Form, Select } from 'antd';
 import { PropFilterSelect } from './interfaces';
 import { useQuery } from '~/common/hooks/useQuery';
 import { removeVietnameseTones } from '~/common/func/optionConvert';
+import clsx from 'clsx';
 function FilterSelect({
   label,
   name,
@@ -9,6 +10,7 @@ function FilterSelect({
   query,
   disabled = false,
   isSearch = true,
+  color = true,
 }: PropFilterSelect) {
   const { removeQueryParam, updateQueryParam, getQueryParamValue } = useQuery();
   const initialValues = {
@@ -32,7 +34,9 @@ function FilterSelect({
 
   return (
     <Form
-      className="form_filter_select"
+      className={clsx('form_filter_select', {
+        ['form_filter_select_color']: color,
+      })}
       layout={'vertical'}
       initialValues={initialValues}
     >
@@ -40,7 +44,7 @@ function FilterSelect({
         <Select
           showSearch={isSearch}
           //defaultValue={getQueryParamValue(query)}
-          style={{ width: 260, height: 32, borderRadius: 4 }}
+          style={{ width: 240, height: 30, borderRadius: 5 }}
           optionFilterProp="children"
           onChange={onChange}
           filterOption={filterOption}
@@ -48,7 +52,7 @@ function FilterSelect({
           placeholder={'Tất cả'}
           options={listFilter}
           disabled={disabled}
-          className="filter_select"
+          className={clsx('filter_select', { ['filter_select_color']: color })}
         />
       </Form.Item>
     </Form>

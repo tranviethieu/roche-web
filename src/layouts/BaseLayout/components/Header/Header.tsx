@@ -1,16 +1,7 @@
-import {
-  Badge,
-  Button,
-  Flex,
-  Input,
-  PopconfirmProps,
-  Select,
-  message,
-} from 'antd';
+import { Badge, Button, Flex, Input, Select } from 'antd';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
 import { ArrowLeft2, ArrowRight2, Star1, Notification } from 'iconsax-react';
-// import { logout } from '~/redux/reducer/auth';
 import { RootState, store } from '~/redux/store';
 import { Link } from 'react-router-dom';
 import { setIsOverview } from '~/redux/reducer/site';
@@ -20,17 +11,10 @@ import { Img } from 'react-image';
 import { SearchProps } from 'antd/es/input';
 import icons from '~/constants/images/icons';
 import Overview from '~/pages/Overview';
+import DropdownProfile from './components/DropdownProfile';
 const { Search } = Input;
 const Header = () => {
   const { isOverview } = useSelector((state: RootState) => state.site);
-  // const confirm: PopconfirmProps['onConfirm'] = () => {
-  //   store.dispatch(logout());
-  //   message.success('Logout success');
-  // };
-
-  // const cancel: PopconfirmProps['onCancel'] = (e) => {
-  //   console.log(e);
-  // };
   const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
     console.log(info?.source, value);
   return (
@@ -127,21 +111,7 @@ const Header = () => {
               { value: 'CS2', label: 'CS2' },
             ]}
           />
-          {/* <Popconfirm
-          title="Do you want to Logout?"
-          onConfirm={confirm}
-          onCancel={cancel}
-          okText="Confirm"
-          cancelText="Cancel"
-        >
-          <Button
-            size="small"
-            htmlType="button"
-            className={styles.buttonLogout}
-          >
-            Logout
-          </Button>
-        </Popconfirm> */}
+
           <Search
             className="search_header"
             type="primary"
@@ -154,18 +124,7 @@ const Header = () => {
             <Notification size="25" color="#FFF" variant="Bold" />
           </Badge>
 
-          <Link to="" style={{ display: 'flex' }}>
-            <img
-              src="/static/images/logo.png"
-              alt="#roche"
-              width={25}
-              height={25}
-              style={{ borderRadius: '50%' }}
-            />
-          </Link>
-          <h1 className={clsx(styles.title_h1, 'display_1400')}>
-            Nguyễn Huy Hùng
-          </h1>
+          <DropdownProfile />
           <Img src={icons.menu} alt="#menu" style={{ cursor: 'pointer' }} />
         </Flex>
       </div>

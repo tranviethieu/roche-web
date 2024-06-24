@@ -1,16 +1,19 @@
 .header {
   width: 100%;
   //height: var(--header-height);
-  height: var(--header-height);
+
   display: flex;
   flex-direction: column;
-  transition: height ease-in 0.6s;
+
   position: fixed;
+  justify-content: center;
   top: 0;
   z-index: 1;
   padding: 0 10px;
   .container {
     height: var(--header-height);
+    transition: height ease-in 1s;
+    //transition: height ease-in 0.6s;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -18,9 +21,9 @@
   }
   &.isOverview {
     height: 100vh;
-    //padding: 2px 10px;
-    background: var(--bg-header);
     transition: height ease-in 0.6s;
+    padding: 2px 10px;
+    background: var(--bg-main);
   }
 }
 .logo {
@@ -76,10 +79,10 @@
 .container_overview {
   background-color: var(--white-bg);
   height: 100%;
-  transition: background-color 2s ease;
+  transition: background-color 1.5s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 10px;
-  margin: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
 }

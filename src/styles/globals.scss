@@ -4,40 +4,22 @@
 
 :root {
   --toastify-toast-min-height: 56px;
-  --header-height: 5.7rem;
+  --header-height: 42px;
   --nav-height: 3.7rem;
   --nav-aside: 50px;
   --menu-width: 300px;
-  --size-text: 10px;
+  --size-text: 9px;
   --size-label: 11.4px;
-  --size-title: 13px;
+  --size-title: 10px;
 
   --size-title-xl: 15px;
   --size-title-components: 1rem;
 
   --font-weight: 400;
   --font-weight-title: 500;
-  --bg-main: linear-gradient(
-    135deg,
-    rgb(71, 120, 209) 29%,
-    rgb(247, 170, 248) 100%
-  );
-  --bg-main-2: conic-gradient(
-    from 180deg at 100% 0%,
-    rgba(148, 11, 170, 0.31) -20.9deg,
-    #4979d1 100.93deg,
-    #f6a8f8 199.76deg,
-    rgba(148, 11, 170, 0.31) 339.1deg,
-    #4979d1 460.93deg
-  );
-  --bg-header: conic-gradient(
-    from 167deg at 100% 0%,
-    rgba(148, 11, 170, 0.31) -20.9deg,
-    #597fd3 100.93deg,
-    #bca6e1 199.76deg,
-    rgba(148, 11, 170, 0.31) 339.1deg,
-    #4979d1 460.93deg
-  );
+  --bg-main: rgba(0, 57, 114, 0.9);
+  --bg-main-2: rgba(0, 57, 114, 0.9);
+  --bg-header: rgba(0, 57, 114, 0.9);
   --white-text: #fff;
   --white-bg: #fff;
   --white-bg-active: #c8c9cc;
@@ -48,8 +30,6 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Be Vietnam Pro';
-  color: #000;
-  background: var(--bg-main-2);
 }
 
 a {
@@ -79,7 +59,18 @@ body,
 body {
   line-height: 1.5;
 }
-
+p {
+  font-size: var(--size-text);
+}
+h5 {
+  font-size: var(--size-title);
+}
+h2 {
+  font-size: var(--size-title-xl);
+}
+.layout_roche {
+  font-family: 'Be Vietnam Pro' !important;
+}
 //custom
 //progress Page
 /* Make clicks pass-through */
@@ -230,35 +221,11 @@ body {
 .Toastify__toast-body {
   padding: 0 6px;
 }
-.menu_main.ant-menu-light {
-  border-radius: 0px 10px 10px 0px;
-  background: var(--white-bg);
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.25);
-  overflow: auto;
-  height: auto;
-  left: 0;
-  top: 45px;
-  max-width: 300px;
-  max-height: 60vh;
-  z-index: 500;
-  position: absolute;
-  .ant-menu-submenu-title,
-  .ant-menu-title-content {
-    color: rgb(110, 176, 76) !important;
-    font-size: var(--size-text);
-  }
-  .ant-menu.ant-menu-sub.ant-menu-inline {
-    margin: 10px;
-    border-radius: 10px;
-  }
-  .ant-menu-item.ant-menu-item-selected.ant-menu-item-only-child {
-    border-radius: 10px;
-    background: #d9f4ba;
-  }
-}
 
 .content_web_roche {
-  padding-top: calc(var(--header-height) + 5px);
+  padding-top: calc(var(--header-height));
+  height: 100vh;
+  background-color: var(--bg-main);
 }
 .list_overview.ant-list-split .ant-list-item {
   border-block-end: none !important;
@@ -385,7 +352,6 @@ body {
     height: 30px;
     border: 8px solid #2ea757;
     border-radius: 50%;
-
     margin: 0 auto;
   }
 }

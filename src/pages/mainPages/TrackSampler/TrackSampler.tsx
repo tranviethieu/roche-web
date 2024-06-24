@@ -7,12 +7,13 @@ import BoxNotDelivered from './components/BoxNotDelivered';
 import BoxSample from './components/BoxSample';
 import BoxTotalSample from './components/BoxTotalSample';
 import BoxAverageTime from './components/BoxAverageTime';
+
 //import DoughnutChart from '~/components/common/DoughnutChart/DoughnutChart';
 const TrackSampler: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const { tabId } = useParams();
   console.log(tabId);
-
+  //usePageTitle('Ngoại trú 1');
   return (
     <section className={styles.container}>
       <Flex gap="small" wrap="nowrap" justify="space-between" align="center">

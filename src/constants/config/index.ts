@@ -79,7 +79,7 @@ export const menuItemMain: MenuItem[] = [
     ],
   },
 ];
-export const menuItemSlider: MenuItem[] = [
+export const menuItemMonitoring: MenuItem[] = [
   {
     key: 'sub2',
     label: 'Lấy mẫu',

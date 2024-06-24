@@ -1,23 +1,26 @@
 .header {
   width: 100%;
+  //height: var(--header-height);
   height: var(--header-height);
-  //background: var(--bg-header);
-  background: var(--bg-header);
   display: flex;
   flex-direction: column;
-  transition: height ease-in 0.4s;
+  transition: height ease-in 0.6s;
   position: fixed;
   top: 0;
-  width: 100%;
-  z-index: 444;
+  z-index: 1;
+  padding: 0 10px;
   .container {
     height: var(--header-height);
     display: flex;
-    width: 100%;
-
-    gap: 20px;
-    padding: 10px;
+    flex-direction: row;
     justify-content: space-between;
+    width: 100%;
+  }
+  &.isOverview {
+    height: 100vh;
+    //padding: 2px 10px;
+    background: var(--bg-header);
+    transition: height ease-in 0.6s;
   }
 }
 .logo {
@@ -33,6 +36,14 @@
   font-weight: 700;
   line-height: 18px;
 }
+.title_h1 {
+  font-size: var(--size-title);
+  color: var(--white-text);
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
 .arrow {
   transition: 0.3s;
@@ -42,13 +53,19 @@
   }
 }
 .notify {
-  width: 28px !important;
-  height: 30px !important;
+  width: 25px !important;
+  height: 25px !important;
+  padding: 0 4px;
+  font-size: 11px !important;
 }
 .buttonDefault {
-  width: 32px;
-  height: 32px;
-  font-size: 20px !important;
+  width: 25px;
+  height: 25px;
+  padding: 0 4px;
+  background-color: transparent;
+  &:hover {
+    background-color: transparent !important;
+  }
 }
 .buttonLogout {
   width: 162px;

@@ -1,54 +1,90 @@
 import {
+  Badge,
   Button,
   Flex,
-  Popconfirm,
+  Input,
   PopconfirmProps,
   Select,
   message,
 } from 'antd';
 import styles from './Header.module.scss';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
-import { ArrowDown2, ArrowRight2 } from 'iconsax-react';
-import { logout } from '~/redux/reducer/auth';
+import { ArrowLeft2, ArrowRight2, Star1, Notification } from 'iconsax-react';
+// import { logout } from '~/redux/reducer/auth';
 import { RootState, store } from '~/redux/store';
 import { Link } from 'react-router-dom';
-import ListMenu from '../ListMenu';
-import Overview from '~/pages/Overview';
 import { setIsOverview } from '~/redux/reducer/site';
 import { useSelector } from 'react-redux';
-
+import MenuRoot from './components/MenuRoot';
+import { Img } from 'react-image';
+import { SearchProps } from 'antd/es/input';
+import icons from '~/constants/images/icons';
+import Overview from '~/pages/Overview';
+const { Search } = Input;
 const Header = () => {
   const { isOverview } = useSelector((state: RootState) => state.site);
-  const confirm: PopconfirmProps['onConfirm'] = () => {
-    store.dispatch(logout());
-    message.success('Logout success');
-  };
+  // const confirm: PopconfirmProps['onConfirm'] = () => {
+  //   store.dispatch(logout());
+  //   message.success('Logout success');
+  // };
 
-  const cancel: PopconfirmProps['onCancel'] = (e) => {
-    console.log(e);
-  };
+  // const cancel: PopconfirmProps['onCancel'] = (e) => {
+  //   console.log(e);
+  // };
+  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
+    console.log(info?.source, value);
   return (
     <header
-      className={styles.header}
-      style={{ height: isOverview ? '100vh' : '' }}
+      className={clsx(styles.header, { [styles.isOverview]: isOverview })}
     >
       <div className={styles.container}>
-        <div>
-          <Flex gap={12} align="center">
-            <Button
-              size="small"
-              htmlType="button"
-              onClick={() => {
-                store.dispatch(setIsOverview(!isOverview));
-              }}
-            >
-              <ArrowRight2
-                size="18"
-                className={clsx(styles.arrow, { [styles.open]: isOverview })}
-              />
-            </Button>
-            <h1 className={styles.title}>Overview</h1>
+        <Flex wrap align="center" gap={10}>
+          <Link to="" style={{ display: 'flex' }}>
+            <Img
+              src="/static/images/logo.png"
+              alt="#roche"
+              width={30}
+              height={30}
+            />
+          </Link>
+          <Link to="" style={{ display: 'flex' }}>
+            <Img src="/static/images/logo2.svg" alt="#roche" />
+          </Link>
+          <h1 className={clsx(styles.title_h1, 'display_1400')}>
+            PHẦN MỀM QUẢN LÝ XÉT NGHIỆM
+          </h1>
+          <MenuRoot />
+          <Button
+            size="small"
+            htmlType="button"
+            className={styles.buttonDefault}
+          >
+            <ArrowLeft2 size="18" color="#fff" />
+          </Button>
+          <Button
+            size="small"
+            htmlType="button"
+            className={styles.buttonDefault}
+            style={{ backgroundColor: '#fff', padding: 0 }}
+          >
+            <Star1 size="20" color="#FFE000" variant="Bold" />
+          </Button>
+          <Button
+            size="small"
+            htmlType="button"
+            className={styles.buttonDefault}
+            onClick={() => {
+              store.dispatch(setIsOverview(!isOverview));
+            }}
+          >
+            <ArrowRight2
+              size="18"
+              color="#fff"
+              className={clsx(styles.arrow, { [styles.open]: isOverview })}
+            />
+          </Button>
+          <h1 className={styles.title_h1}>Overview</h1>
+          <Flex gap={8} align="center">
             <Button
               htmlType="button"
               type="primary"
@@ -64,82 +100,78 @@ const Header = () => {
               size="small"
               style={{ background: '#FDEB71' }}
               className={styles.notify}
-            ></Button>
+            >
+              2
+            </Button>
             <Button
               htmlType="button"
               type="primary"
               size="small"
               style={{ background: '#C8C9CC' }}
               className={styles.notify}
-            ></Button>
+            >
+              1
+            </Button>
           </Flex>
-        </div>
-
-        <Flex gap={12}>
-          <Select
-            defaultValue="ROCHE"
-            style={{ width: 162, height: 32 }}
-            onChange={(value: string) => {
-              console.log(`selected ${value}`);
-            }}
-            options={[
-              { value: 'ROCHE', label: 'ROCHE' },
-              { value: 'ROCHE1', label: 'ROCHE1' },
-            ]}
-          />
+        </Flex>
+        <Flex gap={12} wrap align="center">
           <Select
             defaultValue="CS1"
-            style={{ width: 162, height: 32 }}
+            className="select_header display_1400"
+            style={{ width: 170, height: 25 }}
             onChange={(value: string) => {
               console.log(`selected ${value}`);
             }}
             options={[
-              { value: 'CS1', label: 'CS1' },
+              { value: 'CS1', label: 'CS1 - Bệnh viện Nam Học Hà Nội' },
               { value: 'CS2', label: 'CS2' },
             ]}
           />
-          <Popconfirm
-            title="Do you want to Logout?"
-            onConfirm={confirm}
-            onCancel={cancel}
-            okText="Confirm"
-            cancelText="Cancel"
-          >
-            <Button
-              size="small"
-              htmlType="button"
-              className={styles.buttonLogout}
-            >
-              Logout
-            </Button>
-          </Popconfirm>
+          {/* <Popconfirm
+          title="Do you want to Logout?"
+          onConfirm={confirm}
+          onCancel={cancel}
+          okText="Confirm"
+          cancelText="Cancel"
+        >
           <Button
             size="small"
             htmlType="button"
-            className={styles.buttonDefault}
+            className={styles.buttonLogout}
           >
-            <ArrowDown2 size="24" />
+            Logout
           </Button>
-          <Button
-            size="small"
-            htmlType="button"
-            className={styles.buttonDefault}
-          >
-            <QuestionCircleOutlined />
-          </Button>
-          <Link to="">
+        </Popconfirm> */}
+          <Search
+            className="search_header"
+            type="primary"
+            placeholder="Tìm kiếm ..."
+            allowClear
+            onSearch={onSearch}
+            style={{ width: 170 }}
+          />
+          <Badge count={10}>
+            <Notification size="25" color="#FFF" variant="Bold" />
+          </Badge>
+
+          <Link to="" style={{ display: 'flex' }}>
             <img
               src="/static/images/logo.png"
               alt="#roche"
-              width={32}
-              height={32}
+              width={25}
+              height={25}
+              style={{ borderRadius: '50%' }}
             />
           </Link>
+          <h1 className={clsx(styles.title_h1, 'display_1400')}>
+            Nguyễn Huy Hùng
+          </h1>
+          <Img src={icons.menu} alt="#menu" style={{ cursor: 'pointer' }} />
         </Flex>
       </div>
+
       <div className={clsx({ [styles.container_overview]: isOverview })}>
         {isOverview && <Overview />}
-        <ListMenu checkOverview={isOverview} />
       </div>
     </header>
   );

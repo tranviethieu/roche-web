@@ -13,8 +13,8 @@ import { ItemBreadcrumb, setBreadcrumb } from '~/redux/reducer/site';
 const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
   menuItemSlider,
 }) => {
-  const [collapsed, setCollapsed] = useState(true);
-  const { breadcrumb } = useSelector((state: RootState) => state.site);
+  const [collapsed, setCollapsed] = useState(false);
+  // const { breadcrumb } = useSelector((state: RootState) => state.site);
   const navigate = useNavigate();
 
   const toggleCollapsed = () => {
@@ -35,36 +35,37 @@ const Slider: React.FC<{ menuItemSlider: MenuItem[] }> = ({
     e && navigate(e.key);
     const items: ItemBreadcrumb[] = listBreadcrumb();
     store.dispatch(setBreadcrumb(items));
-    setCollapsed(true);
+    setCollapsed(false);
   };
   return (
-    <aside className={styles.main}>
+    <div className={styles.main}>
       <div className={styles.slider_main}>
         <Button
           onClick={toggleCollapsed}
-          style={{ width: 321 }}
+          style={{ width: 120 }}
           className={styles.button_menu}
         >
           Menu
           <ArrowRight2
-            size="20"
-            className={clsx(styles.route, { [styles.open]: !collapsed })}
+            size="16"
+            className={clsx(styles.route, { [styles.open]: collapsed })}
           />
         </Button>
         <Menu
           mode="inline"
           theme="light"
-          inlineCollapsed={collapsed}
+          inlineCollapsed={!collapsed}
           className="menu_main"
           items={menuItemSlider}
           onClick={handleClickMenu}
           style={{
-            height: collapsed ? '0' : 'auto',
+            height: collapsed ? 'auto' : '0',
+            width: collapsed ? 'auto' : 'auto',
           }}
         />
-        <Breadcrumb separator="\" items={breadcrumb} />
+        {/* <Breadcrumb separator="\" items={breadcrumb} /> */}
       </div>
-    </aside>
+    </div>
   );
 };
 export default Slider;

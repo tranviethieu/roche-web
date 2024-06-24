@@ -4,20 +4,25 @@ import Header from './components/Header';
 
 import 'nprogress/nprogress.css'; // Import CSS của nprogress
 import nprogress from 'nprogress';
+import { Layout } from 'antd';
 const BaseLayout: React.FC = () => {
-  const location = useLocation();
-  useEffect(() => {
-    nprogress.start();
-    nprogress.done();
-  }, [location.pathname]);
+  // const location = useLocation();
+  // useEffect(() => {
+  //   nprogress.start();
+  //   const savedTitle = localStorage.getItem('pageTitle');
+  //   if (savedTitle) {
+  //     document.title = savedTitle;
+  //   }
+  //   nprogress.done();
+  // }, [location.pathname]);
 
   return (
-    <main>
+    <Layout className="layout_roche">
       <Header />
       <div className="content_web_roche">
         <Outlet />
       </div>
-    </main>
+    </Layout>
   );
 };
 

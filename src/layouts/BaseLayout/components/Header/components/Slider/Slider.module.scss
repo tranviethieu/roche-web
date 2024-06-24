@@ -1,16 +1,16 @@
 .main {
-  border-radius: 10px;
-  background: #fff;
-  padding: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  margin: 0 10px;
-  height: var(--nav-aside);
   .button_menu {
-    padding: 8px 12px;
+    padding: 0 10px;
     justify-content: space-between;
-    height: 32px;
+    height: 25px;
     font-size: var(--size-label);
+    display: flex;
+    width: 120px;
+    background-color: transparent;
+    color: #fff;
+    &:hover {
+      background-color: transparent !important;
+    }
   }
   .route {
     transition: 0.3s;
@@ -24,5 +24,4 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
 }

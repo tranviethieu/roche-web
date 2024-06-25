@@ -12,11 +12,18 @@ import { SearchProps } from 'antd/es/input';
 import icons from '~/constants/images/icons';
 import Overview from '~/pages/Overview';
 import DropdownProfile from './components/DropdownProfile';
+import { listLanguges } from '~/locale/i18n';
+import { useTranslation } from 'react-i18next';
 const { Search } = Input;
 const Header = () => {
+  const { i18n } = useTranslation();
   const { isOverview } = useSelector((state: RootState) => state.site);
   const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
     console.log(info?.source, value);
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng);
+  };
   return (
     <header
       className={clsx(styles.header, { [styles.isOverview]: isOverview })}
@@ -99,6 +106,13 @@ const Header = () => {
           </Flex>
         </Flex>
         <Flex gap={12} wrap align="center">
+          <Select
+            defaultValue={localStorage.getItem('language') || 'en'}
+            className="select_header display_1400"
+            style={{ width: 100, height: 25 }}
+            onChange={changeLanguage}
+            options={listLanguges}
+          />
           <Select
             defaultValue="CS1"
             className="select_header display_1400"

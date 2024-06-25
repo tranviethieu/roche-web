@@ -1,14 +1,16 @@
 import { Flex } from 'antd';
 import FilterSelect from '~/components/common/FilterSelect/FilterSelect';
 import styles from './FilterTrackSampler.module.scss';
+import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line react-refresh/only-export-components
 function FilterTrackSampler() {
+  const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <Flex gap={10} wrap>
         <FilterSelect label="Vị trí" name="a1" query="_a" listFilter={[]} />
         <FilterSelect
-          label="Đối tượng"
+          label={t('filter.Object')}
           name="3a1"
           query="_status"
           listFilter={[

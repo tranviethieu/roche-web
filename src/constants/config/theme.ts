@@ -39,8 +39,8 @@ export const themeCustom = {
       padding: 10,
       borderRadius: 10,
     },
-    Size: {
-      padding: 10,
+    Menu: {
+      collapsedWidth: 100,
     },
   },
 };

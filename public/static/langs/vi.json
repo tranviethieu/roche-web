@@ -1,0 +1,13 @@
+{
+  "filter": {
+    "Article source": "Nguồn bài viết",
+    "Date created": "Ngày tạo",
+    "Time update": "Ngày cập nhật",
+    "Status": "Trạng thái",
+    "All": "Tất cả",
+    "Search": "Tìm kiếm",
+    "Active": "Hoạt động",
+    "unActive": "Dừng",
+    "Object": "Đối tượng"
+  }
+}

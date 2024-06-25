@@ -22,11 +22,11 @@ export enum PATH {
 export type MenuItem = Required<MenuProps>['items'][number];
 export const menuItemMain: MenuItem[] = [
   {
-    key: 'mainAll',
+    key: 'main',
     label: 'Lấy mẫu',
     children: [
       {
-        key: 'main',
+        key: 'main1',
         label: 'Theo dõi lấy mẫu',
         children: [
           {
@@ -55,9 +55,9 @@ export const menuItemMain: MenuItem[] = [
           },
         ],
       },
-      { key: '9aa', label: 'Lấy số thứ tự' },
-      { key: '9aa1', label: 'Lấy mẫu ngoại trú' },
-      { key: '9aa2', label: 'Lấy mẫu nội trú' },
+      { key: 'main2', label: 'Lấy số thứ tự' },
+      { key: 'main3', label: 'Lấy mẫu ngoại trú' },
+      { key: 'main4', label: 'Lấy mẫu nội trú' },
     ],
   },
   {
@@ -67,7 +67,6 @@ export const menuItemMain: MenuItem[] = [
       { key: '9', label: 'Theo dõi mẫu giao' },
       { key: '10', label: 'Giao mẫu đơn' },
       { key: '11', label: 'Giao mẫu theo batch' },
-      { key: '12', label: 'Option 12' },
     ],
   },
   {

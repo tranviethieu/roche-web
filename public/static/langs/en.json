@@ -1,0 +1,13 @@
+{
+  "filter": {
+    "Article source": "Article source",
+    "Date created": "Date created",
+    "Time update": "Time update",
+    "Status": "Status",
+    "All": "All",
+    "Search": "Search",
+    "Active": "Active",
+    "unActive": "Unactive",
+    "Object": "Object"
+  }
+}

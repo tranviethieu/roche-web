@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import styles from './BoxNotDelivered.module.scss';
-import { Col, Divider, Flex, List, Row, Skeleton } from 'antd';
+import { Col, Divider, List, Row, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { QUERY_KEY } from '~/constants/config/enum';
 import crmAccountServices from '~/services/core/crmAccountServices';

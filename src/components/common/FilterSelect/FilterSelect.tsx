@@ -3,6 +3,7 @@ import { PropFilterSelect } from './interfaces';
 import { useQuery } from '~/common/hooks/useQuery';
 import { removeVietnameseTones } from '~/common/func/optionConvert';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 function FilterSelect({
   label,
   name,
@@ -12,6 +13,7 @@ function FilterSelect({
   isSearch = true,
   color = true,
 }: PropFilterSelect) {
+  const { t } = useTranslation();
   const { removeQueryParam, updateQueryParam, getQueryParamValue } = useQuery();
   const initialValues = {
     [name]: getQueryParamValue(query),
@@ -49,7 +51,7 @@ function FilterSelect({
           onChange={onChange}
           filterOption={filterOption}
           allowClear
-          placeholder={'Tất cả'}
+          placeholder={t('filter.All')}
           options={listFilter}
           disabled={disabled}
           className={clsx('filter_select', { ['filter_select_color']: color })}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styles from './Overview.module.scss';
-import VirtualList from 'rc-virtual-list';
 import {
   Checkbox,
   Col,
@@ -25,8 +24,6 @@ interface typeSearch {
 }
 
 const Overview: React.FC = () => {
-  //const [loading, setLoading] = useState(false);
-  const [mergedData, setMergedData] = useState<any>([]);
   const [loadingPage, setLoadingPage] = useState(true);
   const [keyword, setKeyword] = useState<string>('');
   const [onSearch, setOnSearch] = useState<typeSearch>({
@@ -38,46 +35,31 @@ const Overview: React.FC = () => {
     }, 2000);
     return () => clearTimeout(timer);
   }, []);
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: [QUERY_KEY.Notifications, onSearch],
-      queryFn: async ({ pageParam = 0 }) => {
-        const res = await crmAccountServices.fetchAccounts({
-          paging: {
-            from: pageParam,
-            count: 10,
-          },
-          keySearch: onSearch?.keyword ?? '',
-        });
+  const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
+    queryKey: [QUERY_KEY.Notifications, onSearch],
+    queryFn: async ({ pageParam = 0 }) => {
+      const res = await crmAccountServices.fetchAccounts({
+        paging: {
+          from: pageParam,
+          count: 10,
+        },
+        keySearch: onSearch?.keyword ?? '',
+      });
 
-        return {
-          items: res?.data?.list || [],
-          total: res.data.count || 0,
-        };
-      },
-      initialPageParam: 0,
-      getNextPageParam: (lastPage, pages) => {
-        if (pages.length < Math.ceil(lastPage.total / 10)) {
-          return pages.length + 1;
-        }
-        return undefined;
-      },
-      enabled: !loadingPage,
-    });
-  const handleScroll = (e: React.UIEvent<HTMLElement>) => {
-    const target = e.currentTarget;
-    if (target.scrollHeight - target.scrollTop === target.clientHeight) {
-      if (hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
+      return {
+        items: res?.data?.list || [],
+        total: res.data.count || 0,
+      };
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage, pages) => {
+      if (pages.length < Math.ceil(lastPage.total / 10)) {
+        return pages.length + 1;
       }
-    }
-  };
-  useEffect(() => {
-    if (data) {
-      const dataNew = data ? data.pages.flatMap((page) => page.items) : [];
-      setMergedData(dataNew);
-    }
-  }, [data]);
+      return undefined;
+    },
+    enabled: !loadingPage,
+  });
 
   return (
     <section className={styles.section}>

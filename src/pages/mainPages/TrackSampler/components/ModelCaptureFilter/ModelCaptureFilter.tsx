@@ -1,9 +1,11 @@
 import { Button, Form, FormProps, Input, Modal, Space } from 'antd';
 import React from 'react';
+import SubmitButton from '~/components/common/SubmitButton';
 type FieldType = {
   name?: string;
 };
 const ModelCaptureFilter: React.FC = () => {
+  const [form] = Form.useForm();
   const [open, setOpen] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(true);
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
@@ -42,6 +44,7 @@ const ModelCaptureFilter: React.FC = () => {
         onCancel={() => setOpen(false)}
       >
         <Form
+          form={form}
           name="captureFilter"
           labelCol={{ span: 24 }}
           wrapperCol={{ span: 24 }}
@@ -70,9 +73,7 @@ const ModelCaptureFilter: React.FC = () => {
               >
                 Cancel
               </Button>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
+              <SubmitButton form={form}>Submit</SubmitButton>
             </Space>
           </Form.Item>
         </Form>

@@ -9,7 +9,6 @@ import { setStateLogin, setToken } from '~/redux/reducer/auth';
 import { setLoading, setVariableEnv } from '~/redux/reducer/site';
 import { useSelector } from 'react-redux';
 import { getEnvConfig } from '~/common/func/env';
-import icons from '~/constants/images/icons';
 import { Spin } from 'antd';
 const SplashScreen: React.FC = () => {
   const { token, isLogin } = useSelector((state: RootState) => state.auth);

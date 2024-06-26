@@ -1,26 +1,8 @@
 import React from 'react';
-import FilterSelect from '~/components/common/FilterSelect/FilterSelect';
 import GeneralLab from '../GeneralLab';
 import { Col, Row } from 'antd';
 import PipeDetail from '../PipeDetail/PipeDetail';
 
-const options: {
-  value: string;
-  label: string;
-}[] = [
-  {
-    value: 'jack',
-    label: 'Hiếu',
-  },
-  {
-    value: 'lucy',
-    label: 'Lucy',
-  },
-  {
-    value: 'tom',
-    label: 'Tom',
-  },
-];
 const Main: React.FC = () => {
   return (
     <div

@@ -1,5 +1,4 @@
 import { Flex, Table, TableProps } from 'antd';
-import styles from './GeneralLab.module.scss';
 import React, { useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 interface RecordType {
@@ -153,7 +152,7 @@ const GeneralLab: React.FC = () => {
       width: 25,
       align: 'center',
       dataIndex: 'address3',
-      render: (_: any, record: any, rowIndex) => {
+      render: (_: any, rowIndex: any) => {
         return (
           <Flex>
             <div
@@ -201,7 +200,7 @@ const GeneralLab: React.FC = () => {
       width: 30,
       align: 'center',
       dataIndex: 'test',
-      render: (_: any, record: any) => {
+      render: (_: any) => {
         return '2/10';
       },
     },

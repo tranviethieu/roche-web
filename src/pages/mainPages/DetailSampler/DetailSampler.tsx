@@ -1,7 +1,9 @@
 import { DownOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Flex, Input, MenuProps, Space, message } from 'antd';
+import { Button, Dropdown, Flex, MenuProps, Space, message } from 'antd';
 import styles from './DetailSampler.module.scss';
 import React from 'react';
+import SamplerDetailProvider from './context';
+import SttSampler from './components/SttSampler/SttSampler';
 const items: MenuProps['items'] = [
   {
     label: '1st menu item',
@@ -22,28 +24,31 @@ const DetailSampler: React.FC = () => {
     items,
     onClick: handleMenuClick,
   };
+
   return (
     <section>
       <div className={styles.form_section}>
-        <Flex gap={10}>
-          <Dropdown menu={menuProps}>
-            <Button style={{ width: 120 }}>
-              <Space>
-                Quầy 1
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-          <Dropdown menu={menuProps}>
-            <Button style={{ width: 120 }}>
-              <Space>
-                Đang hoạt động
-                <DownOutlined />
-              </Space>
-            </Button>
-          </Dropdown>
-          <Input min={1} max={10} />
-        </Flex>
+        <SamplerDetailProvider>
+          <Flex gap={10}>
+            <Dropdown menu={menuProps}>
+              <Button style={{ width: 120 }}>
+                <Space>
+                  Quầy 1
+                  <DownOutlined />
+                </Space>
+              </Button>
+            </Dropdown>
+            <Dropdown menu={menuProps}>
+              <Button style={{ width: 120 }}>
+                <Space>
+                  Đang hoạt động
+                  <DownOutlined />
+                </Space>
+              </Button>
+            </Dropdown>
+            <SttSampler />
+          </Flex>
+        </SamplerDetailProvider>
       </div>
     </section>
   );

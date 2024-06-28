@@ -85,6 +85,38 @@ h2 {
 }
 .layout_roche {
   font-family: 'Be Vietnam Pro' !important;
+  background-color: var(--bg-main);
+  height: 100vh;
+}
+.layout_children {
+  flex-direction: row;
+  height: 100%;
+  background-color: transparent;
+  .aside_sider {
+    background-color: transparent;
+    height: 100%;
+    display: flex;
+    .sider_custom {
+      width: 12vw;
+      margin: 10px 0 10px 10px;
+      border-radius: 0px 10px 10px 0px;
+    }
+  }
+}
+.container_roche {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .main_roche {
+    margin: 10px;
+    //overflow-x: hidden;
+    height: 100%;
+    background-color: var(--white-bg);
+    border-radius: var(--border-radius);
+    //overflow-y: auto;
+    padding: 10px;
+  }
 }
 //custom
 //progress Page

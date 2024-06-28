@@ -1,6 +1,6 @@
 import { Form, Select } from 'antd';
 import { PropFilterSelect } from './interfaces';
-import { useQuery } from '~/common/hooks/useQuery';
+import { useQueryHook } from '~/common/hooks/useQuery';
 import { removeVietnameseTones } from '~/common/func/optionConvert';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,8 @@ function FilterSelect({
   color = true,
 }: PropFilterSelect) {
   const { t } = useTranslation();
-  const { removeQueryParam, updateQueryParam, getQueryParamValue } = useQuery();
+  const { removeQueryParam, updateQueryParam, getQueryParamValue } =
+    useQueryHook();
   const initialValues = {
     [name]: getQueryParamValue(query),
   };

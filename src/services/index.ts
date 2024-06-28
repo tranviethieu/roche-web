@@ -56,6 +56,7 @@ export const httpRequest = async ({
       return res.map((res: any) => res.data);
     }
   } catch (err: any) {
+    console.log(err);
     if (err?.error?.code == 401 || err?.response?.status == 401) {
       store.dispatch(logout());
       store.dispatch(setStateLogin(false));

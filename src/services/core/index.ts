@@ -35,6 +35,7 @@ const createAxiosClientCore = () => {
       return response;
     },
     (error) => {
+      console.log(error);
       if (error.response && error.response.data) {
         throw error.response.data;
       }

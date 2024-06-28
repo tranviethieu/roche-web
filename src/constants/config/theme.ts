@@ -42,5 +42,13 @@ export const themeCustom = {
     Menu: {
       collapsedWidth: 100,
     },
+    Pagination: { itemSize: 25 },
+    Table: {
+      headerBg: 'rgba(0, 57, 114, 0.90)',
+      headerColor: '#fff',
+      headerBorderRadius: 5,
+      cellFontSize: 9,
+      cellPaddingBlock: 8,
+    },
   },
 };

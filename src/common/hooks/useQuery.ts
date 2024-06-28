@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 
 // Custom hook to manage query parameters
-export function useQuery() {
+export function useQueryHook() {
   const navigate = useNavigate();
   const { search, pathname } = useLocation();
 
@@ -52,12 +52,41 @@ export function useQuery() {
     },
     [getQueryParams]
   );
-
+  //set nhieu query setQueryParams({
+  //   _status: '1',
+  //   _keyword: 'example',
+  //   page: '2',
+  //   pageSize: '50',
+  //   _departmentId: '123',
+  // });
+  const setQueryParams = useCallback(
+    (params: Record<string, string>) => {
+      const queryParams = getQueryParams();
+      Object.keys(params).forEach((key) => {
+        queryParams.set(key, params[key]);
+      });
+      navigate({
+        pathname,
+        search: queryParams.toString(),
+      });
+    },
+    [getQueryParams, navigate, pathname]
+  );
+  const getAllQueryParams = useCallback(() => {
+    const params = getQueryParams();
+    const paramsObj: Record<string, string> = {};
+    params.forEach((value, key) => {
+      paramsObj[key] = value;
+    });
+    return paramsObj;
+  }, [getQueryParams]);
   return {
     getQueryParamValue,
     removeQueryParam,
     getQueryParams,
     updateQueryParam,
+    setQueryParams,
+    getAllQueryParams,
   };
 }
 // import { useLocation, useNavigate } from 'react-router-dom';

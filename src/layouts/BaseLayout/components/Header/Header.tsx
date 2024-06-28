@@ -1,25 +1,31 @@
 import { Badge, Button, Flex, Input, Select } from 'antd';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
-import { ArrowLeft2, ArrowRight2, Star1, Notification } from 'iconsax-react';
+import {
+  ArrowLeft2,
+  ArrowRight2,
+  Star1,
+  Notification,
+  SearchNormal1,
+} from 'iconsax-react';
 import { RootState, store } from '~/redux/store';
 import { Link } from 'react-router-dom';
 import { setIsOverview } from '~/redux/reducer/site';
 import { useSelector } from 'react-redux';
 import MenuRoot from './components/MenuRoot';
 import { Img } from 'react-image';
-import { SearchProps } from 'antd/es/input';
+
 import icons from '~/constants/images/icons';
 import Overview from '~/pages/Overview';
 import DropdownProfile from './components/DropdownProfile';
 import { listLanguges } from '~/locale/i18n';
 import { useTranslation } from 'react-i18next';
-const { Search } = Input;
+import SearchInput from '~/components/common/SearchInput';
+
 const Header = () => {
   const { i18n } = useTranslation();
   const { isOverview } = useSelector((state: RootState) => state.site);
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) =>
-    console.log(info?.source, value);
+
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     localStorage.setItem('language', lng);
@@ -125,17 +131,9 @@ const Header = () => {
               { value: 'CS2', label: 'CS2' },
             ]}
           />
-
-          <Search
-            className="search_header"
-            type="primary"
-            placeholder="Tìm kiếm ..."
-            allowClear
-            onSearch={onSearch}
-            style={{ width: 170 }}
-          />
-          <Badge count={10}>
-            <Notification size="25" color="#FFF" variant="Bold" />
+          <SearchInput />
+          <Badge size="small" count={99} overflowCount={9}>
+            <Notification size="28" color="#FFF" variant="Bold" />
           </Badge>
 
           <DropdownProfile />

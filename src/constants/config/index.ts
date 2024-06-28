@@ -122,9 +122,10 @@ export const menuItemMonitoring: MenuItem[] = [
   },
 ];
 export const menuItemAdmin: MenuItem[] = [
+  { key: 'results', label: 'Results' },
   {
-    key: 'sub2',
-    label: 'Results',
+    key: 'antibiogram',
+    label: 'Antibiogram',
     children: [
       {
         key: 'sub3',
@@ -146,8 +147,8 @@ export const menuItemAdmin: MenuItem[] = [
     ],
   },
   {
-    key: 'sub4',
-    label: 'Antibiogram',
+    key: 'tests',
+    label: 'Tests',
     children: [
       { key: '9', label: 'Theo dõi mẫu giao' },
       { key: '10', label: 'Giao mẫu đơn' },

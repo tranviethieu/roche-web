@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styles from './BoxSample.module.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Col, Divider, List, Row, Skeleton } from 'antd';
+import { Badge, Col, Divider, List, Row, Skeleton } from 'antd';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import crmAccountServices from '~/services/core/crmAccountServices';
 import clsx from 'clsx';
+import { httpRequest } from '~/services';
 interface PropBoxSample {
   idScroll: string;
   title: string;
@@ -14,17 +15,18 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
   const { data, fetchNextPage, error, hasNextPage } = useInfiniteQuery({
     queryKey: [{ idScroll }],
     queryFn: async ({ pageParam = 1 }) => {
-      const res = await crmAccountServices.fetchAccounts({
-        paging: {
-          from: pageParam,
-          count: 10,
-        },
-        keySearch: '',
+      const res = await httpRequest({
+        http: crmAccountServices.fetchAccounts({
+          paging: {
+            from: pageParam,
+            count: 10,
+          },
+          keySearch: '',
+        }),
       });
-
       return {
-        items: res?.data?.list || [],
-        total: res.data.count || 0,
+        items: res?.list || [],
+        total: res.count || 0,
       };
     },
     initialPageParam: 0,
@@ -61,7 +63,7 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
               setActive(true);
             }}
           >
-            2
+            2 <Badge status="processing" text="Running" />
           </div>
         </Col>
       </Row>
@@ -81,12 +83,7 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
           scrollableTarget={idScroll}
         >
           <List
-            dataSource={
-              data?.pages
-                .flat()
-                .map((page) => page.items)
-                .flat() || []
-            }
+            dataSource={data?.pages.flat().flatMap((page) => page.items) || []}
             renderItem={(item: any) => (
               <List.Item key={item?._id}>
                 <List.Item.Meta

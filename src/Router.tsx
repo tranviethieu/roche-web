@@ -10,9 +10,10 @@ import { PATH } from './constants/config';
 import LayoutAdministration from './layouts/BaseLayout/components/LayoutAdministration';
 import LayoutMain from './layouts/BaseLayout/components/LayoutMain';
 import LayoutMonitoring from './layouts/BaseLayout/components/LayoutMonitoring';
-import TrackSampler from './pages/mainPages/TrackSampler';
-import Main from './pages/mainPages/Main';
-import DetailSampler from './pages/mainPages/DetailSampler';
+import TrackSampler from './pages/main/TrackSampler';
+import Main from './pages/main/Main';
+import DetailSampler from './pages/main/DetailSampler';
+import Results from './pages/administration/Results';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
             element: <LayoutAdministration />,
             children: [
               { path: PATH.Administration, element: <></> },
+              { path: '/administration/results', element: <Results /> },
               {
                 path: `${PATH.Administration}${PATH.TrackSampler}/:tabId`,
                 element: <></>,

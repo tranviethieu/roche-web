@@ -127,23 +127,10 @@ export const menuItemAdmin: MenuItem[] = [
     key: 'antibiogram',
     label: 'Antibiogram',
     children: [
-      {
-        key: 'sub3',
-        label: 'Theo dõi lấy mẫu ngoại trú',
-        children: [
-          {
-            key: `${PATH.Administration}${PATH.TrackSampler}/ngoai-tru`,
-            label: 'Theo dõi lấy mẫu ngoại trú',
-          },
-          {
-            key: `${PATH.Administration}${PATH.TrackSampler}/noi-tru`,
-            label: 'Theo dõi lấy mẫu nội trú',
-          },
-        ],
-      },
-      { key: '9aa', label: 'Lấy số thứ tự' },
-      { key: '9aa1', label: 'Lấy mẫu ngoại trú' },
-      { key: '9aa2', label: 'Lấy mẫu nội trú' },
+      { key: 'antibiotic-families', label: 'Antibiotic families' },
+      { key: 'Antibiotics', label: 'Antibiotics' },
+      { key: 'Antibiotic-methods', label: 'Antibiotic methods' },
+      { key: 'Antibiogram', label: 'Antibiogram' },
     ],
   },
   {
@@ -157,11 +144,10 @@ export const menuItemAdmin: MenuItem[] = [
     ],
   },
   {
-    key: 'grp',
-    label: 'Tests',
+    key: 'ICA',
+    label: 'ICA',
     children: [
-      { key: '13', label: 'Theo dõi nhận mẫu' },
-      { key: '14', label: 'Nhận mẫu ngoại trú' },
+      { key: 'instrument-definition', label: 'Instrument definition' },
     ],
   },
 ];

@@ -14,7 +14,7 @@ const PaginationCustom: React.FC<propPagination> = ({
   const { setQueryParams } = useQueryHook();
   const onChange: PaginationProps['onChange'] = (pageNumber, pageSize) => {
     setQueryParams({
-      page: pageNumber.toString(),
+      page: pageNumber ? pageNumber.toString() : '1',
       pageSize: pageSize.toString(),
     });
   };
@@ -22,7 +22,7 @@ const PaginationCustom: React.FC<propPagination> = ({
   return (
     <Pagination
       total={total}
-      defaultCurrent={Number(page)}
+      defaultCurrent={page}
       defaultPageSize={pageSize}
       //pageSize={Number(pageSize)}
       showQuickJumper

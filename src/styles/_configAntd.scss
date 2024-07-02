@@ -47,7 +47,7 @@
   top: 40px;
   max-width: 300px;
   max-height: 60vh;
-  z-index: 500;
+  z-index: 9999;
   position: absolute;
   .ant-menu-submenu-title,
   .ant-menu-title-content {
@@ -225,6 +225,9 @@
       }
     }
   }
+  .ant-table-placeholder .ant-table-cell {
+    border: none;
+  }
 }
 .container_roche {
   overflow-x: auto;
@@ -238,4 +241,21 @@
 .table_roche .ant-table-thead > tr > th,
 .table_roche .ant-table-tbody > tr > td {
   white-space: nowrap;
+}
+
+// .editable-row:hover {
+//   background-color: #e6f7ff; /* Màu nền khi di chuột qua */
+//   cursor: pointer; /* Thay đổi con trỏ khi di chuột qua */
+// }
+
+.active-row {
+  .ant-table-cell {
+    background-color: rgba(0, 90, 180, 0.1) !important;
+  }
+  background-color: rgba(
+    0,
+    90,
+    180,
+    0.1
+  ) !important; /* Màu nền khi hàng được kích hoạt */
 }

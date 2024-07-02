@@ -3,4 +3,5 @@ export enum QUERY_KEY {
   ListDoctorsAll,
   Notifications,
   ListResults,
+  ListAntibioticFamilies,
 }

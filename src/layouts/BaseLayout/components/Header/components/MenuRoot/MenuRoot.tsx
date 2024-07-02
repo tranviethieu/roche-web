@@ -105,6 +105,7 @@ const MenuRoot = () => {
         style={{
           height: collapsed ? '0' : 'auto',
           width: '160px',
+          zIndex: '999',
         }}
         onClick={handleClickMenu}
       />

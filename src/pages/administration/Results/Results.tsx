@@ -10,7 +10,7 @@ const Results = () => {
   };
   return (
     <section className="container_roche">
-      <div className="main_roche">
+      <Flex className="main_roche" vertical>
         <ContextResults.Provider value={{ detail, setDetail }}>
           <TableResults />
           <Flex
@@ -31,7 +31,7 @@ const Results = () => {
           </Flex>
           <AddResults />
         </ContextResults.Provider>
-      </div>
+      </Flex>
     </section>
   );
 };

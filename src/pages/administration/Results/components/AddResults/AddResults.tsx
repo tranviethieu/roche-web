@@ -27,7 +27,7 @@ const AddResults: React.FC = () => {
       onFinish={onFinish}
       labelCol={{ flex: '110px' }}
       labelAlign="left"
-      //wrapperCol={{ flex: 1 }}
+      style={{ marginTop: 'auto' }}
     >
       <Row gutter={24} style={{ maxWidth: 800 }}>
         <Col span={12}>

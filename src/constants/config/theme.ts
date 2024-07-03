@@ -51,5 +51,14 @@ export const themeCustom = {
       cellPaddingBlock: 8,
       rowHoverBg: 'rgba(0, 90, 180, 0.1)',
     },
+    // Tabs: {
+    //   horizontalItemPadding: 6,
+    //   horizontalMargin: '0 0 10px 0',
+    //   horizontalItemGutter: 10,
+    // },
+    // Transfer: {
+    //   listWidth: 300,
+    //   listHeight: 250,
+    // },
   },
 };

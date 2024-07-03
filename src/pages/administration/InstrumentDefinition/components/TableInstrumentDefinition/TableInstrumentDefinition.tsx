@@ -6,10 +6,15 @@ import PaginationCustom from '~/components/common/Pagination';
 import { QUERY_KEY } from '~/constants/config/enum';
 import { httpRequest } from '~/services';
 import crmAccountServices from '~/services/core/crmAccountServices';
-import { ContextResults, IContextResults } from '../../context';
+import {
+  ContextInstrumentDefinition,
+  IContextInstrumentDefinition,
+} from '../../context';
 
-const TableResults: React.FC = () => {
-  const { detail, setDetail } = useContext<IContextResults>(ContextResults);
+const TableInstrumentDefinition: React.FC = () => {
+  const { detail, setDetail } = useContext<IContextInstrumentDefinition>(
+    ContextInstrumentDefinition
+  );
   const { getAllQueryParams } = useQueryHook();
   const { page, pageSize, _status, _departmentId, _search } =
     getAllQueryParams();
@@ -93,7 +98,7 @@ const TableResults: React.FC = () => {
         }
         columns={columns}
         //style={{ height: 'calc(56vh + 34px)' }}
-        scroll={{ x: 'max-content', y: '60vh' }} // Đảm bảo cuộn ngang và dọc
+        scroll={{ x: 'max-content', y: '40vh' }} // Đảm bảo cuộn ngang và dọc
         pagination={false}
         rowClassName={(record) =>
           record.key === detail?.id ? 'editable-row active-row' : 'editable-row'
@@ -117,4 +122,4 @@ const TableResults: React.FC = () => {
     </div>
   );
 };
-export default TableResults;
+export default TableInstrumentDefinition;

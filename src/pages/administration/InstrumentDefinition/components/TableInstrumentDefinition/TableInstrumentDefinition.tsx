@@ -10,13 +10,15 @@ import {
   ContextInstrumentDefinition,
   IContextInstrumentDefinition,
 } from '../../context';
-
-const TableInstrumentDefinition: React.FC = () => {
+interface prop {
+  height?: string;
+}
+const TableInstrumentDefinition = ({ height = '70vh' }: prop) => {
   const { detail, setDetail } = useContext<IContextInstrumentDefinition>(
     ContextInstrumentDefinition
   );
-  const { getAllQueryParams } = useQueryHook();
-  const { page, pageSize, _status, _departmentId, _search } =
+  const { getAllQueryParams, updateQueryParam } = useQueryHook();
+  const { page, pageSize, _status, _departmentId, _search, id } =
     getAllQueryParams();
   const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEY.ListResults, page, pageSize, _search],
@@ -36,7 +38,7 @@ const TableInstrumentDefinition: React.FC = () => {
   });
   const columns: TableColumnsType<any> = [
     {
-      title: 'ID',
+      title: 'Type',
       dataIndex: 'fullName',
       key: 'fullName',
       fixed: 'left',
@@ -46,7 +48,7 @@ const TableInstrumentDefinition: React.FC = () => {
       },
     },
     {
-      title: 'Description',
+      title: 'ID',
       dataIndex: 'description',
       key: 'description',
       width: 80,
@@ -56,7 +58,7 @@ const TableInstrumentDefinition: React.FC = () => {
     },
 
     {
-      title: 'Type',
+      title: 'Version',
       dataIndex: 'department',
       key: 'department',
       width: 80,
@@ -65,7 +67,7 @@ const TableInstrumentDefinition: React.FC = () => {
       },
     },
     {
-      title: 'Order',
+      title: 'Instrument name',
       dataIndex: 'position',
       key: 'position',
       width: 80,
@@ -74,7 +76,49 @@ const TableInstrumentDefinition: React.FC = () => {
       },
     },
     {
-      title: 'Trạng thái',
+      title: 'Location',
+      dataIndex: 'position',
+      key: 'position',
+      width: 80,
+      render: (_: any, { seq }: any) => {
+        return <>{seq || '---'}</>;
+      },
+    },
+    {
+      title: 'Communication description',
+      dataIndex: 'position',
+      key: 'position',
+      width: 80,
+      render: (_: any, { seq }: any) => {
+        return <>{seq || '---'}</>;
+      },
+    },
+    {
+      title: 'Trace',
+      dataIndex: 'isActive',
+      key: 'isActive',
+      align: 'center',
+      fixed: 'right',
+      width: 80,
+      render: (_: any, { isActive }: any) => {
+        return (
+          <>
+            <Checkbox defaultChecked={isActive}></Checkbox>
+          </>
+        );
+      },
+    },
+    {
+      title: 'External usage',
+      dataIndex: 'position',
+      key: 'position',
+      width: 80,
+      render: (_: any, { seq }: any) => {
+        return <>{seq || '---'}</>;
+      },
+    },
+    {
+      title: 'Status',
       dataIndex: 'isActive',
       key: 'isActive',
       align: 'center',
@@ -98,13 +142,14 @@ const TableInstrumentDefinition: React.FC = () => {
         }
         columns={columns}
         //style={{ height: 'calc(56vh + 34px)' }}
-        scroll={{ x: 'max-content', y: '40vh' }} // Đảm bảo cuộn ngang và dọc
+        scroll={{ x: 'max-content', y: height }} // Đảm bảo cuộn ngang và dọc
         pagination={false}
         rowClassName={(record) =>
-          record.key === detail?.id ? 'editable-row active-row' : 'editable-row'
+          record.key === id ? 'editable-row active-row' : 'editable-row'
         }
         onRow={(record) => ({
           onClick: () => {
+            updateQueryParam('id', record?._id as string);
             setDetail({
               id: record?._id,
               description: record?.description,

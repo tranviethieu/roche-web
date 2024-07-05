@@ -1,36 +1,44 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ContextInstrumentDefinition, IInstrumentDefinition } from './context';
-import { Button, Flex, Tabs, TabsProps } from 'antd';
+import { Button, Flex, TabsProps } from 'antd';
 import Detail from './components/Detail';
 import TableInstrumentDefinition from './components/TableInstrumentDefinition/TableInstrumentDefinition';
 import Isolate from './components/Isolate';
+
+import TabsCustom from '~/components/common/TabsCustom';
+import { useQueryHook } from '~/common/hooks/useQuery';
+
 const items: TabsProps['items'] = [
   {
-    key: '1',
-    label: 'Tab 1',
+    key: 'detail',
+    label: 'Details',
     children: <Detail />,
   },
   {
-    key: '2',
-    label: 'Tab 2',
+    key: 'detail1',
+    label: 'Tab2',
     children: <Isolate />,
   },
   {
-    key: '3',
-    label: 'Tab 3',
+    key: 'detail2',
+    label: 'Tab3',
     children: 'Content of Tab Pane 3',
   },
 ];
+
 const InstrumentDefinition = () => {
   const [detail, setDetail] = useState<IInstrumentDefinition | null>(null);
-  const onChange = (key: string) => {
-    console.log(key);
-  };
+  const { getQueryParamValue } = useQueryHook();
+  const id = getQueryParamValue('id');
+  useEffect(() => {
+    if (id) setDetail((prev: any) => ({ ...prev, id }));
+    else setDetail(null);
+  }, [id]);
   return (
     <section className="container_roche">
       <div className="main_roche">
         <ContextInstrumentDefinition.Provider value={{ detail, setDetail }}>
-          <TableInstrumentDefinition />
+          <TableInstrumentDefinition height={detail?.id ? '40vh' : '70vh'} />
           <Flex
             style={{ width: '100%', margin: '10px 0' }}
             justify="flex-end"
@@ -43,6 +51,7 @@ const InstrumentDefinition = () => {
               onClick={() => {
                 setDetail(null);
               }}
+              disabled={!!id}
             >
               Add
             </Button>
@@ -53,9 +62,7 @@ const InstrumentDefinition = () => {
               Filter
             </Button>
           </Flex>
-          {detail && (
-            <Tabs defaultActiveKey="1" items={items} onChange={onChange} />
-          )}
+          {detail?.id && <TabsCustom items={items} activeKeyDefault="detail" />}
         </ContextInstrumentDefinition.Provider>
       </div>
     </section>

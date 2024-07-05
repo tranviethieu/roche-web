@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 // Custom hook to manage query parameters
 export function useQueryHook() {
   const navigate = useNavigate();
-  const { search, pathname } = useLocation();
+  const { search, pathname, hash } = useLocation();
 
   // Function to get the current query parameters
   const getQueryParams = useCallback(() => {
@@ -17,12 +17,13 @@ export function useQueryHook() {
       navigate(
         {
           pathname,
+          hash,
           search: newParams.toString(),
         },
         { replace: true, state: { scroll: false } }
       );
     },
-    [navigate, pathname]
+    [navigate, pathname, hash]
   );
 
   // Function to remove a query parameter
@@ -52,13 +53,6 @@ export function useQueryHook() {
     },
     [getQueryParams]
   );
-  //set nhieu query setQueryParams({
-  //   _status: '1',
-  //   _keyword: 'example',
-  //   page: '2',
-  //   pageSize: '50',
-  //   _departmentId: '123',
-  // });
   const setQueryParams = useCallback(
     (params: Record<string, string>) => {
       const queryParams = getQueryParams();
@@ -67,11 +61,22 @@ export function useQueryHook() {
       });
       navigate({
         pathname,
+        hash,
         search: queryParams.toString(),
       });
     },
     [getQueryParams, navigate, pathname]
   );
+  // Function to remove all query parameters
+  const removeAllQueryParams = useCallback(() => {
+    navigate(
+      {
+        pathname,
+        search: '',
+      },
+      { replace: true, state: { scroll: false } }
+    );
+  }, [navigate, pathname, hash]);
   const getAllQueryParams = useCallback(() => {
     const params = getQueryParams();
     const paramsObj: Record<string, string> = {};
@@ -87,52 +92,6 @@ export function useQueryHook() {
     updateQueryParam,
     setQueryParams,
     getAllQueryParams,
+    removeAllQueryParams,
   };
 }
-// import { useLocation, useNavigate } from 'react-router-dom';
-
-// // Custom hook to manage query parameters
-// export function useQuery() {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-
-//   // Function to get the current query parameters
-//   const getQueryParams = (): URLSearchParams => {
-//     return new URLSearchParams(location.search);
-//   };
-
-//   // Function to remove a query parameter
-//   const removeQueryParam = (key: string) => {
-//     const searchParams = getQueryParams();
-//     searchParams.delete(key);
-//     navigate(
-//       {
-//         pathname: location.pathname,
-//         search: searchParams.toString(),
-//       },
-//       { replace: true, state: { scroll: false } }
-//     );
-//   };
-//   const updateQueryParam = (key: string, value: string) => {
-//     const searchParams = getQueryParams();
-//     searchParams.set(key, value);
-//     navigate(
-//       {
-//         pathname: location.pathname,
-//         search: searchParams.toString(),
-//       },
-//       { replace: true, state: { scroll: false } }
-//     );
-//   };
-//   const getQueryParamValue = (key: string): string | null => {
-//     const searchParams = getQueryParams();
-//     return searchParams.get(key);
-//   };
-
-//   return {
-//     getQueryParamValue,
-//     removeQueryParam,
-//     getQueryParams,
-//     updateQueryParam,
-//   };
-// }

@@ -116,7 +116,7 @@ const router = createBrowserRouter([
                 ),
               },
               {
-                path: `${PATH.Administration}/ICA/instrument-definition/:tabId/:id`,
+                path: `${PATH.Administration}/ICA/instrument-definition`,
                 element: (
                   <Suspense fallback={<Spin size="large" />}>
                     <InstrumentDefinition />

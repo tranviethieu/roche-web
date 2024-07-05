@@ -259,3 +259,14 @@
     0.1
   ) !important; /* Màu nền khi hàng được kích hoạt */
 }
+.ant-form-item
+  .ant-form-item-label
+  > label.ant-form-item-required:not(
+    .ant-form-item-required-mark-optional
+  )::before {
+  order: 1;
+  margin-left: 4px;
+}
+.ant-form-item .ant-form-item-label > label::after {
+  display: none;
+}

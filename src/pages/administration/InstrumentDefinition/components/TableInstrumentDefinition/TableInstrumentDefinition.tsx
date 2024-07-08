@@ -141,7 +141,7 @@ const TableInstrumentDefinition = ({ height = '70vh' }: prop) => {
           data?.list?.map((item: any) => ({ ...item, key: item._id })) || []
         }
         columns={columns}
-        //style={{ height: 'calc(56vh + 34px)' }}
+        //style={{ height: height }}
         scroll={{ x: 'max-content', y: height }} // Đảm bảo cuộn ngang và dọc
         pagination={false}
         rowClassName={(record) =>

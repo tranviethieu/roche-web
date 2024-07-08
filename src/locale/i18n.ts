@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import enTranslations from '../../public/static/langs/en.json';
-import viTranslations from '../../public/static/langs/vi.json';
+import enTranslations from './langs/en.json';
+import viTranslations from './langs/vi.json';
 //import HttpApi from 'i18next-http-backend';
 const savedLanguage = localStorage.getItem('language') || 'en';
 i18n.use(initReactI18next).init({

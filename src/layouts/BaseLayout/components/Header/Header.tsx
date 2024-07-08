@@ -1,13 +1,7 @@
-import { Badge, Button, Flex, Input, Select } from 'antd';
+import { Badge, Button, Flex, Select } from 'antd';
 import styles from './Header.module.scss';
 import clsx from 'clsx';
-import {
-  ArrowLeft2,
-  ArrowRight2,
-  Star1,
-  Notification,
-  SearchNormal1,
-} from 'iconsax-react';
+import { ArrowLeft2, ArrowRight2, Star1, Notification } from 'iconsax-react';
 import { RootState, store } from '~/redux/store';
 import { Link } from 'react-router-dom';
 import { setIsOverview } from '~/redux/reducer/site';
@@ -133,7 +127,7 @@ const Header = () => {
           />
           <SearchInput />
           <Badge size="small" count={99} overflowCount={9}>
-            <Notification size="28" color="#FFF" variant="Bold" />
+            <Notification size="24" color="#FFF" variant="Bold" />
           </Badge>
 
           <DropdownProfile />

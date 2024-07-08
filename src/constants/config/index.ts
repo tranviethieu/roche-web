@@ -16,41 +16,41 @@ export enum PATH {
   Main = '/',
   Administration = '/administration',
   Monitoring = '/monitoring',
-  TrackSampler = '/main/track-sampler',
+  TrackSampler = '/main/sampler/track-sampler',
 }
 
 export type MenuItem = Required<MenuProps>['items'][number];
 export const menuItemMain: MenuItem[] = [
   {
-    key: 'main',
+    key: 'sampler',
     label: 'Lấy mẫu',
     children: [
       {
-        key: 'main1',
+        key: 'track-sampler',
         label: 'Theo dõi lấy mẫu',
         children: [
           {
-            key: `${PATH.TrackSampler}/ngoai-tru`,
+            key: `ngoai-tru`,
             label: 'Theo dõi lấy mẫu ngoại trú',
           },
           {
-            key: `${PATH.TrackSampler}/noi-tru`,
+            key: `noi-tru`,
             label: 'Theo dõi lấy mẫu nội trú',
           },
           {
-            key: `${PATH.TrackSampler}/suc-khoe`,
+            key: `suc-khoe`,
             label: 'Theo dõi lấy mẫu khám sức khoẻ',
           },
           {
-            key: `${PATH.TrackSampler}/ca-nhan`,
+            key: `ca-nhan`,
             label: 'Theo dõi lấy mẫu cá nhân',
           },
           {
-            key: `${PATH.TrackSampler}/truyen-mau`,
+            key: `truyen-mau`,
             label: 'Theo dõi lấy mẫu truyền máu',
           },
           {
-            key: `${PATH.TrackSampler}/mau-tron`,
+            key: `mau-tron`,
             label: 'Theo dõi lấy mẫu: mẫu trộn',
           },
         ],

@@ -6,9 +6,9 @@ import { menuItemMain } from '~/constants/config';
 const LayoutMain = () => {
   return (
     <Layout className="layout_children">
-      <aside className="aside_sider">
+      {/* <aside className="aside_sider">
         <Sider menus={menuItemMain} keyParent="main" />
-      </aside>
+      </aside> */}
       <Outlet />
     </Layout>
   );

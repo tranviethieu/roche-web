@@ -1,54 +1,32 @@
-import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import { PATH } from './constants/config';
 import RequiredAuth from './components/protected/RequiredAuth';
 import RequiredLogout from './components/protected/RequiredLogout';
 import NotFound from './pages/NotFound';
 import BaseLayout from './layouts/BaseLayout/BaseLayout';
-import { PATH } from './constants/config';
-import { Spin } from 'antd';
+import Login from './pages/auth/Login';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import LayoutAdministration from './layouts/BaseLayout/components/LayoutAdministration';
+import LayoutMain from './layouts/BaseLayout/components/LayoutMain';
+import LayoutMonitoring from './layouts/BaseLayout/components/LayoutMonitoring';
+import TrackSampler from './pages/main/TrackSampler';
+import Main from './pages/main/Main';
+import DetailSampler from './pages/main/DetailSampler';
+import Results from './pages/administration/Results';
+import AntibioticFamilies from './pages/administration/AntibioticFamilies';
+import InstrumentDefinition from './pages/administration/InstrumentDefinition';
 
-// Lazy load components
-const Login = lazy(() => import('./pages/auth/Login'));
-const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
-
-const LayoutAdministration = lazy(
-  () => import('./layouts/BaseLayout/components/LayoutAdministration')
-);
-const LayoutMain = lazy(
-  () => import('./layouts/BaseLayout/components/LayoutMain')
-);
-const LayoutMonitoring = lazy(
-  () => import('./layouts/BaseLayout/components/LayoutMonitoring')
-);
-const TrackSampler = lazy(() => import('./pages/main/TrackSampler'));
-const Main = lazy(() => import('./pages/main/Main'));
-const DetailSampler = lazy(() => import('./pages/main/DetailSampler'));
-const Results = lazy(() => import('./pages/administration/Results'));
-const AntibioticFamilies = lazy(
-  () => import('./pages/administration/AntibioticFamilies')
-);
-const InstrumentDefinition = lazy(
-  () => import('./pages/administration/InstrumentDefinition')
-);
 const router = createBrowserRouter([
   {
     element: <RequiredLogout />,
     children: [
       {
         path: PATH.Login,
-        element: (
-          <Suspense fallback={<Spin size="large" />}>
-            <Login />
-          </Suspense>
-        ),
+        element: <Login />,
       },
       {
         path: PATH.ForgotPassword,
-        element: (
-          <Suspense fallback={<Spin size="large" />}>
-            <ForgotPassword />
-          </Suspense>
-        ),
+        element: <ForgotPassword />,
       },
     ],
   },
@@ -59,78 +37,42 @@ const router = createBrowserRouter([
         element: <BaseLayout />,
         children: [
           {
-            element: (
-              <Suspense fallback={<Spin size="large" />}>
-                <LayoutMain />
-              </Suspense>
-            ),
+            element: <LayoutMain />,
             children: [
               {
                 path: PATH.Main,
-                element: (
-                  <Suspense fallback={<Spin size="large" />}>
-                    <Main />
-                  </Suspense>
-                ),
+                element: <Main />,
               },
               {
                 path: '/main/detailSampler',
-                element: (
-                  <Suspense fallback={<Spin size="large" />}>
-                    <DetailSampler />
-                  </Suspense>
-                ),
+                element: <DetailSampler />,
               },
               {
                 path: `${PATH.TrackSampler}/:tabId`,
-                element: (
-                  <Suspense fallback={<Spin size="large" />}>
-                    <TrackSampler />
-                  </Suspense>
-                ),
+                element: <TrackSampler />,
               },
             ],
           },
           {
-            element: (
-              <Suspense fallback={<Spin size="large" />}>
-                <LayoutAdministration />
-              </Suspense>
-            ),
+            element: <LayoutAdministration />,
             children: [
               { path: PATH.Administration, element: <></> },
               {
                 path: '/administration/results',
-                element: (
-                  <Suspense fallback={<Spin size="large" />}>
-                    <Results />
-                  </Suspense>
-                ),
+                element: <Results />,
               },
               {
                 path: '/administration/antibiogram/antibiotic-families',
-                element: (
-                  <Suspense fallback={<Spin size="large" />}>
-                    <AntibioticFamilies />
-                  </Suspense>
-                ),
+                element: <AntibioticFamilies />,
               },
               {
                 path: `${PATH.Administration}/ICA/instrument-definition`,
-                element: (
-                  <Suspense fallback={<Spin size="large" />}>
-                    <InstrumentDefinition />
-                  </Suspense>
-                ),
+                element: <InstrumentDefinition />,
               },
             ],
           },
           {
-            element: (
-              <Suspense fallback={<Spin size="large" />}>
-                <LayoutMonitoring />
-              </Suspense>
-            ),
+            element: <LayoutMonitoring />,
             children: [{ path: PATH.Monitoring, element: <></> }],
           },
         ],

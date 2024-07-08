@@ -16,9 +16,6 @@ export interface SiteState {
   isOverview: boolean;
   routerPrev: string;
   openLogout: boolean;
-  isMobile: boolean;
-  fontSize: 'sm' | 'md' | 'xl';
-  bgColor: string;
   variableEnv: IVariableEnv | null;
   routerActive: string;
   breadcrumb: ItemBreadcrumb[];
@@ -28,11 +25,7 @@ const initialState: SiteState = {
   loading: true,
   routerPrev: '/',
   openLogout: false,
-  isMobile: false,
   isOverview: false,
-  fontSize: 'sm',
-  bgColor:
-    'linear-gradient(135deg, rgb(71, 120, 209) 29%, rgb(247, 170, 248) 100%)',
   variableEnv: null,
   routerActive: '/',
   breadcrumb: [],
@@ -50,15 +43,6 @@ export const siteSlice = createSlice({
     },
     toogleOpenLogout: (state) => {
       state.openLogout = !state.openLogout;
-    },
-    setIsMobile: (state, action: PayloadAction<boolean>) => {
-      state.isMobile = action.payload;
-    },
-    setFontSize: (state, action: PayloadAction<'sm' | 'md' | 'xl'>) => {
-      state.fontSize = action.payload;
-    },
-    setBgColor: (state, action: PayloadAction<string>) => {
-      state.bgColor = action.payload;
     },
     setVariableEnv: (state, action: PayloadAction<IVariableEnv | null>) => {
       state.variableEnv = action.payload;
@@ -79,9 +63,6 @@ export const {
   updateRouterPrev,
   setLoading,
   toogleOpenLogout,
-  setIsMobile,
-  setFontSize,
-  setBgColor,
   setVariableEnv,
   setRouterActive,
   setIsOverview,

@@ -1,9 +1,11 @@
 import { DownOutlined } from '@ant-design/icons';
 import { Button, Dropdown, Flex, MenuProps, Space, message } from 'antd';
 import styles from './DetailSampler.module.scss';
-import React from 'react';
-import SamplerDetailProvider from './context';
+import React, { useState } from 'react';
+import { ContextDetailSampler } from './context';
 import SttSampler from './components/SttSampler/SttSampler';
+import { Sampler } from '~/types/sampler.type';
+import { useParams } from 'react-router-dom';
 const items: MenuProps['items'] = [
   {
     label: '1st menu item',
@@ -16,6 +18,9 @@ const items: MenuProps['items'] = [
 ];
 
 const DetailSampler: React.FC = () => {
+  const [data, setData] = useState<Sampler | null>(null);
+  const [stt, setStt] = useState<number>(0);
+  const { id } = useParams();
   const handleMenuClick: MenuProps['onClick'] = (e) => {
     message.info('Click on menu item.');
     console.log('click', e);
@@ -28,7 +33,7 @@ const DetailSampler: React.FC = () => {
   return (
     <section>
       <div className={styles.form_section}>
-        <SamplerDetailProvider>
+        <ContextDetailSampler.Provider value={{ data, setData, stt, setStt }}>
           <Flex gap={10}>
             <Dropdown menu={menuProps}>
               <Button style={{ width: 120 }}>
@@ -48,7 +53,7 @@ const DetailSampler: React.FC = () => {
             </Dropdown>
             <SttSampler />
           </Flex>
-        </SamplerDetailProvider>
+        </ContextDetailSampler.Provider>
       </div>
     </section>
   );

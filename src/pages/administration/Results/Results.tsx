@@ -1,8 +1,8 @@
 import { ContextResults, IResults } from './context';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import TableResults from './components/TableResults';
-import AddResults from './components/AddResults';
-import { Button, Flex } from 'antd';
+import { Button, Flex, Spin } from 'antd';
+const AddResults = lazy(() => delayForDemo(import('./components/AddResults')));
 const Results = () => {
   const [detail, setDetail] = useState<IResults | null>(null);
   const headleAdd = () => {
@@ -29,7 +29,11 @@ const Results = () => {
               Filter
             </Button>
           </Flex>
-          <AddResults />
+          {detail && (
+            <Suspense fallback={<Spin size="large" />}>
+              <AddResults />
+            </Suspense>
+          )}
         </ContextResults.Provider>
       </Flex>
     </section>
@@ -37,3 +41,8 @@ const Results = () => {
 };
 
 export default Results;
+function delayForDemo(promise: any) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  }).then(() => promise);
+}

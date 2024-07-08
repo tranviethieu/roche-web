@@ -1,9 +1,10 @@
 import { InputNumber, InputNumberProps } from 'antd';
 import React, { useContext } from 'react';
-import { ContextDetailSampler } from '../../context';
+import { ContextDetailSampler, IContextDetailSampler } from '../../context';
 import styles from './SttSampler.module.scss';
 const SttSampler: React.FC = () => {
-  const { stt, setStt } = useContext(ContextDetailSampler);
+  const { stt, setStt } =
+    useContext<IContextDetailSampler>(ContextDetailSampler);
   const onChange: InputNumberProps['onChange'] = (value) => {
     setStt(Number(value));
   };

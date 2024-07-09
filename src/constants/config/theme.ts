@@ -19,9 +19,10 @@ export const themeCustom = {
       paddingBlock: 3,
     },
     Form: {
-      labelFontSize: 11,
-      labelHeight: 20,
-      itemMarginBottom: 10,
+      labelFontSize: 10,
+      labelHeight: 14,
+      labelColor: '#003972',
+      itemMarginBottom: 8,
       verticalLabelPadding: '0 0 4px',
     },
     Select: {
@@ -44,12 +45,19 @@ export const themeCustom = {
     },
     Pagination: { itemSize: 25 },
     Table: {
-      headerBg: 'rgba(0, 57, 114, 0.90)',
-      headerColor: '#fff',
+      headerBg: '#E1EBF5',
+      headerColor: '#003972',
       headerBorderRadius: 5,
       cellFontSize: 9,
       cellPaddingBlock: 8,
       rowHoverBg: 'rgba(0, 90, 180, 0.1)',
+    },
+    Radio: {
+      dotSize: 8,
+      buttonSolidCheckedActiveBg: '#597ef7',
+      buttonSolidCheckedBg: '#597ef7',
+      buttonSolidCheckedHoverBg: '#597ef7',
+      buttonPaddingInline: 0,
     },
     // Tabs: {
     //   horizontalItemPadding: 6,
@@ -60,5 +68,10 @@ export const themeCustom = {
     //   listWidth: 300,
     //   listHeight: 250,
     // },
+    Tabs: {
+      cardPaddingLG: '4px 24px',
+      titleFontSizeLG: 11,
+      horizontalMargin: '0 0 0 0',
+    },
   },
 };

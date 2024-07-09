@@ -1,11 +1,12 @@
-import { DownOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Flex, MenuProps, Space, message } from 'antd';
+import { MenuProps, message } from 'antd';
 import styles from './DetailSampler.module.scss';
 import React, { useState } from 'react';
 import { ContextDetailSampler } from './context';
-import SttSampler from './components/SttSampler/SttSampler';
 import { Sampler } from '~/types/sampler.type';
 import { useParams } from 'react-router-dom';
+import Counter from './components/Counter';
+import FormSamplerHIS from './components/FormSamplerHIS/FormSamplerHIS';
+import ContentTabSampler from './components/ContentTabSampler';
 const items: MenuProps['items'] = [
   {
     label: '1st menu item',
@@ -31,30 +32,16 @@ const DetailSampler: React.FC = () => {
   };
 
   return (
-    <section>
-      <div className={styles.form_section}>
-        <ContextDetailSampler.Provider value={{ data, setData, stt, setStt }}>
-          <Flex gap={10}>
-            <Dropdown menu={menuProps}>
-              <Button style={{ width: 120 }}>
-                <Space>
-                  Quầy 1
-                  <DownOutlined />
-                </Space>
-              </Button>
-            </Dropdown>
-            <Dropdown menu={menuProps}>
-              <Button style={{ width: 120 }}>
-                <Space>
-                  Đang hoạt động
-                  <DownOutlined />
-                </Space>
-              </Button>
-            </Dropdown>
-            <SttSampler />
-          </Flex>
-        </ContextDetailSampler.Provider>
-      </div>
+    <section className={styles.form_section}>
+      <ContextDetailSampler.Provider value={{ data, setData, stt, setStt }}>
+        <div className={styles.header_form}>
+          <Counter />
+          <FormSamplerHIS />
+        </div>
+        <div className={styles.container_form}>
+          <ContentTabSampler />
+        </div>
+      </ContextDetailSampler.Provider>
     </section>
   );
 };

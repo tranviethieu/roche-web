@@ -270,3 +270,36 @@
 .ant-form-item .ant-form-item-label > label::after {
   display: none;
 }
+////
+/// custom radio
+
+.custom-radio .ant-radio-inner::after {
+  content: '\2713';
+  color: #ffffff;
+}
+.custom-radio .ant-radio-wrapper .ant-radio-inner::after {
+  background-color: #4979d1 !important;
+  width: 20px;
+  height: 0px;
+}
+//tab-antd-sampler
+.custom_tab_sampler.ant-tabs > .ant-tabs-nav {
+  padding: 0 10px;
+  .ant-tabs-tab-btn {
+    font-weight: 600;
+    color: white;
+  }
+  .ant-tabs-tab.ant-tabs-tab-active {
+    .ant-tabs-tab-btn {
+      font-weight: 600;
+      color: #005ab4;
+    }
+  }
+}
+.custom_tab_sampler {
+  height: 100% !important;
+  .ant-tabs-tabpane,
+  .ant-tabs-content.ant-tabs-content-top {
+    height: 100% !important;
+  }
+}

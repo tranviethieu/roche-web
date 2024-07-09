@@ -19,6 +19,7 @@
     "antd": "^5.18.0",
     "axios": "^1.7.2",
     "clsx": "^2.1.1",
+    "dayjs": "^1.11.11",
     "i18next": "^23.11.5",
     "i18next-http-backend": "^2.5.2",
     "iconsax-react": "^0.0.8",

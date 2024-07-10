@@ -22,7 +22,7 @@ const TabsCustom: React.FC<CustomTabsProps> = React.memo(
 
     const handleTabChange = useCallback(
       (key: string) => {
-        setActiveKey(key);
+        //setActiveKey(key);
         navigate(
           {
             ...location,

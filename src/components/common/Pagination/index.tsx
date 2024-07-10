@@ -22,8 +22,8 @@ const PaginationCustom: React.FC<propPagination> = ({
   return (
     <Pagination
       total={total}
-      defaultCurrent={page}
-      defaultPageSize={pageSize}
+      current={page}
+      pageSize={pageSize}
       //pageSize={Number(pageSize)}
       showQuickJumper
       showSizeChanger

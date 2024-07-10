@@ -1,30 +1,62 @@
 import { Tabs, TabsProps } from 'antd';
 import styles from './ListTest.module.scss';
-import { useLocation } from 'react-router-dom';
-import Perform from './components/Perform';
+import { useLocation, useNavigate } from 'react-router-dom';
+import TableListTest from './components/TableListTest';
+import { useQueryHook } from '~/common/hooks/useQuery';
+import { useCallback, useEffect, useState } from 'react';
 const items: TabsProps['items'] = [
   {
     key: 'perform',
     label: 'Thực hiện (50)',
-    children: <Perform key={'perform'} />,
+    children: <TableListTest />,
   },
   {
-    key: 'detail1',
+    key: 'Signed',
     label: 'Đã ký (2)',
-    children: 'Content of Tab Pane 2',
+    children: <TableListTest />,
   },
   {
-    key: 'detail2',
+    key: 'deleted',
     label: 'Đã xóa (10)',
-    children: 'Content of Tab Pane 3',
+    children: <TableListTest />,
   },
 ];
 const ListTest = () => {
-  const location = useLocation();
-  console.log(location.search);
+  const { search, hash } = useLocation();
+  const navigate = useNavigate();
+  const [activeKey, setActiveKey] = useState<string>('');
+  const { getQueryParamValue } = useQueryHook();
+
+  useEffect(() => {
+    const tab = getQueryParamValue('tab');
+    if (tab) {
+      setActiveKey(tab);
+    } else {
+      setActiveKey('perform');
+    }
+  }, [getQueryParamValue, search]);
+
+  const handleTabChange = useCallback(
+    (key: string) => {
+      navigate(
+        {
+          hash,
+          search: `?tab=${key}`,
+        },
+        { replace: true, state: { scroll: false } }
+      );
+    },
+    [hash, navigate]
+  );
   return (
     <section className={styles.container}>
-      <Tabs size="small" tabPosition={'left'} items={items} />
+      <Tabs
+        activeKey={activeKey}
+        size="small"
+        tabPosition={'left'}
+        items={items}
+        onChange={handleTabChange}
+      />
     </section>
   );
 };

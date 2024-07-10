@@ -1,14 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
-import { Table, TableColumnsType } from 'antd';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { message, Popconfirm, Table, TableColumnsType } from 'antd';
+import { useState } from 'react';
 import { useQueryHook } from '~/common/hooks/useQuery';
 import PaginationCustom from '~/components/common/Pagination';
 import { QUERY_KEY } from '~/constants/config/enum';
+import { setLoading } from '~/redux/reducer/site';
 import { httpRequest } from '~/services';
 import crmAccountServices from '~/services/core/crmAccountServices';
-
-const Perform = () => {
-  const { getAllQueryParams, updateQueryParam } = useQueryHook();
-  const { page, pageSize, _status, _departmentId, _search, id } =
+import { RiDeleteBinLine } from 'react-icons/ri';
+const TableListTest = () => {
+  const { getAllQueryParams } = useQueryHook();
+  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const { page, pageSize, _status, _departmentId, _search } =
     getAllQueryParams();
   const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEY.Perform, page, pageSize, _search],
@@ -94,24 +97,79 @@ const Perform = () => {
     },
     {
       title: 'Tác vụ',
-      dataIndex: 'position',
-      key: 'position',
+      dataIndex: 'action',
+      key: 'action',
+      align: 'center',
       width: 80,
-      render: (_: any, { seq }: any) => {
-        return <>{seq || '---'}</>;
+      render: (_: any, record: any) => {
+        return (
+          <>
+            <Popconfirm
+              title="Delete the list test"
+              description="Are you sure to delete this list test?"
+              okText="Yes"
+              cancelText="No"
+              onConfirm={() => {
+                message.success('Remove');
+              }}
+            >
+              <div style={{ cursor: 'pointer' }}>
+                <RiDeleteBinLine color="#FF4D4F" size={16} />
+              </div>
+            </Popconfirm>
+          </>
+        );
       },
     },
   ];
+  const allApiSelected = useMutation({
+    mutationFn: () =>
+      httpRequest({
+        setLoading: setLoading,
+        http: crmAccountServices.getListAccount({
+          paging: {
+            count: 10000,
+            from: 0,
+          },
+          isActive: _status ? (_status == '1' ? true : false) : null,
+          isDoctor: false,
+          keySearch: _search ? (_search as string) : '',
+          departmentId: _departmentId ? (_departmentId as string) : '',
+        }),
+      }),
+    onSuccess(data) {
+      if (data) {
+        const keys: React.Key[] = data?.list?.map((item: any) => item._id);
+        setSelectedRowKeys(keys);
+      }
+    },
+  });
+  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+    setSelectedRowKeys(newSelectedRowKeys);
+  };
+  const onSelectAllChange = (selected: boolean) => {
+    if (selected) {
+      allApiSelected.mutate();
+    } else {
+      setSelectedRowKeys([]);
+    }
+  };
   return (
     <div className="table_roche" style={{ marginRight: 10 }}>
       <Table
         loading={isLoading}
+        rowSelection={{
+          selectedRowKeys,
+          onChange: onSelectChange,
+          onSelectAll: onSelectAllChange,
+          preserveSelectedRowKeys: true,
+          selections: [Table.SELECTION_NONE],
+        }}
         dataSource={
           data?.list?.map((item: any) => ({ ...item, key: item._id })) || []
         }
         columns={columns}
-        //style={{ height: height }}
-        scroll={{ x: 'max-content', y: 'calc(100vh - 420px)' }} // Đảm bảo cuộn ngang và dọc
+        scroll={{ x: 'max-content', y: 'calc(100vh - 420px)' }}
         pagination={false}
       />
       <PaginationCustom
@@ -122,4 +180,4 @@ const Perform = () => {
     </div>
   );
 };
-export default Perform;
+export default TableListTest;

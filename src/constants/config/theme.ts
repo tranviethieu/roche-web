@@ -73,5 +73,9 @@ export const themeCustom = {
       titleFontSizeLG: 11,
       horizontalMargin: '0 0 0 0',
     },
+    List: {
+      itemPaddingSM: '8px 8px',
+      itemPadding: '8px 0',
+    },
   },
 };

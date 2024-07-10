@@ -1,0 +1,23 @@
+.header {
+  border-radius: var(--Border-Radius-borderRadiusSM, 4px);
+  background: var(--Colors-Neutral-Bg-colorBgCardHeader, #e1ebf5);
+  padding: var(--Space-Padding-paddingXS, 8px)
+    var(--Space-Padding-paddingSM, 12px);
+  font-weight: 600;
+  font-size: var(--size-label);
+  margin: 4px;
+}
+.listContainer {
+  position: relative;
+  background: #fff;
+  box-shadow:
+    0px 0px 6px 0px rgba(73, 121, 209, 0.08),
+    0px 0px 6px 0px rgba(73, 121, 209, 0.38);
+  border-radius: 8px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+.itemFlex {
+  flex: 0 0 calc(100% / 9);
+}

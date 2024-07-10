@@ -2,6 +2,7 @@ import { Button, Tabs, TabsProps } from 'antd';
 import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ListTest from './components/ListTest';
+import RequestCard from './components/RequestCard';
 
 const ContentTabSampler = () => {
   const [activeKey, setActiveKey] = useState<string>('');
@@ -16,7 +17,7 @@ const ContentTabSampler = () => {
     {
       key: 'requestCard',
       label: 'THẺ YÊU CẦU',
-      children: <>333</>,
+      children: <RequestCard />,
     },
     {
       key: 'collection',
@@ -37,13 +38,12 @@ const ContentTabSampler = () => {
       setActiveKey(key);
       navigate(
         {
-          ...location,
           hash: `#${key}`,
         },
         { replace: true, state: { scroll: false } }
       );
     },
-    [navigate, location]
+    [navigate]
   );
   return (
     <Tabs

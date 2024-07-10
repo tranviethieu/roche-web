@@ -1,0 +1,16 @@
+.scrollable {
+  width: 100%;
+  overflow-y: auto;
+  padding: 0 8px;
+  border-radius: 10px;
+}
+.title {
+  border-radius: var(--Border-Radius-borderRadiusSM, 4px)
+    var(--Border-Radius-borderRadiusSM, 4px) 0px 0px;
+  padding: var(--Space-Padding-paddingXXS, 4px)
+    var(--Space-Padding-paddingSM, 12px);
+  background: #389e0d;
+  width: 100%;
+  color: #fff;
+  font-size: var(--size-label);
+}

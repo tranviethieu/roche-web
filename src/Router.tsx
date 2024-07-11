@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PATH } from './constants/config';
-import RequiredAuth from './components/protected/RequiredAuth';
-import RequiredLogout from './components/protected/RequiredLogout';
+// import RequiredAuth from './components/protected/RequiredAuth';
+// import RequiredLogout from './components/protected/RequiredLogout';
 import NotFound from './pages/NotFound';
 import BaseLayout from './layouts/BaseLayout/BaseLayout';
 import Login from './pages/auth/Login';
@@ -19,6 +19,7 @@ import InstrumentDefinition from './pages/administration/InstrumentDefinition';
 const router = createBrowserRouter([
   {
     //element: <RequiredLogout />,
+    element: <></>,
     children: [
       {
         path: PATH.Login,
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
   },
   {
     //element: <RequiredAuth />,
+    element: <></>,
     children: [
       {
         element: <BaseLayout />,

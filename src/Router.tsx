@@ -18,7 +18,7 @@ import InstrumentDefinition from './pages/administration/InstrumentDefinition';
 
 const router = createBrowserRouter([
   {
-    element: <RequiredLogout />,
+    //element: <RequiredLogout />,
     children: [
       {
         path: PATH.Login,
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <RequiredAuth />,
+    //element: <RequiredAuth />,
     children: [
       {
         element: <BaseLayout />,

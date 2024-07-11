@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import Sider from '../Sider';
+
 import { Layout } from 'antd';
-import { menuItemMain } from '~/constants/config';
 
 const LayoutMain = () => {
   return (

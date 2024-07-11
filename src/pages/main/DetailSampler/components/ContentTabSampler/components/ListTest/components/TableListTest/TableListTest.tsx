@@ -102,6 +102,7 @@ const TableListTest = () => {
       align: 'center',
       width: 80,
       render: (_: any, record: any) => {
+        console.log(record);
         return (
           <>
             <Popconfirm

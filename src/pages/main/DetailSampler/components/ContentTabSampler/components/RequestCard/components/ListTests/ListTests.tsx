@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import BoxTestResults from '~/components/pages/BoxTestResults';
 import styles from './ListTests.module.scss';
-import { Col, Flex, Row } from 'antd';
+import { Flex } from 'antd';
 
 const ListTests = () => {
   const [checkedHS, setCheckedHS] = useState<string[]>();
@@ -9,7 +9,7 @@ const ListTests = () => {
   return (
     <div className={styles.listContainer}>
       <div className={styles.header}>2. Danh sách xét nghiệm</div>
-      <Flex gap={10} style={{ padding: '0 4px 4px 4px' }}>
+      <Flex gap={4} style={{ padding: '0 4px 4px 4px', width: '100%' }}>
         <div className={styles.itemFlex}>
           <BoxTestResults
             title="Hóa sinh"
@@ -63,6 +63,33 @@ const ListTests = () => {
           <BoxTestResults
             title="Nước tiều định lượng"
             idScroll="idDL"
+            height="calc(100vh - 630px)"
+            checked={checkedHS}
+            setChecked={setCheckedHS}
+          />
+        </div>
+        <div className={styles.itemFlex}>
+          <BoxTestResults
+            title="Nước tiều định lượng"
+            idScroll="idDL"
+            height="calc(100vh - 630px)"
+            checked={checkedHS}
+            setChecked={setCheckedHS}
+          />
+        </div>
+        <div className={styles.itemFlex}>
+          <BoxTestResults
+            title="Nước tiều định lượng"
+            idScroll="idDL1"
+            height="calc(100vh - 630px)"
+            checked={checkedHS}
+            setChecked={setCheckedHS}
+          />
+        </div>
+        <div className={styles.itemFlex}>
+          <BoxTestResults
+            title="Nước tiều định lượng"
+            idScroll="idDL2"
             height="calc(100vh - 630px)"
             checked={checkedHS}
             setChecked={setCheckedHS}

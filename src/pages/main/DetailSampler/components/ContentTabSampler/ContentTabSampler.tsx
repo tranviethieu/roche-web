@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import ListTest from './components/ListTest';
 import RequestCard from './components/RequestCard';
+import Collection from './components/Collection';
 
 const ContentTabSampler = () => {
   const [activeKey, setActiveKey] = useState<string>('');
@@ -22,7 +23,7 @@ const ContentTabSampler = () => {
     {
       key: 'collection',
       label: 'COLLECTION',
-      children: 'Content of Tab Pane 3',
+      children: <Collection />,
     },
   ];
   useEffect(() => {

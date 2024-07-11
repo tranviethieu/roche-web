@@ -133,6 +133,7 @@ const TableInstrumentDefinition = ({ height = '70vh' }: prop) => {
       },
     },
   ];
+  console.log(detail);
   return (
     <div className="table_roche">
       <Table

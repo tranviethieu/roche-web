@@ -58,7 +58,11 @@ const BoxTestResults: React.FC<PropBoxTestResults> = ({
     <Checkbox.Group
       defaultValue={checked}
       onChange={onChange}
-      style={{ border: `1px solid ${color}`, borderRadius: '8px' }}
+      style={{
+        border: `1px solid ${color}`,
+        borderRadius: '8px',
+        width: '100%',
+      }}
     >
       <div className={styles.title} style={{ background: color }}>
         {title}

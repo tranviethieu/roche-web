@@ -1,0 +1,8 @@
+.container {
+  border-radius: var(--Border-Radius-borderRadiusLG, 8px);
+
+  border: 0.6px solid var(--Colors-Neutral-Bg-colorBgFrame, #14477b);
+  background: var(--Colors-Neutral-colorBgBase, #fff);
+  padding-bottom: 10px;
+  height: calc(100vh - 400px);
+}

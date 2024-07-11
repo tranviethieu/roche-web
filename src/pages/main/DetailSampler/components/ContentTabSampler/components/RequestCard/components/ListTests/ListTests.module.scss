@@ -17,7 +17,8 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  //overflow: auto;
 }
 .itemFlex {
-  flex: 0 0 calc(100% / 9);
+  width: calc((100% - 4px * 8) / 9);
 }

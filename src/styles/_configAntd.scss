@@ -302,3 +302,18 @@
     height: 100% !important;
   }
 }
+.collapse_custom.ant-collapse
+  > .ant-collapse-item
+  > .ant-collapse-header
+  .ant-collapse-expand-icon {
+  order: 1;
+  padding-inline-end: 0;
+}
+.collapse_custom.ant-collapse {
+  .ant-collapse-content {
+    border: none !important;
+  }
+  .ant-collapse-header-text {
+    font-weight: 600;
+  }
+}

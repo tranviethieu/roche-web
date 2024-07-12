@@ -1,6 +1,6 @@
 // import { MenuProps, message } from 'antd';
 import styles from './DetailSampler.module.scss';
-import React, { useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { ContextDetailSampler } from './context';
 import { Sampler } from '~/types/sampler.type';
 //import { useParams } from 'react-router-dom';
@@ -17,10 +17,16 @@ import ContentTabSampler from './components/ContentTabSampler';
 //     key: '2',
 //   },
 // ];
+type ItemSteps = {
+  title: ReactNode;
+  description: string;
+};
 
 const DetailSampler: React.FC = () => {
   const [data, setData] = useState<Sampler | null>(null);
   const [stt, setStt] = useState<number>(0);
+  const [itemSteps, setItemSteps] = useState<ItemSteps[]>([]);
+  const currentSteps = 1;
   // const handleMenuClick: MenuProps['onClick'] = (e) => {
   //   message.info('Click on menu item.');
   //   console.log('click', e);
@@ -29,10 +35,29 @@ const DetailSampler: React.FC = () => {
   //   items,
   //   onClick: handleMenuClick,
   // };
-
+  console.log(itemSteps);
+  useEffect(() => {
+    const itemSteps = [
+      {
+        title: <div>Lấy mẫu</div>,
+        description: 'Nguyễn Thị Minh',
+      },
+      {
+        title: 'In Progress',
+        description: 'Nguyễn Thị Minh',
+      },
+      {
+        title: 'Waiting',
+        description: 'Nguyễn Thị Minh',
+      },
+    ];
+    setItemSteps(itemSteps);
+  }, []);
   return (
     <section className={styles.form_section}>
-      <ContextDetailSampler.Provider value={{ data, setData, stt, setStt }}>
+      <ContextDetailSampler.Provider
+        value={{ data, setData, stt, setStt, currentSteps }}
+      >
         <div className={styles.header_form}>
           <Counter />
           <FormSamplerHIS />

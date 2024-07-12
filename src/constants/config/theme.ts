@@ -77,5 +77,10 @@ export const themeCustom = {
       itemPaddingSM: '8px 8px',
       itemPadding: '8px 0',
     },
+    Collapse: {
+      headerBg: '#E1EBF5',
+      headerPadding: '4px 6px',
+      contentPadding: '0 0',
+    },
   },
 };

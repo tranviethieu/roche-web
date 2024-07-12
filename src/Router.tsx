@@ -15,11 +15,12 @@ import DetailSampler from './pages/main/DetailSampler';
 import Results from './pages/administration/Results';
 import AntibioticFamilies from './pages/administration/AntibioticFamilies';
 import InstrumentDefinition from './pages/administration/InstrumentDefinition';
+import RequiredLogout from './components/protected/RequiredLogout';
+import RequiredAuth from './components/protected/RequiredAuth';
 
 const router = createBrowserRouter([
   {
-    //element: <RequiredLogout />,
-    element: <></>,
+    element: <RequiredLogout />,
     children: [
       {
         path: PATH.Login,
@@ -32,8 +33,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    //element: <RequiredAuth />,
-    element: <></>,
+    element: <RequiredAuth />,
     children: [
       {
         element: <BaseLayout />,

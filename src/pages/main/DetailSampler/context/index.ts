@@ -7,6 +7,7 @@ export interface IContextDetailSampler {
   setData: (data: Sampler) => void;
   stt: number;
   setStt: (stt: number) => void;
+  currentSteps: number;
 }
 
 export const ContextDetailSampler = createContext<IContextDetailSampler>({
@@ -15,4 +16,5 @@ export const ContextDetailSampler = createContext<IContextDetailSampler>({
   setData: () => null,
   stt: 0,
   setStt: () => 0,
+  currentSteps: 1,
 });

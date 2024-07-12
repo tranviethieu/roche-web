@@ -7,7 +7,8 @@ import { QUERY_KEY } from '~/constants/config/enum';
 import { setLoading } from '~/redux/reducer/site';
 import { httpRequest } from '~/services';
 import crmAccountServices from '~/services/core/crmAccountServices';
-import { RiDeleteBinLine } from 'react-icons/ri';
+import { Img } from 'react-image';
+import icons from '~/constants/images/icons';
 const TableListTest = () => {
   const { getAllQueryParams } = useQueryHook();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
@@ -115,7 +116,7 @@ const TableListTest = () => {
               }}
             >
               <div style={{ cursor: 'pointer' }}>
-                <RiDeleteBinLine color="#FF4D4F" size={16} />
+                <Img src={icons.remove} />
               </div>
             </Popconfirm>
           </>

@@ -45,7 +45,7 @@ export const httpRequest = async ({
         return res?.data || true;
       } else {
         if (setError) {
-          setError(res?.message);
+          setError(res?.errors || res?.message);
         }
         onError && onError();
         showMessageFailed && toastWarn({ msg: res?.message });

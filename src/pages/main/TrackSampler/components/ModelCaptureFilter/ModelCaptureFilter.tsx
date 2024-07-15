@@ -27,11 +27,7 @@ const ModelCaptureFilter: React.FC = () => {
   };
   return (
     <>
-      <Button
-        type="primary"
-        style={{ marginRight: '20px' }}
-        onClick={showLoading}
-      >
+      <Button type="primary" style={{ height: '30px' }} onClick={showLoading}>
         Capture Filter
       </Button>
       <Modal

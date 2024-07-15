@@ -4,11 +4,11 @@
   display: flex;
   flex-direction: column;
   .main {
-    margin: 10px;
+    //margin: 10px;
     overflow-x: hidden;
     height: 100%;
-    background-color: var(--white-text);
-    border-radius: var(--border-radius);
+    background-color: #f2f4f7;
+    //border-radius: var(--border-radius);
     overflow-y: auto;
     padding: 10px;
   }

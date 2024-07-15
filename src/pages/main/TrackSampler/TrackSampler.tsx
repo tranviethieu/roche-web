@@ -7,7 +7,6 @@ import BoxNotDelivered from './components/BoxNotDelivered';
 import BoxSample from './components/BoxSample';
 import BoxTotalSample from './components/BoxTotalSample';
 import BoxAverageTime from './components/BoxAverageTime';
-import ModelCaptureFilter from './components/ModelCaptureFilter';
 
 const TrackSampler: React.FC = () => {
   const { tabId } = useParams();
@@ -16,7 +15,6 @@ const TrackSampler: React.FC = () => {
     <section className={styles.container}>
       <Flex gap="small" wrap="nowrap" justify="space-between" align="center">
         <FilterTrackSampler />
-        <ModelCaptureFilter />
       </Flex>
       <div className={styles.main}>
         <Row gutter={[10, 10]}>

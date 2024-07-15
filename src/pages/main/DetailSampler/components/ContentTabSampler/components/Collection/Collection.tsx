@@ -1,4 +1,5 @@
 import {
+  Badge,
   Col,
   Collapse,
   CollapseProps,
@@ -23,6 +24,7 @@ import ProcessSampler from './components/ProcessSampler';
 import IssuesSampler from './components/IssuesSampler';
 import ListImageSampler from './components/ListImageSampler';
 import { ArrowCircleRight } from 'iconsax-react';
+import Microbiology from './components/Microbiology';
 
 const TableGeneralLab = lazy(() =>
   delayForDemo(import('./components/TableGeneralLab'))
@@ -59,7 +61,7 @@ const getItems: (panelStyle: CSSProperties) => CollapseProps['items'] = (
 const items: TabsProps['items'] = [
   {
     key: 'generalLab',
-    label: 'General lab',
+    label: <Badge status="success" text="General lab" />,
     children: (
       <Suspense fallback={<Skeleton paragraph={{ rows: 10 }} />}>
         <TableGeneralLab />
@@ -68,12 +70,12 @@ const items: TabsProps['items'] = [
   },
   {
     key: 'microbiology',
-    label: 'Microbiology',
-    children: <></>,
+    label: <Badge status="success" text="Microbiology" />,
+    children: <Microbiology />,
   },
   {
     key: 'pathology',
-    label: 'Pathology',
+    label: <Badge status="success" text="Pathology" />,
     children: <></>,
   },
   {

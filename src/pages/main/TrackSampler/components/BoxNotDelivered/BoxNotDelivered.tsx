@@ -7,10 +7,12 @@ import { QUERY_KEY } from '~/constants/config/enum';
 import crmAccountServices from '~/services/core/crmAccountServices';
 import clsx from 'clsx';
 import { httpRequest } from '~/services';
+import { useNavigate } from 'react-router-dom';
 
 interface PropBoxDelivered {}
 
 const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
+  const navigate = useNavigate();
   const { data, fetchNextPage, error, hasNextPage, isFetching } =
     useInfiniteQuery({
       queryKey: [QUERY_KEY.Notifications],
@@ -83,7 +85,13 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
           <List
             dataSource={data?.pages.flat().flatMap((page) => page.items) || []}
             renderItem={(item: any) => (
-              <List.Item key={item?._id}>
+              <List.Item
+                key={item?._id}
+                className={styles?.item_active}
+                onClick={() => {
+                  navigate(`/main/sampler/detailSampler/${item?._id}`);
+                }}
+              >
                 <Row style={{ width: '100%', fontWeight: 500 }}>
                   <Col span={12}>{item.fullName}</Col>
                   <Col span={6}>Nam</Col>

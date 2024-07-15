@@ -46,7 +46,7 @@ const router = createBrowserRouter([
                 element: <Main />,
               },
               {
-                path: '/main/detailSampler',
+                path: '/main/sampler/detailSampler/:id',
                 element: <DetailSampler />,
               },
               {

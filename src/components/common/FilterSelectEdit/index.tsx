@@ -6,48 +6,41 @@ import {
 } from '@ant-design/icons';
 import { Button, Divider, Input, message, Dropdown, Menu, Flex } from 'antd';
 import type { InputRef } from 'antd';
-
-let index = 0;
+import styles from './FilterSelect.module.scss';
+import clsx from 'clsx';
 
 const FilterSelectEdit = () => {
-  const [items, setItems] = useState(['jack', 'lucy']);
+  const [items, setItems] = useState(['Filter 1', 'Filter 2']);
   const [name, setName] = useState('');
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const inputRef = useRef<InputRef>(null);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
+  const [itemActive, setItemActive] = useState('');
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
   };
 
-  const addItem = (
+  const handleItem = (
     e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
   ) => {
     e.preventDefault();
-    setItems([...items, name || `New item ${index++}`]);
+    setItems(items.map((i) => (i === itemActive ? name : i)));
+    setItemActive('');
     setName('');
     setTimeout(() => {
       inputRef.current?.focus();
     }, 0);
   };
 
-  const handleEdit = (item: string) => {
-    const newName = prompt('Edit item', item);
-    if (newName) {
-      setItems(items.map((i) => (i === item ? newName : i)));
-    }
-  };
-
   const handleDelete = (item: string) => {
     setItems(items.filter((i) => i !== item));
-
     message.success('Item deleted');
     setDropdownVisible(true);
   };
 
   const handleSelect = (item: string) => {
     setSelectedItem(item);
-    setDropdownVisible(false); // Close dropdown after selection
+    setDropdownVisible(false);
   };
 
   const menu = (
@@ -63,7 +56,7 @@ const FilterSelectEdit = () => {
         <Button
           type="primary"
           onClick={(e: any) => {
-            addItem(e);
+            handleItem(e);
             setDropdownVisible(true); // Keep dropdown open after adding an item
           }}
         >
@@ -74,15 +67,20 @@ const FilterSelectEdit = () => {
       {items.map((item, idx) => (
         <div
           key={idx}
+          className={clsx(styles.option, {
+            [styles.active]: itemActive == item,
+          })}
           style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '8px 16px',
+            padding: '4px 12px',
             cursor: 'pointer',
           }}
         >
-          <div onClick={() => handleSelect(item)}>{item}</div>
+          <div onClick={() => handleSelect(item)} style={{ width: '70%' }}>
+            {item}
+          </div>
 
           <div>
             <Button
@@ -90,13 +88,14 @@ const FilterSelectEdit = () => {
               icon={<EditOutlined />}
               onClick={(e) => {
                 e.preventDefault();
-                handleEdit(item);
+                setItemActive(item);
+                setName(item);
                 setDropdownVisible(true); // Keep dropdown open after editing an item
               }}
             />
             <Button
               type="link"
-              icon={<DeleteOutlined />}
+              icon={<DeleteOutlined style={{ color: '#FF4D4F' }} />}
               onClick={(e) => {
                 e.preventDefault();
                 handleDelete(item);
@@ -109,15 +108,15 @@ const FilterSelectEdit = () => {
   );
 
   return (
-    <div>
-      <div></div>
+    <div className={styles.box}>
+      <div className={styles.label}>Bộ lọc mẫu</div>
       <Dropdown
         overlay={menu}
         trigger={['click']}
         visible={dropdownVisible}
         onVisibleChange={(visible) => setDropdownVisible(visible)}
       >
-        <Button>
+        <Button className={styles.btn_search}>
           {selectedItem ? `${selectedItem}` : 'Bộ lọc mẫu'}
           <CaretDownOutlined />
         </Button>

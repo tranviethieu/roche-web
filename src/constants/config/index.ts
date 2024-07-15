@@ -30,11 +30,11 @@ export const menuItemMain: MenuItem[] = [
         label: 'Theo dõi lấy mẫu',
         children: [
           {
-            key: `ngoai-tru`,
+            key: `${PATH.TrackSampler}/ngoai-tru`,
             label: 'Theo dõi lấy mẫu ngoại trú',
           },
           {
-            key: `noi-tru`,
+            key: `${PATH.TrackSampler}/noi-tru`,
             label: 'Theo dõi lấy mẫu nội trú',
           },
           {

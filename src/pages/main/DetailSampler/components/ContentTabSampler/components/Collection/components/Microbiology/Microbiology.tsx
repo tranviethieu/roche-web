@@ -1,6 +1,6 @@
 import TableGeneralLab from '../TableGeneralLab';
 
-const GeneralLab = () => {
+const Microbiology = () => {
   return <TableGeneralLab />;
 };
-export default GeneralLab;
+export default Microbiology;

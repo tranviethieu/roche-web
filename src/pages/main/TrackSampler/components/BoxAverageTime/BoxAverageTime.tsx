@@ -8,18 +8,24 @@ interface PropBoxAverageTime {}
 const BoxAverageTime: React.FC<PropBoxAverageTime> = () => {
   return (
     <div className={styles.card}>
-      <Flex justify="space-between" style={{ width: '100%' }}>
-        <div className={styles.title}>Thời gian trung bình</div>
-        <MoreOutlined className={styles.moreOutlined} />
-      </Flex>
+      <div style={{ width: '100%' }}>
+        <Flex justify="space-between" className={styles.boxTitle}>
+          <div className={styles.title}>Thời gian trung bình</div>
+          <div className={styles.boxLeft}>
+            <MoreOutlined className={styles.moreOutlined} />
+          </div>
+        </Flex>
+      </div>
 
-      <DoughnutChartTime
-        total={24}
-        size={180}
-        value={20}
-        thickness={30}
-        valueFormat={`1h34'`}
-      />
+      <div style={{ marginBottom: 20 }}>
+        <DoughnutChartTime
+          total={24}
+          size={180}
+          value={20}
+          thickness={30}
+          valueFormat={`1h34'`}
+        />
+      </div>
     </div>
   );
 };

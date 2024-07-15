@@ -4,6 +4,7 @@ import { useQueryHook } from '~/common/hooks/useQuery';
 import { removeVietnameseTones } from '~/common/func/optionConvert';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+import { CaretDownOutlined } from '@ant-design/icons';
 function FilterSelect({
   label,
   name,
@@ -43,9 +44,10 @@ function FilterSelect({
       layout={'vertical'}
       initialValues={initialValues}
     >
-      <Form.Item label={label} name={name}>
+      <Form.Item label={label} name={name} style={{ fontWeight: '600' }}>
         <Select
           showSearch={isSearch}
+          suffixIcon={<CaretDownOutlined />}
           //defaultValue={getQueryParamValue(query)}
           style={{ width: 240, height: 30, borderRadius: 5 }}
           optionFilterProp="children"

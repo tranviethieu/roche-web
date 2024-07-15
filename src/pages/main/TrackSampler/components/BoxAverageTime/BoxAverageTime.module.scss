@@ -1,23 +1,42 @@
 .card {
   display: flex;
   width: 100%;
-  padding: 10px;
+  padding: 1px;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  border-radius: 10px;
+  gap: 5px;
+
+  background: rgba(255, 255, 255, 0.2);
   mix-blend-mode: darken;
-  border-radius: 5px;
-  border: 0.5px solid rgba(0, 90, 180, 0.5);
+  border-radius: var(--Border-Radius-borderRadiusLG);
+  box-shadow: 0px 0px 6px 0px rgba(73, 121, 209, 0.38);
 
   .title {
-    //text-align: center;
-    font-size: calc(var(--size-title));
-    font-weight: 700;
-    //margin-left: 10px;
+    text-align: start;
+    font-size: calc(var(--size-title) - 1px);
+    font-weight: 600;
+    display: flex;
+    line-height: 17px;
+    color: #000;
+    gap: 5px;
+    flex-wrap: wrap;
+    align-content: center;
+  }
+  .boxTitle {
+    background: #e1ebf5;
+    padding: 8px;
+    margin: 4px;
+    border-radius: 4px;
+  }
+  .boxLeft {
+    padding: 2px 4px;
+    background-color: #fff;
+    border-radius: 4px;
+    display: flex;
+    cursor: pointer;
   }
   .moreOutlined {
-    font-size: 22px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
   }

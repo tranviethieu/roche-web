@@ -121,8 +121,9 @@
   .ant-form-item
   .ant-form-item-label
   > label {
-  color: #80acd9;
-  font-weight: 500;
+  color: #00438f;
+  font-weight: 600;
+  margin: 0 !important;
 }
 .filter_select.ant-select.filter_select_color {
   .ant-select-selector {
@@ -143,7 +144,7 @@
   .ant-select-selector {
     background: rgba(255, 255, 255, 0.3);
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     color: var(--white-text);
     .ant-select-selection-placeholder,
     .ant-select-clear {

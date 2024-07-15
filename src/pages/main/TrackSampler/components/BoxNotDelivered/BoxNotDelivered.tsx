@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import styles from './BoxNotDelivered.module.scss';
-import { Col, Divider, List, Row, Skeleton } from 'antd';
+import { Badge, Col, Divider, List, Row, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { QUERY_KEY } from '~/constants/config/enum';
 import crmAccountServices from '~/services/core/crmAccountServices';
@@ -42,10 +42,32 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.boxTitle}>
-        <div className={styles.title}>MẪU ĐÃ LẤY NHƯNG CHƯA GIAO</div>
+      <div style={{ width: '100%' }}>
+        <div className={styles.boxTitle}>
+          <div className={styles.title}>
+            MẪU ĐÃ LẤY NHƯNG CHƯA GIAO
+            <Badge
+              className="site-badge-count-109"
+              count={109}
+              style={{ backgroundColor: '#2EA757' }}
+            />
+          </div>
+        </div>
       </div>
-      <div className={styles.box}></div>
+      {/* <div className={styles.box}></div> */}
+      <Row
+        style={{
+          width: '100%',
+          fontWeight: 700,
+          padding: '0 8px',
+          color: '#003972',
+          fontSize: 'var(--size-label)',
+        }}
+      >
+        <Col span={12}>Tên bệnh nhân</Col>
+        <Col span={6}>Giới tính</Col>
+        <Col span={6}>Tuble ID</Col>
+      </Row>
       <div
         id="scrollableBoxNotDelivered"
         className={clsx(styles.scrollable, 'cls_custom_scroll')}
@@ -62,7 +84,7 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
             dataSource={data?.pages.flat().flatMap((page) => page.items) || []}
             renderItem={(item: any) => (
               <List.Item key={item?._id}>
-                <Row style={{ width: '100%', fontWeight: 700 }}>
+                <Row style={{ width: '100%', fontWeight: 500 }}>
                   <Col span={12}>{item.fullName}</Col>
                   <Col span={6}>Nam</Col>
                   <Col span={6}>{item.phoneNumber}</Col>

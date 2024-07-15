@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './BoxSample.module.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Badge, Col, Divider, List, Row, Skeleton } from 'antd';
+import { Badge, Divider, List, Skeleton } from 'antd';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import crmAccountServices from '~/services/core/crmAccountServices';
 import clsx from 'clsx';
@@ -11,7 +11,6 @@ interface PropBoxSample {
   title: string;
 }
 const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
-  const [active, setActive] = useState<boolean>(false);
   const { data, fetchNextPage, error, hasNextPage } = useInfiniteQuery({
     queryKey: [{ idScroll }],
     queryFn: async ({ pageParam = 1 }) => {
@@ -42,37 +41,27 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.boxTitle}>
-        <div className={styles.title}>{title}</div>
+      <div style={{ width: '100%' }}>
+        <div className={styles.boxTitle}>
+          <div className={styles.title}>
+            {title}
+            <Badge
+              className="site-badge-count-109"
+              count={109}
+              style={{ backgroundColor: '#E45454' }}
+            />
+            <Badge
+              className="site-badge-count-109"
+              count={109}
+              style={{ backgroundColor: '#FFBD00' }}
+            />
+          </div>
+        </div>
       </div>
-      <Row gutter={8} style={{ width: '100%' }}>
-        <Col span={12}>
-          <div
-            className={clsx(styles.boxLeft, { [styles.active]: !active })}
-            onClick={() => {
-              setActive(false);
-            }}
-          >
-            12
-          </div>
-        </Col>
-        <Col span={12}>
-          <div
-            className={clsx(styles.boxRight, { [styles.active]: active })}
-            onClick={() => {
-              setActive(true);
-            }}
-          >
-            2 <Badge status="processing" text="Running" />
-          </div>
-        </Col>
-      </Row>
 
       <div
         id={idScroll}
-        className={clsx(styles.scrollable, 'cls_custom_scroll', {
-          [styles.active]: active,
-        })}
+        className={clsx(styles.scrollable, 'cls_custom_scroll')}
       >
         <InfiniteScroll
           dataLength={data?.pages.flat().length || 0}
@@ -87,10 +76,10 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
             renderItem={(item: any) => (
               <List.Item key={item?._id}>
                 <List.Item.Meta
-                  title={<div>{item.fullName}</div>}
+                  title={<div style={{ fontWeight: 500 }}>{item.fullName}</div>}
                   description={'Chưa chuẩn bị lấy mẫu - Chưa xếp hàng'}
                 />
-                <div style={{ fontWeight: 600 }}>+ 155’</div>
+                <div style={{ fontWeight: 500 }}>+ 155’</div>
               </List.Item>
             )}
           />

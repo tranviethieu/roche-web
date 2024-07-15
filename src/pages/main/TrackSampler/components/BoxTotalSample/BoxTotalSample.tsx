@@ -21,7 +21,11 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
   }, [data]);
   return (
     <div className={styles.card}>
-      <div className={styles.title}>Tổng lượng mẫu</div>
+      <div style={{ width: '100%' }}>
+        <div className={styles.boxTitle}>
+          <div className={styles.title}>Tổng lượng mẫu</div>
+        </div>
+      </div>
       <Flex justify="space-between" style={{ width: '100%' }} gap={20}>
         <div
           style={{
@@ -31,47 +35,47 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
           }}
         >
           <div className={styles.dataChart}>
+            <div className={styles.chart}>
+              <div style={{ position: 'relative' }}>
+                <DoughnutChart
+                  data={data}
+                  dataSet={data[0].value}
+                  size={260}
+                  innerRadius={90}
+                />
+              </div>
+            </div>
             {dataWithPercentages.map((item, index) => (
               <Flex
                 key={index}
                 gap={5}
                 wrap="nowrap"
                 align="center"
-                style={{ marginBottom: '10px' }}
+                style={{ marginBottom: '10px', width: '100%' }}
               >
-                <div
-                  className={styles.dot}
-                  style={{ background: item.color }}
-                ></div>
-                <span>{item?.percentage}%</span>
+                <Row
+                  style={{
+                    width: '100%',
+                    padding: '0 10px',
+                    fontWeight: '600',
+                  }}
+                >
+                  <Col span={12} style={{ display: 'flex', gap: '5px' }}>
+                    <div
+                      className={styles.dot}
+                      style={{ background: item.color }}
+                    ></div>
+                    <div>{item.title}</div>
+                  </Col>
+                  <Col span={6}>
+                    <div>{item.value}</div>
+                  </Col>
+                  <Col span={6}>
+                    <div style={{ textAlign: 'end' }}>{item?.percentage}%</div>
+                  </Col>
+                </Row>
               </Flex>
             ))}
-          </div>
-          {dataWithPercentages.map((item, index) => (
-            <Row key={index} gutter={[50, 10]}>
-              <Col span={12} className={styles.titleSub}>
-                {item.title}
-              </Col>
-              <Col span={12}>
-                <div
-                  className={styles.value}
-                  style={{ background: item?.color }}
-                >
-                  {item.value}
-                </div>
-              </Col>
-            </Row>
-          ))}
-        </div>
-        <div className={styles.chart}>
-          <div style={{ position: 'relative' }}>
-            <DoughnutChart
-              data={data}
-              dataSet={data[0].value}
-              size={260}
-              innerRadius={90}
-            />
-            {/*  */}
           </div>
         </div>
       </Flex>

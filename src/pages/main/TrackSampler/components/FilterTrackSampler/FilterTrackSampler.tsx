@@ -2,6 +2,7 @@ import { Flex } from 'antd';
 import FilterSelect from '~/components/common/FilterSelect/FilterSelect';
 import styles from './FilterTrackSampler.module.scss';
 import { useTranslation } from 'react-i18next';
+import FilterSelectEdit from '~/components/common/FilterSelectEdit';
 // eslint-disable-next-line react-refresh/only-export-components
 function FilterTrackSampler() {
   const { t } = useTranslation();
@@ -34,6 +35,7 @@ function FilterTrackSampler() {
           ]}
         />
         <FilterSelect label="Filter" name="1a1" query="_a" listFilter={[]} />
+        <FilterSelectEdit />
       </Flex>
     </div>
   );

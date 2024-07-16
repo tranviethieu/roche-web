@@ -25,6 +25,7 @@ import IssuesSampler from './components/IssuesSampler';
 import ListImageSampler from './components/ListImageSampler';
 import { ArrowCircleRight } from 'iconsax-react';
 import Microbiology from './components/Microbiology';
+import ActionCollection from './components/ActionCollections';
 
 const TableGeneralLab = lazy(() =>
   delayForDemo(import('./components/TableGeneralLab'))
@@ -148,6 +149,7 @@ const Collection = () => {
           </div>
         </Col>
       </Row>
+      <ActionCollection />
     </section>
   );
 };

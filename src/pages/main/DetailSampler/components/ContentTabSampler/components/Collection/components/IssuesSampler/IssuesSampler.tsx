@@ -1,5 +1,7 @@
-import { ConfigProvider, Table, TableProps } from 'antd';
+import { ConfigProvider, message, Popconfirm, Table, TableProps } from 'antd';
 import React from 'react';
+import { Img } from 'react-image';
+import icons from '~/constants/images/icons';
 
 interface DataType {
   key: React.Key;
@@ -20,6 +22,11 @@ const IssuesSampler = () => {
       name: 'Bệnh nhân đã từng có tai biến',
       id: '2',
       status: true,
+    },
+    {
+      key: '3',
+      name: 'Bệnh nhân có hút thuốc',
+      id: '3',
     },
     {
       key: '3',
@@ -56,12 +63,9 @@ const IssuesSampler = () => {
       width: 60,
       key: 'status',
       align: 'center',
-      render: (_, record) =>
-        record.status ? (
-          <div style={{ color: '#2EA757' }}>YES</div>
-        ) : (
-          <div style={{ color: '#FF1010' }}>NO</div>
-        ),
+      render: (_: any, record: any) => (
+        <div style={{ cursor: 'pointer' }}>YES</div>
+      ),
     },
   ];
   return (
@@ -70,6 +74,8 @@ const IssuesSampler = () => {
         components: {
           Table: {
             headerBg: '#fff',
+            cellPaddingInline: 4,
+            cellPaddingBlock: 4,
           },
         },
       }}

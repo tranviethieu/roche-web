@@ -45,15 +45,17 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
                 />
               </div>
             </div>
-            {dataWithPercentages.map((item, index) => (
-              <Flex
-                key={index}
-                gap={5}
-                wrap="nowrap"
-                align="center"
-                style={{ marginBottom: '10px', width: '100%' }}
-              >
+            <Flex
+              gap={12}
+              style={{
+                width: '100%',
+                flexDirection: 'column',
+                marginBottom: '60px',
+              }}
+            >
+              {dataWithPercentages.map((item, index) => (
                 <Row
+                  key={index}
                   style={{
                     width: '100%',
                     padding: '0 10px',
@@ -74,8 +76,8 @@ const BoxTotalSample: React.FC<PropBoxTotalSample> = () => {
                     <div style={{ textAlign: 'end' }}>{item?.percentage}%</div>
                   </Col>
                 </Row>
-              </Flex>
-            ))}
+              ))}
+            </Flex>
           </div>
         </div>
       </Flex>

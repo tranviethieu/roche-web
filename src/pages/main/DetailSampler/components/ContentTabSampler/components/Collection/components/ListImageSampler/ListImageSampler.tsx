@@ -10,13 +10,20 @@ const ListImageSampler = () => {
   return (
     <section>
       <Image.PreviewGroup>
-        <Space style={{ marginTop: 6, overflowX: 'auto', width: '100%' }}>
+        <Space
+          style={{
+            marginTop: 8,
+            marginBottom: 4,
+            overflowX: 'auto',
+            width: '100%',
+          }}
+        >
           {images.map((src, index) => (
             <Image
               key={index}
               src={src}
-              width={80}
-              height={80}
+              width={86}
+              height={86}
               fallback={fallback}
             />
           ))}

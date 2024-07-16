@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ConfigProvider,
   message,
@@ -6,44 +6,65 @@ import {
   Table,
   TableProps,
   Select,
+  Flex,
 } from 'antd';
 import { Img } from 'react-image';
 import icons from '~/constants/images/icons';
+import clsx from 'clsx';
 
 interface SamplerType {
   key: React.Key;
   id?: string;
   name: string;
 }
-
+const data: SamplerType[] = [
+  {
+    key: '2',
+    id: '2',
+    name: 'Bệnh nhân đang mang thai',
+  },
+  {
+    key: '3',
+    name: 'Bệnh nhân đã từng có tai biến',
+    id: '3',
+  },
+  {
+    key: '4',
+    name: 'Bệnh nhân có hút thuốc',
+    id: '4',
+  },
+  {
+    key: '5',
+    name: 'Bệnh nhân có hút thuốc',
+    id: '5',
+  },
+  {
+    key: '6',
+    name: 'Bệnh nhân có hút thuốc',
+    id: '6',
+  },
+];
 const TableSamplerType = () => {
+  const [dataTable, setDataTable] = useState<SamplerType[]>([]);
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     undefined
   );
-
-  const data: SamplerType[] = [
-    {
-      key: '1',
-      id: '1',
-      name: 'Bệnh nhân đang mang thai',
-    },
-    {
-      key: '2',
-      name: 'Bệnh nhân đã từng có tai biến',
-      id: '2',
-    },
-    {
-      key: '3',
-      name: 'Bệnh nhân có hút thuốc',
-      id: '3',
-    },
-  ];
 
   const handleSelectChange = (value: string) => {
     setSelectedValue(value);
     console.log(`Selected: ${value}`);
   };
-
+  useEffect(() => {
+    const obj = {
+      key: '1',
+      name: '1',
+      id: '1',
+    };
+    if (!data.some((item) => item.id === obj.id)) {
+      data.unshift(obj);
+      setDataTable(data);
+    }
+  }, []);
   const columns: TableProps<SamplerType>['columns'] = [
     {
       title: 'Sample Type',
@@ -53,7 +74,7 @@ const TableSamplerType = () => {
         if (index === 0) {
           return (
             <Select
-              style={{ width: '100%' }}
+              style={{ width: '300px' }}
               value={selectedValue}
               onChange={handleSelectChange}
               placeholder="Select an option"
@@ -115,16 +136,28 @@ const TableSamplerType = () => {
         },
       }}
     >
-      <div>Chọn loại bệnh phẩm</div>
-      <Table
-        rowSelection={{
-          type: 'checkbox',
-          ...rowSelection,
+      <Flex gap={5} wrap align="center" style={{ marginBottom: '8px' }}>
+        <div className="step_custom active">1</div>
+        <div className="text_title_custom active">Chọn loại bệnh phẩm</div>
+      </Flex>
+      <div
+        style={{
+          border: '0.6px solid #14477B',
+          borderRadius: '8px',
+          padding: '1px',
         }}
-        columns={columns}
-        dataSource={data}
-        pagination={false}
-      />
+      >
+        <Table
+          rowSelection={{
+            type: 'checkbox',
+            ...rowSelection,
+          }}
+          columns={columns}
+          scroll={{ x: 'max-content', y: '160px' }}
+          dataSource={dataTable}
+          pagination={false}
+        />
+      </div>
     </ConfigProvider>
   );
 };

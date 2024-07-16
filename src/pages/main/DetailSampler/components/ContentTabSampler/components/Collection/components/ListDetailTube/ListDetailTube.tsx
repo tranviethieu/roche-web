@@ -1,5 +1,14 @@
-import { ConfigProvider, Space, Table, TableProps } from 'antd';
+import {
+  ConfigProvider,
+  message,
+  Popconfirm,
+  Space,
+  Table,
+  TableProps,
+} from 'antd';
 import React from 'react';
+import { Img } from 'react-image';
+import icons from '~/constants/images/icons';
 
 interface DataType {
   key: React.Key;
@@ -62,14 +71,21 @@ const ListDetailTube = () => {
       title: 'Tác vụ',
       key: 'action',
       width: 40,
-      render: (_, record) => {
-        console.log(record);
-        return (
-          <Space size="middle">
-            <a>Delete</a>
-          </Space>
-        );
-      },
+      render: (_: any, record: any) => (
+        <Popconfirm
+          title="Delete the list test"
+          description="Are you sure to delete this list test?"
+          okText="Yes"
+          cancelText="No"
+          onConfirm={() => {
+            message.success('Remove');
+          }}
+        >
+          <div style={{ cursor: 'pointer' }}>
+            <Img src={icons.remove} />
+          </div>
+        </Popconfirm>
+      ),
     },
   ];
   return (
@@ -78,6 +94,8 @@ const ListDetailTube = () => {
         components: {
           Table: {
             headerBg: '#fff',
+            cellPaddingInline: 4,
+            cellPaddingBlock: 4,
           },
         },
       }}

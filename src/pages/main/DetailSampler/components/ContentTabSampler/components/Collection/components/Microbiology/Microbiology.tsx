@@ -1,6 +1,7 @@
 import { Col, Row } from 'antd';
 import TableGeneralLab from '../TableGeneralLab';
 import TableSamplerType from './components/TableSamplerType';
+import AlgorithmSelection from './components/AlgorithmSelection';
 
 const Microbiology = () => {
   return (
@@ -8,7 +9,9 @@ const Microbiology = () => {
       <Col span={14}>
         <TableSamplerType />
       </Col>
-      <Col span={10}></Col>
+      <Col span={10}>
+        <AlgorithmSelection />
+      </Col>
       <Col span={24}>
         <TableGeneralLab />
       </Col>

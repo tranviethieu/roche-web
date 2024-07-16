@@ -50,7 +50,6 @@ export const themeCustom = {
       headerBorderRadius: 5,
       cellFontSize: 9,
       cellPaddingBlock: 8,
-      rowHoverBg: 'rgba(0, 90, 180, 0.1)',
     },
     Radio: {
       dotSize: 8,

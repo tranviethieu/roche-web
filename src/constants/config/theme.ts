@@ -36,7 +36,7 @@ export const themeCustom = {
       singleItemHeightLG: 20,
     },
     Modal: {
-      titleFontSize: 13,
+      titleFontSize: 12,
       padding: 10,
       borderRadius: 10,
     },

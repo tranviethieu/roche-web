@@ -24,16 +24,25 @@ const TrackSampler: React.FC = () => {
           <Col span={10}>
             <Row gutter={[10, 10]}>
               <Col span={12} xxl={12}>
-                <BoxSample title="Mẫu khẩn" idScroll="1sss" />
+                <BoxSample
+                  title="Mẫu khẩn"
+                  idScroll="GetListGeneralLabByFilter"
+                />
               </Col>
               <Col span={12} xxl={12}>
-                <BoxSample title="Mẫu ưu tiên" idScroll="2aa" />
+                <BoxSample
+                  title="Mẫu ưu tiên"
+                  idScroll="GetListSamplePrority"
+                />
               </Col>
               <Col span={12} xxl={12}>
-                <BoxSample title="Mẫu thường quy" idScroll="3aa" />
+                <BoxSample
+                  title="Mẫu thường quy"
+                  idScroll="GetListSampleQuickly"
+                />
               </Col>
               <Col span={12} xxl={12}>
-                <BoxSample title="Mẫu chậm" idScroll="444" />
+                <BoxSample title="Mẫu chậm" idScroll="GetListSampleSlow" />
               </Col>
             </Row>
           </Col>

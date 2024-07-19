@@ -10,6 +10,8 @@ import { store } from './redux/store.ts';
 import { HelmetProvider } from 'react-helmet-async';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './locale/i18n.ts';
+import { ConfigProvider } from 'antd';
+import { themeCustom } from './constants/config/theme';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -23,7 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <QueryClientProvider client={queryClient}>
         <I18nextProvider i18n={i18n}>
           <HelmetProvider>
-            <App />
+            <ConfigProvider theme={themeCustom}>
+              <App />
+            </ConfigProvider>
           </HelmetProvider>
         </I18nextProvider>
         <ReactQueryDevtools initialIsOpen={true} />

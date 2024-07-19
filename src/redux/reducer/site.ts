@@ -4,6 +4,7 @@ export interface IVariableEnv {
   publicApi: string;
   publicApiDev: string;
   publicApiSocket: string;
+  publicURLImage: string;
 }
 
 export interface ItemBreadcrumb {

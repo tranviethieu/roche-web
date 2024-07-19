@@ -7,7 +7,9 @@ const BaseLayout: React.FC = () => {
   return (
     <Layout className="layout_roche">
       <Header />
-      <Outlet />
+      <div className="container_roche">
+        <Outlet />
+      </div>
     </Layout>
   );
 };

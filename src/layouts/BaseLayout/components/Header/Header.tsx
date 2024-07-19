@@ -15,9 +15,10 @@ import DropdownProfile from './components/DropdownProfile';
 import { listLanguges } from '~/locale/i18n';
 import { useTranslation } from 'react-i18next';
 import SearchInput from '~/components/common/SearchInput';
+import { CaretDownOutlined } from '@ant-design/icons';
 
 const Header = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const { isOverview } = useSelector((state: RootState) => state.site);
 
   const changeLanguage = (lng: string) => {
@@ -42,7 +43,7 @@ const Header = () => {
             <Img src="/static/images/logo2.svg" alt="#roche" />
           </Link>
           <h1 className={clsx(styles.title_h1, 'display_1400')}>
-            PHẦN MỀM QUẢN LÝ XÉT NGHIỆM
+            {t('header.Title')}
           </h1>
           <MenuRoot />
           <Button
@@ -83,7 +84,7 @@ const Header = () => {
               size="small"
               className={styles.notify}
             >
-              1
+              11
             </Button>
             <Button
               htmlType="button"
@@ -110,6 +111,7 @@ const Header = () => {
             defaultValue={localStorage.getItem('language') || 'en'}
             className="select_header display_1400"
             style={{ width: 100, height: 25 }}
+            suffixIcon={<CaretDownOutlined style={{ fontSize: 11 }} />}
             onChange={changeLanguage}
             options={listLanguges}
           />
@@ -117,6 +119,7 @@ const Header = () => {
             defaultValue="CS1"
             className="select_header display_1400"
             style={{ width: 170, height: 25 }}
+            suffixIcon={<CaretDownOutlined style={{ fontSize: 11 }} />}
             onChange={(value: string) => {
               console.log(`selected ${value}`);
             }}
@@ -125,7 +128,7 @@ const Header = () => {
               { value: 'CS2', label: 'CS2' },
             ]}
           />
-          <SearchInput />
+          <SearchInput placeholder={`--${t('header.Search')}--`} />
           <Badge size="small" count={99} overflowCount={9}>
             <Notification size="24" color="#FFF" variant="Bold" />
           </Badge>

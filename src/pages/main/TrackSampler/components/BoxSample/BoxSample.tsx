@@ -1,26 +1,34 @@
 import React from 'react';
 import styles from './BoxSample.module.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Badge, Divider, List, Skeleton } from 'antd';
+import { Badge, List, Skeleton } from 'antd';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import crmAccountServices from '~/services/core/crmAccountServices';
 import clsx from 'clsx';
 import { httpRequest } from '~/services';
+import sampleServices from '~/services/roche/sampleServices';
+import { useQueryHook } from '~/common/hooks/useQuery';
 interface PropBoxSample {
   idScroll: string;
   title: string;
 }
 const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
-  const { data, fetchNextPage, error, hasNextPage } = useInfiniteQuery({
+  const { getAllQueryParams } = useQueryHook();
+  const { _timeHour, _sampleTypeCode, _departmentID, _cateTestID, _search } =
+    getAllQueryParams();
+  const { data, fetchNextPage, isSuccess, hasNextPage } = useInfiniteQuery({
     queryKey: [{ idScroll }],
     queryFn: async ({ pageParam = 1 }) => {
       const res = await httpRequest({
-        http: crmAccountServices.fetchAccounts({
-          paging: {
-            from: pageParam,
-            count: 10,
-          },
-          keySearch: '',
+        http: sampleServices.GetListSample({
+          keywords: _search as string,
+          pageCurrent: pageParam == 0 ? 1 : pageParam,
+          pageSize: 20,
+          unitID: 10,
+          sampleTypeCode: _sampleTypeCode ? _sampleTypeCode : 'string',
+          departmentID: _departmentID ? Number(_departmentID) : 0,
+          timeHour: _timeHour ? Number(_timeHour) : 0,
+          cateTestID: _cateTestID ? Number(_cateTestID) : 10,
+          idSample: idScroll,
         }),
       });
       return {
@@ -28,7 +36,7 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
         total: res.count || 0,
       };
     },
-    initialPageParam: 0,
+    initialPageParam: 1,
     getNextPageParam: (lastPage, pages) => {
       if (pages.length < Math.ceil(lastPage.total / 10)) {
         return pages.length + 1;
@@ -36,8 +44,6 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
       return undefined;
     },
   });
-
-  if (error) return <div>Error loading data</div>;
 
   return (
     <div className={styles.card}>
@@ -67,8 +73,12 @@ const BoxSample: React.FC<PropBoxSample> = ({ title, idScroll }) => {
           dataLength={data?.pages.flat().length || 0}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
-          loader={<Skeleton title paragraph={{ rows: 2 }} active />}
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+          loader={
+            isSuccess && <Skeleton title paragraph={{ rows: 2 }} active />
+          }
+          // endMessage={
+          //   isSuccess && <Divider plain>It is all, nothing more 🤐</Divider>
+          // }
           scrollableTarget={idScroll}
         >
           <List

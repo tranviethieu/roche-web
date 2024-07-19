@@ -1,4 +1,7 @@
 export enum QUERY_KEY {
+  //
+  GetProfileSplashScreen,
+  //
   ListDoctors,
   ListDoctorsAll,
   Notifications,
@@ -6,4 +9,5 @@ export enum QUERY_KEY {
   ListAntibioticFamilies,
   //detail sample
   Perform,
+  DetailPatientSample,
 }

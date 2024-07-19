@@ -1,7 +1,7 @@
 import { Fragment } from 'react/jsx-runtime';
 import styles from './SplashScreen.module.scss';
 import clsx from 'clsx';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getItemStorage, setItemStorage } from '~/common/func/localStorage';
 import { KEY_STORE } from '~/constants/config';
 import { RootState, store } from '~/redux/store';
@@ -10,12 +10,32 @@ import { setLoading, setVariableEnv } from '~/redux/reducer/site';
 import { useSelector } from 'react-redux';
 import { getEnvConfig } from '~/common/func/env';
 import { Spin } from 'antd';
+import { useQuery } from '@tanstack/react-query';
+import { QUERY_KEY } from '~/constants/config/enum';
+import { httpRequest } from '~/services';
+import crmProfileService from '~/services/core/crmProfileService';
+import { setInfoAccount } from '~/redux/reducer/user';
 const SplashScreen: React.FC = () => {
   const { token, isLogin } = useSelector((state: RootState) => state.auth);
   const { loading, variableEnv } = useSelector(
     (state: RootState) => state.site
   );
-  //const [isReadSuccess, setIsReadSuccess] = useState<boolean>(false);
+  const [isReadSuccess, setIsReadSuccess] = useState<boolean>(false);
+  // Get thông tin profile
+  const dataProfile = useQuery({
+    queryKey: [QUERY_KEY.GetProfileSplashScreen, token],
+    queryFn: () =>
+      httpRequest({
+        http: crmProfileService.getProfileFromToken(),
+      }),
+    staleTime: 2 * 60 * 1000,
+    enabled: !!token && !!isReadSuccess,
+  });
+  useEffect(() => {
+    if (dataProfile.data) {
+      store.dispatch(setInfoAccount(dataProfile.data));
+    }
+  }, [dataProfile.data]);
   // Set data vào redux từ localStorage
   useEffect(() => {
     (async () => {
@@ -38,9 +58,10 @@ const SplashScreen: React.FC = () => {
             publicApi: envConfig.PUBLIC_API,
             publicApiDev: envConfig.PUBLIC_API_DEV,
             publicApiSocket: envConfig.PUBLIC_SOCKET,
+            publicURLImage: envConfig.PUBLIC_URL_IMAGE,
           })
         );
-        //setIsReadSuccess(true); //set đẻ gọi api
+        setIsReadSuccess(true); //set đẻ gọi api
       }
     })();
   }, []);

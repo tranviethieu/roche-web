@@ -1,4 +1,13 @@
 {
+  "header": {
+    "logoutTitle": "Đăng xuất khỏi hệ thống!",
+    "logoutContent": "Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?",
+    "Cancel": "Hủy bỏ",
+    "Logout": "Đăng xuất",
+    "Profile": "Thông tin tài khoản",
+    "Title": "PHẦN MỀM QUẢN LÝ XÉT NGHIỆM",
+    "Search": "Tìm kiếm"
+  },
   "filter": {
     "Article source": "Nguồn bài viết",
     "Date created": "Ngày tạo",

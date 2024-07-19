@@ -13,13 +13,14 @@ const createAxiosClientCore = () => {
 
   axiosClientCore.interceptors.request.use(async (config) => {
     const token = store.getState().auth.token;
-    const baseURL = store.getState().site.variableEnv?.publicApiDev;
+    const baseURL = 'https://api-meapp.benhvien.tech/core/';
     //const infoHospital = store.getState().user.infoHospital;
 
     // Cập nhật baseURL nếu có sự thay đổi
     if (config.baseURL !== baseURL) {
       config.baseURL = baseURL;
     }
+
     config.headers.Authorization = token ? 'Bearer ' + token : null;
     config.headers['X-MeApp-HospitalId'] = '65711feac325e66f7103f89e';
     //config.headers['X-MeApp-HospitalId'] = infoHospital?.hospital_id ? infoHospital?.hospital_id : null;

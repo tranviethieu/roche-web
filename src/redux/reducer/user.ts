@@ -3,7 +3,10 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 interface IAccount {
   _id: string;
   userName: string;
+  hospitalId: string;
+  avatar: string | null;
   isRoot: boolean;
+  fullName: string;
   title: string | null;
 }
 

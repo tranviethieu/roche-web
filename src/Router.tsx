@@ -1,7 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PATH } from './constants/config';
-// import RequiredAuth from './components/protected/RequiredAuth';
-// import RequiredLogout from './components/protected/RequiredLogout';
 import NotFound from './pages/NotFound';
 import BaseLayout from './layouts/BaseLayout/BaseLayout';
 import Login from './pages/auth/Login';
@@ -11,7 +9,7 @@ import LayoutMain from './layouts/BaseLayout/components/LayoutMain';
 import LayoutMonitoring from './layouts/BaseLayout/components/LayoutMonitoring';
 import TrackSampler from './pages/main/TrackSampler';
 import Main from './pages/main/Main';
-import DetailSampler from './pages/main/DetailSampler';
+import DetailSampler from './pages/main/samples/OutpatientSample';
 import Results from './pages/administration/Results';
 import AntibioticFamilies from './pages/administration/AntibioticFamilies';
 import InstrumentDefinition from './pages/administration/InstrumentDefinition';

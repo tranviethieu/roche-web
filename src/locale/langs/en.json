@@ -1,4 +1,13 @@
 {
+  "header": {
+    "logoutTitle": "Log out of the system!",
+    "logoutContent": "Are you sure you want to log out of the system?",
+    "Cancel": "Cancel",
+    "Logout": "Logout",
+    "Profile": "Profile",
+    "Title": "TEST MANAGEMENT SOFTWARE",
+    "Search": "Search"
+  },
   "filter": {
     "Article source": "Article source",
     "Date created": "Date created",

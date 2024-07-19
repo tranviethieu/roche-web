@@ -48,7 +48,7 @@ export const httpRequest = async ({
           setError(res?.errors || res?.message);
         }
         onError && onError();
-        showMessageFailed && toastWarn({ msg: res?.message });
+        showMessageFailed && toastWarn({ msg: res?.data });
         return res?.data;
       }
     }
@@ -56,7 +56,6 @@ export const httpRequest = async ({
       return res.map((res: any) => res.data);
     }
   } catch (err: any) {
-    console.log(err);
     if (err?.error?.code == 401 || err?.response?.status == 401) {
       store.dispatch(logout());
       store.dispatch(setStateLogin(false));

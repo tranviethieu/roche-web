@@ -4,7 +4,7 @@
 
 :root {
   --toastify-toast-min-height: 56px;
-  --header-height: 42px;
+  --header-height: 44px;
   --nav-height: 3.7rem;
   --height-filter: 74px;
   --height-filter-mobi: 140px;
@@ -43,6 +43,8 @@
   --Components-Tabs-Component-borderRadius: 10px;
   --Border-Radius-borderRadiusLG: 8px;
   --White-100-FFFFFF: #fff;
+  --padding-container: 10px;
+  --margin-container: 10px;
 }
 
 html,
@@ -92,6 +94,9 @@ h2 {
   font-family: 'Be Vietnam Pro' !important;
   background-color: var(--bg-main);
   height: 100vh;
+  .container_roche {
+    margin-top: var(--header-height);
+  }
 }
 .layout_children {
   flex-direction: row;

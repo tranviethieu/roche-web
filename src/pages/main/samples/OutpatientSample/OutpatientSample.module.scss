@@ -1,0 +1,13 @@
+.form_section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .header_form {
+    background: var(--white-bg);
+    margin-bottom: var(--margin-container);
+    padding: var(--padding-container);
+  }
+  .container_form {
+    height: 100%;
+  }
+}

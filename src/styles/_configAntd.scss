@@ -29,7 +29,8 @@
 .ant-table-wrapper .ant-table {
   scrollbar-color: unset;
 }
-:where(.css-dev-only-do-not-override-zg0ahe).ant-col {
+.ant-col,
+.ant-input {
   font-family: 'Be Vietnam Pro' !important;
 }
 :where(.css-dev-only-do-not-override-zg0ahe).ant-table-wrapper
@@ -345,5 +346,18 @@
   color: #000;
   &.active {
     color: #005ab4;
+  }
+}
+.custom_confirm_model {
+  .ant-modal-confirm-title {
+    font-size: 14px;
+  }
+  .ant-modal-confirm-content {
+    font-size: 12px;
+  }
+  .ant-btn {
+    font-size: 11px;
+    height: 30px;
+    padding: 2px 10px;
   }
 }

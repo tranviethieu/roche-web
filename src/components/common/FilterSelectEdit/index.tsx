@@ -4,7 +4,7 @@ import {
   EditOutlined,
   CaretDownOutlined,
 } from '@ant-design/icons';
-import { Button, Divider, Input, message, Dropdown, Menu, Flex } from 'antd';
+import { Button, Input, message, Dropdown, ConfigProvider } from 'antd';
 import type { InputRef } from 'antd';
 import styles from './FilterSelect.module.scss';
 import clsx from 'clsx';
@@ -43,30 +43,36 @@ const FilterSelectEdit = () => {
     setDropdownVisible(false);
   };
 
-  const menu = (
-    <Menu>
-      <Flex gap={4} style={{ padding: '8px' }}>
-        <Input
-          placeholder="Please enter item"
-          ref={inputRef}
-          value={name}
-          onChange={onNameChange}
-          onKeyDown={(e) => e.stopPropagation()}
-        />
-        <Button
-          type="primary"
-          onClick={(e: any) => {
-            handleItem(e);
-            setDropdownVisible(true); // Keep dropdown open after adding an item
-          }}
-        >
-          Save
-        </Button>
-      </Flex>
-      <Divider style={{ margin: '8px 0' }} />
-      {items.map((item, idx) => (
+  const menuItems = [
+    {
+      key: 'input',
+      label: (
+        <div style={{ display: 'flex', gap: '4px', padding: '8px' }}>
+          <Input
+            placeholder="Please enter item"
+            ref={inputRef}
+            value={name}
+            onChange={onNameChange}
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+          />
+          <Button
+            type="primary"
+            onClick={(e: any) => {
+              e.stopPropagation();
+              handleItem(e);
+              setDropdownVisible(true); // Keep dropdown open after adding an item
+            }}
+          >
+            Save
+          </Button>
+        </div>
+      ),
+    },
+    ...items.map((item, idx) => ({
+      key: idx,
+      label: (
         <div
-          key={idx}
           className={clsx(styles.option, {
             [styles.active]: itemActive == item,
           })}
@@ -87,6 +93,7 @@ const FilterSelectEdit = () => {
               type="link"
               icon={<EditOutlined />}
               onClick={(e) => {
+                e.stopPropagation();
                 e.preventDefault();
                 setItemActive(item);
                 setName(item);
@@ -97,31 +104,45 @@ const FilterSelectEdit = () => {
               type="link"
               icon={<DeleteOutlined style={{ color: '#FF4D4F' }} />}
               onClick={(e) => {
+                e.stopPropagation();
                 e.preventDefault();
                 handleDelete(item);
               }}
             />
           </div>
         </div>
-      ))}
-    </Menu>
-  );
+      ),
+    })),
+  ];
 
   return (
-    <div className={styles.box}>
-      <div className={styles.label}>Bộ lọc mẫu</div>
-      <Dropdown
-        overlay={menu}
-        trigger={['click']}
-        visible={dropdownVisible}
-        onVisibleChange={(visible) => setDropdownVisible(visible)}
-      >
-        <Button className={styles.btn_search}>
-          {selectedItem ? `${selectedItem}` : 'Bộ lọc mẫu'}
-          <CaretDownOutlined />
-        </Button>
-      </Dropdown>
-    </div>
+    <ConfigProvider
+      theme={{
+        token: {
+          controlPaddingHorizontal: 0,
+        },
+        components: {
+          Dropdown: {
+            paddingBlock: 0,
+          },
+        },
+      }}
+    >
+      <div className={styles.box}>
+        <div className={styles.label}>Bộ lọc mẫu</div>
+        <Dropdown
+          menu={{ items: menuItems }}
+          trigger={['click']}
+          open={dropdownVisible}
+          onOpenChange={(visible) => setDropdownVisible(visible)}
+        >
+          <Button className={styles.btn_search}>
+            {selectedItem ? `${selectedItem}` : 'Bộ lọc mẫu'}
+            <CaretDownOutlined />
+          </Button>
+        </Dropdown>
+      </div>
+    </ConfigProvider>
   );
 };
 

@@ -1,17 +1,21 @@
-import { Dropdown, MenuProps, Space, message } from 'antd';
-import React, { useState } from 'react';
+import { Dropdown, MenuProps, Modal, Space, message } from 'antd';
+import React from 'react';
 import styles from './DropdownProfile.module.scss';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
-
-import Dialog from '~/components/common/Dialog';
 import { setStateLogin, setToken } from '~/redux/reducer/auth';
-import { store } from '~/redux/store';
+import { RootState, store } from '~/redux/store';
+import { useSelector } from 'react-redux';
+import { Img } from 'react-image';
+import { ExclamationCircleFilled } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
+const { confirm } = Modal;
 
 const DropdownProfile: React.FC = () => {
-  const [showPopupSignOut, setShowPopupSignOut] = useState<boolean>(false);
+  const { infoAccount } = useSelector((state: RootState) => state.user);
+  const { variableEnv } = useSelector((state: RootState) => state.site);
+  const { t } = useTranslation();
   const handleLogout = async () => {
-    setShowPopupSignOut(false);
     store.dispatch(setStateLogin(false));
     store.dispatch(setToken(null));
     message.success('Logout success');
@@ -21,7 +25,7 @@ const DropdownProfile: React.FC = () => {
       key: '1',
       label: (
         <Link to="/profile" style={{ fontSize: 'var(--size-label)' }}>
-          Profile
+          {t('header.Profile')}
         </Link>
       ),
     },
@@ -31,14 +35,29 @@ const DropdownProfile: React.FC = () => {
         <div
           style={{ fontSize: 'var(--size-label)' }}
           onClick={() => {
-            setShowPopupSignOut(true);
+            showLogoutConfirm();
           }}
         >
-          Logout
+          {t('header.Logout')}
         </div>
       ),
     },
   ];
+  const showLogoutConfirm = () => {
+    confirm({
+      className: 'custom_confirm_model',
+      title: t('header.logoutTitle'),
+      destroyOnClose: false,
+      icon: <ExclamationCircleFilled />,
+      content: t('header.logoutContent'),
+      okText: t('header.Logout'),
+      okType: 'danger',
+      cancelText: t('header.Cancel'),
+      onOk() {
+        handleLogout();
+      },
+    });
+  };
   return (
     <Space direction="vertical">
       <Space wrap>
@@ -50,30 +69,24 @@ const DropdownProfile: React.FC = () => {
         >
           <a onClick={(e) => e.preventDefault()}>
             <Space>
-              <img
-                src="/static/images/logo.png"
-                alt="#roche"
+              <Img
+                src={
+                  variableEnv?.publicURLImage && infoAccount?.avatar
+                    ? `${variableEnv?.publicURLImage}${infoAccount?.avatar}`
+                    : '/static/images/logo.png'
+                }
+                alt={`#${infoAccount?.userName}`}
                 width={28}
                 height={28}
                 style={{ borderRadius: '50%' }}
               />
+              <h1 className={clsx(styles.title_h1, 'display_1400')}>
+                {infoAccount?.fullName ?? ''}
+              </h1>
             </Space>
           </a>
         </Dropdown>
-        <h1 className={clsx(styles.title_h1, 'display_1400')}>
-          Nguyễn Huy Hùng
-        </h1>
       </Space>
-      <Dialog
-        danger
-        open={showPopupSignOut}
-        onClose={() => setShowPopupSignOut(false)}
-        onSubmit={handleLogout}
-        titleCancel="Hủy"
-        titleSubmit="Đăng xuất"
-        title="Đăng xuất khỏi hệ thống!"
-        note="Bạn có chắc chắn muốn đăng xuất khỏi hệ thống!"
-      />
     </Space>
   );
 };

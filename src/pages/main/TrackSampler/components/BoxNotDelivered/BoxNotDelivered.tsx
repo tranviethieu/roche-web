@@ -4,34 +4,41 @@ import styles from './BoxNotDelivered.module.scss';
 import { Badge, Col, Divider, List, Row, Skeleton } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { QUERY_KEY } from '~/constants/config/enum';
-import crmAccountServices from '~/services/core/crmAccountServices';
 import clsx from 'clsx';
 import { httpRequest } from '~/services';
 import { useNavigate } from 'react-router-dom';
+import sampleServices from '~/services/roche/sampleServices';
+import { useQueryHook } from '~/common/hooks/useQuery';
 
 interface PropBoxDelivered {}
 
 const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
   const navigate = useNavigate();
-  const { data, fetchNextPage, error, hasNextPage, isFetching } =
+  const { getAllQueryParams } = useQueryHook();
+  const { _timeHour, _sampleTypeCode, _departmentID, _cateTestID, _search } =
+    getAllQueryParams();
+  const { data, fetchNextPage, isSuccess, hasNextPage, isFetching } =
     useInfiniteQuery({
       queryKey: [QUERY_KEY.Notifications],
       queryFn: async ({ pageParam = 1 }) => {
         const res = await httpRequest({
-          http: crmAccountServices.fetchAccounts({
-            paging: {
-              from: pageParam,
-              count: 20,
-            },
-            keySearch: '',
+          http: sampleServices.GetListSampleNotTranfer({
+            keywords: _search as string,
+            pageCurrent: pageParam == 0 ? 1 : pageParam,
+            pageSize: 20,
+            unitID: 10,
+            sampleTypeCode: _sampleTypeCode ? _sampleTypeCode : 'string',
+            departmentID: _departmentID ? Number(_departmentID) : 0,
+            timeHour: _timeHour ? Number(_timeHour) : 0,
+            cateTestID: _cateTestID ? Number(_cateTestID) : 0,
           }),
         });
         return {
-          items: res?.list || [],
-          total: res.count || 0,
+          items: res?.listRecords || [],
+          total: res.totalPage || 0,
         };
       },
-      initialPageParam: 0,
+      initialPageParam: 1,
       getNextPageParam: (lastPage, pages) => {
         if (pages.length < Math.ceil(lastPage.total / 20)) {
           return pages.length + 1;
@@ -40,7 +47,7 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
       },
     });
 
-  if (error) return <div>Error loading data</div>;
+  //if (error) return <div>Error loading data</div>;
 
   return (
     <div className={styles.card}>
@@ -50,7 +57,7 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
             MẪU ĐÃ LẤY NHƯNG CHƯA GIAO
             <Badge
               className="site-badge-count-109"
-              count={109}
+              count={data?.pages ? data?.pages[0]?.total : 0}
               style={{ backgroundColor: '#2EA757' }}
             />
           </div>
@@ -78,29 +85,35 @@ const BoxNotDelivered: React.FC<PropBoxDelivered> = () => {
           dataLength={data?.pages.flat().length || 0}
           next={fetchNextPage}
           hasMore={!!hasNextPage}
-          loader={<Skeleton title paragraph={{ rows: 2 }} active />}
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+          loader={
+            isSuccess && <Skeleton title paragraph={{ rows: 2 }} active />
+          }
+          // endMessage={
+          //   isSuccess && <Divider plain>It is all, nothing more </Divider>
+          // }
           scrollableTarget="scrollableBoxNotDelivered"
         >
           <List
             dataSource={data?.pages.flat().flatMap((page) => page.items) || []}
             renderItem={(item: any) => (
               <List.Item
-                key={item?._id}
+                key={item?.patientId}
                 className={styles?.item_active}
                 onClick={() => {
-                  navigate(`/main/sampler/detailSampler/${item?._id}`);
+                  navigate(`/main/sampler/detailSampler/${item?.patientId}`);
                 }}
               >
                 <Row style={{ width: '100%', fontWeight: 500 }}>
                   <Col span={12}>{item.fullName}</Col>
-                  <Col span={6}>Nam</Col>
+                  <Col span={6}>
+                    {item.gender == 1 ? 'Nam' : item.gender == 2 ? 'Nữ' : '---'}
+                  </Col>
                   <Col span={6}>{item.phoneNumber}</Col>
                 </Row>
               </List.Item>
             )}
           />
-          {isFetching && (
+          {isFetching && isSuccess && (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
               <Skeleton title paragraph={{ rows: 2 }} active />
             </div>

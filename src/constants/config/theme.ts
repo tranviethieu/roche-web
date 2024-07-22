@@ -1,5 +1,6 @@
 export const themeCustom = {
   token: {
+    fontFamily: 'Be Vietnam Pro',
     colorPrimary: '#4979D1',
     borderRadius: 5,
     controlHeight: 26,

@@ -54,6 +54,19 @@ const sampleServices = {
       cancelToken: tokenAxios,
     });
   },
+  GetAllSampleTypePaging: (
+    data: {
+      keywords: string;
+      pageCurrent: number;
+      pageSize: number;
+      name: string;
+    },
+    tokenAxios?: any
+  ) => {
+    return axiosClientCore.post(`DMSampleType/GetAllSampleTypePaging`, data, {
+      cancelToken: tokenAxios,
+    });
+  },
 };
 
 export default sampleServices;

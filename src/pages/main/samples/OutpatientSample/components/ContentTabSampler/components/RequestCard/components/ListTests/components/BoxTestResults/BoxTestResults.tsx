@@ -4,7 +4,9 @@ import { httpRequest } from '~/services';
 import crmAccountServices from '~/services/core/crmAccountServices';
 import styles from './BoxTestResults.module.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Checkbox, Divider, GetProp, List, Skeleton } from 'antd';
+import { Checkbox, Divider, GetProp, Input, List, Skeleton } from 'antd';
+import useDebounce from '~/common/hooks/useDebounce';
+import { useState } from 'react';
 interface PropBoxTestResults {
   idScroll: string;
   height: string;
@@ -21,8 +23,10 @@ const BoxTestResults: React.FC<PropBoxTestResults> = ({
   checked = [],
   setChecked,
 }) => {
+  const [keySearch, setKeySearch] = useState<string>('');
+  const debounce = useDebounce(keySearch, 500);
   const { data, fetchNextPage, error, hasNextPage } = useInfiniteQuery({
-    queryKey: [{ idScroll }],
+    queryKey: [{ idScroll, debounce }],
     queryFn: async ({ pageParam = 1 }) => {
       const res = await httpRequest({
         http: crmAccountServices.fetchAccounts({
@@ -30,7 +34,7 @@ const BoxTestResults: React.FC<PropBoxTestResults> = ({
             from: pageParam,
             count: 20,
           },
-          keySearch: '',
+          keySearch: debounce as string,
         }),
       });
       return {
@@ -52,6 +56,9 @@ const BoxTestResults: React.FC<PropBoxTestResults> = ({
     if (setChecked) {
       setChecked(checkedValues as string[]);
     }
+  };
+  const handleChangeKeyword = (e: any) => {
+    setKeySearch(e.target.value);
   };
   if (error) return <div>Error loading data</div>;
   return (
@@ -77,11 +84,26 @@ const BoxTestResults: React.FC<PropBoxTestResults> = ({
           next={fetchNextPage}
           hasMore={!!hasNextPage}
           loader={<Skeleton title paragraph={{ rows: 2 }} active />}
-          endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+          endMessage={
+            data?.pages && data?.pages?.flat().length > 20 ? (
+              <Divider plain>It is all</Divider>
+            ) : (
+              <></>
+            )
+          }
           scrollableTarget={idScroll}
         >
           <List
             dataSource={data?.pages.flat().flatMap((page) => page.items) || []}
+            header={
+              <>
+                <Input
+                  value={keySearch}
+                  placeholder="Tìm kiếm"
+                  onChange={handleChangeKeyword}
+                />
+              </>
+            }
             renderItem={(item: any) => (
               <List.Item key={item?._id}>
                 <Checkbox value={item._id}>{item._id}</Checkbox>

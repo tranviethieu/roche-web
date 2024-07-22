@@ -1,41 +1,41 @@
 import { InputNumber, InputNumberProps } from 'antd';
 import React, { useContext } from 'react';
 import { ContextDetailSampler, IContextDetailSampler } from '../../context';
-import styles from './SttSampler.module.scss';
+import { CaretLeftOutlined, CaretRightOutlined } from '@ant-design/icons';
 const SttSampler: React.FC = () => {
   const { stt, setStt } =
     useContext<IContextDetailSampler>(ContextDetailSampler);
   const onChange: InputNumberProps['onChange'] = (value) => {
-    setStt(Number(value));
+    setStt({ ...stt, orderNumber: Number(value) });
   };
   return (
-    <div style={{ display: 'flex' }}>
-      <InputNumber
-        className={styles.customInputNumber}
-        addonBefore={
-          <button
-            className={`${styles.button} ${styles.decrement}`}
-            onClick={() => setStt(stt - 1)}
-          >
-            -
-          </button>
-        }
-        addonAfter={
-          <button
-            className={`${styles.button} ${styles.increment}`}
-            onClick={() => setStt(stt + 1)}
-          >
-            +
-          </button>
-        }
-        min={0}
-        max={999}
-        value={stt}
-        onChange={onChange}
-        formatter={(value) => `${value}`.padStart(3, '0')}
-      />
-      <h1>{`${stt}`.padStart(3, '0')}</h1>
-    </div>
+    <InputNumber
+      className={'customInputNumber'}
+      addonBefore={
+        <div
+          onClick={() => {
+            if (stt.orderNumber > 0)
+              setStt({ ...stt, orderNumber: stt.orderNumber - 1 });
+          }}
+          style={{ padding: '0 6px' }}
+        >
+          <CaretLeftOutlined style={{ fontSize: 14, color: '#005AB4' }} />
+        </div>
+      }
+      addonAfter={
+        <div
+          onClick={() => setStt({ ...stt, orderNumber: stt.orderNumber + 1 })}
+          style={{ padding: '0 6px' }}
+        >
+          <CaretRightOutlined style={{ fontSize: 14, color: '#005AB4' }} />
+        </div>
+      }
+      min={0}
+      max={999}
+      value={stt.orderNumber}
+      onChange={onChange}
+      formatter={(value) => `${value}`.padStart(3, '0')}
+    />
   );
 };
 export default SttSampler;

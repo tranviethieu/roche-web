@@ -24,12 +24,16 @@ import ProcessSampler from './components/ProcessSampler';
 import IssuesSampler from './components/IssuesSampler';
 import ListImageSampler from './components/ListImageSampler';
 import { ArrowCircleRight } from 'iconsax-react';
-import Microbiology from './components/Microbiology';
 import ActionCollection from './components/ActionCollections';
 
 const TableGeneralLab = lazy(() =>
-  delayForDemo(import('./components/TableGeneralLab'))
+  delayForTab(import('./components/TableGeneralLab'))
 );
+const Microbiology = lazy(() =>
+  delayForTab(import('./components/Microbiology'))
+);
+
+const Pathology = lazy(() => delayForTab(import('./components/Pathology')));
 
 const getItems: (panelStyle: CSSProperties) => CollapseProps['items'] = (
   panelStyle
@@ -72,12 +76,20 @@ const items: TabsProps['items'] = [
   {
     key: 'microbiology',
     label: <Badge status="success" text="Microbiology" />,
-    children: <Microbiology />,
+    children: (
+      <Suspense fallback={<Skeleton paragraph={{ rows: 10 }} />}>
+        <Microbiology />
+      </Suspense>
+    ),
   },
   {
     key: 'pathology',
     label: <Badge status="success" text="Pathology" />,
-    children: <></>,
+    children: (
+      <Suspense fallback={<Skeleton paragraph={{ rows: 10 }} />}>
+        <Pathology />
+      </Suspense>
+    ),
   },
   {
     key: 'interview',
@@ -155,9 +167,8 @@ const Collection = () => {
 };
 export default Collection;
 
-// Add a fixed delay so you can see the loading state
-function delayForDemo(promise: any) {
+function delayForTab(promise: any) {
   return new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    setTimeout(resolve, 500);
   }).then(() => promise);
 }

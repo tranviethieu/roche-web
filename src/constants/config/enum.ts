@@ -10,4 +10,6 @@ export enum QUERY_KEY {
   //detail sample
   Perform,
   DetailPatientSample,
+  TablePathology,
+  ListSamplerType,
 }

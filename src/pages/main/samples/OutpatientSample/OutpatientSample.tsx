@@ -1,6 +1,6 @@
 import styles from './OutpatientSample.module.scss';
 import React, { useEffect, useState } from 'react';
-import { ContextDetailSampler, IMicrobiology } from './context';
+import { ContextDetailSampler, IMicrobiology, ISttSampler } from './context';
 import Counter from './components/Counter';
 import FormSamplerHIS from './components/FormSamplerHIS/FormSamplerHIS';
 import ContentTabSampler from './components/ContentTabSampler';
@@ -10,12 +10,16 @@ import { httpRequest } from '~/services';
 import { useParams } from 'react-router-dom';
 import sampleServices from '~/services/roche/sampleServices';
 import { PatientInfo } from '~/types/patient.type';
+import { ConfigProvider } from 'antd';
 
 const OutpatientSample: React.FC = () => {
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
   const [microbiology, setMicrobiology] = useState<IMicrobiology | null>(null);
   const { id } = useParams();
-  const [stt, setStt] = useState<number>(0);
+  const [stt, setStt] = useState<ISttSampler>({
+    currentNumber: 0,
+    orderNumber: 0,
+  });
   const currentSteps = 1;
   const detailPatient = useQuery({
     queryKey: [QUERY_KEY.DetailPatientSample, id],
@@ -37,28 +41,41 @@ const OutpatientSample: React.FC = () => {
   }, [detailPatient.data]);
 
   return (
-    <section className={styles.form_section}>
-      <ContextDetailSampler.Provider
-        value={{
-          id,
-          patientInfo,
-          setPatientInfo,
-          stt,
-          setStt,
-          currentSteps,
-          microbiology,
-          setMicrobiology,
-        }}
-      >
-        <div className={styles.header_form}>
-          <Counter />
-          <FormSamplerHIS />
-        </div>
-        <div className={styles.container_form}>
-          <ContentTabSampler />
-        </div>
-      </ContextDetailSampler.Provider>
-    </section>
+    <ConfigProvider
+      theme={{
+        components: {
+          Table: {
+            rowHoverBg: 'rgba(0, 0, 0, 0.06)',
+            cellPaddingInline: 4,
+            cellPaddingBlock: 4,
+          },
+        },
+      }}
+    >
+      {' '}
+      <section className={styles.form_section}>
+        <ContextDetailSampler.Provider
+          value={{
+            id,
+            patientInfo,
+            setPatientInfo,
+            stt,
+            setStt,
+            currentSteps,
+            microbiology,
+            setMicrobiology,
+          }}
+        >
+          <div className={styles.header_form}>
+            <Counter />
+            <FormSamplerHIS />
+          </div>
+          <div className={styles.container_form}>
+            <ContentTabSampler />
+          </div>
+        </ContextDetailSampler.Provider>
+      </section>
+    </ConfigProvider>
   );
 };
 export default OutpatientSample;

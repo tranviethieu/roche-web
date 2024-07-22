@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import BoxTestResults from '~/components/pages/BoxTestResults';
 import styles from './ListTests.module.scss';
 import { Flex } from 'antd';
+import BoxTestResults from './components/BoxTestResults';
 
 const ListTests = () => {
   const [checkedHS, setCheckedHS] = useState<string[]>();

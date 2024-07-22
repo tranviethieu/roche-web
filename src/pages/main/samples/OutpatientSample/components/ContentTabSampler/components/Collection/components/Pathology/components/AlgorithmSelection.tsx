@@ -6,9 +6,9 @@ import {
 } from '~/pages/main/samples/OutpatientSample/context';
 
 const plainOptions = [
-  { value: '1', name: 'Tay trái' },
-  { value: '2', name: 'Tay phải' },
-  { value: '3', name: 'Chân trái' },
+  { value: '1', name: 'Thuật toán 1' },
+  { value: '2', name: 'Thuật toán 2' },
+  { value: '3', name: 'Thuật toán 3' },
 ];
 
 const AlgorithmSelection = () => {
@@ -49,8 +49,8 @@ const AlgorithmSelection = () => {
   return (
     <>
       <Flex gap={5} wrap align="center" style={{ marginBottom: '6px' }}>
-        <div className="step_custom">2</div>
-        <div className="text_title_custom">Chọn loại bệnh phẩm</div>
+        <div className="step_custom">4</div>
+        <div className="text_title_custom">Chọn phương pháp nhuộm</div>
         <Button
           size="small"
           type="primary"
@@ -65,7 +65,7 @@ const AlgorithmSelection = () => {
           border: '0.6px solid #14477B',
           borderRadius: '8px',
           padding: '10px',
-          height: '190px',
+          height: '186px',
           background: '#fff',
         }}
       >
@@ -74,14 +74,14 @@ const AlgorithmSelection = () => {
             checked={checkedNotSelection}
             onChange={onChangeNotSelection}
           >
-            Không áp dụng vị trí lấy mẫu
+            Không Lựa chọn phương pháp nhuộm
           </Checkbox>
           <Checkbox
             indeterminate={indeterminate}
             onChange={onCheckAllChange}
             checked={checkAll}
           >
-            Chọn vị trí lấy mẫu
+            Lựa chọn phương pháp nhuộm
           </Checkbox>
 
           <Checkbox.Group

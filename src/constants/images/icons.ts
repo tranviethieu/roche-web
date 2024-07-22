@@ -6,6 +6,7 @@ import logo2 from '/static/images/logo2.svg';
 import menu from '/static/images/menu.svg';
 import remove from '/static/images/delete.svg';
 import collection from '/static/images/conlection.svg';
+import iconList from '/static/images/iconList.svg';
 
 export default {
   administration,
@@ -16,4 +17,5 @@ export default {
   menu,
   remove,
   collection,
+  iconList,
 };

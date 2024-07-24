@@ -15,6 +15,7 @@ import AntibioticFamilies from './pages/administration/AntibioticFamilies';
 import InstrumentDefinition from './pages/administration/InstrumentDefinition';
 import RequiredLogout from './components/protected/RequiredLogout';
 import RequiredAuth from './components/protected/RequiredAuth';
+import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
@@ -37,12 +38,16 @@ const router = createBrowserRouter([
         element: <BaseLayout />,
         children: [
           {
+            path: PATH.Main,
+            element: <Home />,
+          },
+          {
             element: <LayoutMain />,
             children: [
-              {
-                path: PATH.Main,
-                element: <Main />,
-              },
+              // {
+              //   path: PATH.Main,
+              //   element: <Main />,
+              // },
               {
                 path: '/main/sampler/detailSampler/:id',
                 element: <DetailSampler />,

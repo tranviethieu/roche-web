@@ -1,6 +1,11 @@
 import styles from './OutpatientSample.module.scss';
 import React, { useEffect, useState } from 'react';
-import { ContextDetailSampler, IMicrobiology, ISttSampler } from './context';
+import {
+  ContextDetailSampler,
+  IMicrobiology,
+  IPathology,
+  ISttSampler,
+} from './context';
 import Counter from './components/Counter';
 import FormSamplerHIS from './components/FormSamplerHIS/FormSamplerHIS';
 import ContentTabSampler from './components/ContentTabSampler';
@@ -15,6 +20,12 @@ import { ConfigProvider } from 'antd';
 const OutpatientSample: React.FC = () => {
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
   const [microbiology, setMicrobiology] = useState<IMicrobiology | null>(null);
+  const [pathology, setPathology] = useState<IPathology>({
+    sampleTypes: [],
+    blockIds: [],
+    slideIds: [],
+    algorithmSelection: [],
+  });
   const { id } = useParams();
   const [stt, setStt] = useState<ISttSampler>({
     currentNumber: 0,
@@ -64,6 +75,8 @@ const OutpatientSample: React.FC = () => {
             currentSteps,
             microbiology,
             setMicrobiology,
+            pathology,
+            setPathology,
           }}
         >
           <div className={styles.header_form}>

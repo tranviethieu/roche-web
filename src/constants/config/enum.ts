@@ -12,4 +12,6 @@ export enum QUERY_KEY {
   DetailPatientSample,
   TablePathology,
   ListSamplerType,
+  //FilterTrackSampler
+  GetAllTestPaging,
 }

@@ -8,6 +8,12 @@ export type ISttSampler = {
   currentNumber: number;
   orderNumber: number;
 };
+export type IPathology = {
+  sampleTypes: string[];
+  blockIds: string[];
+  slideIds: string[];
+  algorithmSelection: string[];
+};
 export interface IContextDetailSampler {
   id?: string;
   patientInfo: PatientInfo | null;
@@ -17,6 +23,8 @@ export interface IContextDetailSampler {
   currentSteps: number;
   microbiology: IMicrobiology | null;
   setMicrobiology: (data: IMicrobiology) => void;
+  pathology: IPathology;
+  setPathology: (data: IPathology) => void;
 }
 
 export const ContextDetailSampler = createContext<IContextDetailSampler>({
@@ -28,4 +36,11 @@ export const ContextDetailSampler = createContext<IContextDetailSampler>({
   currentSteps: 1,
   microbiology: null,
   setMicrobiology: () => null,
+  pathology: {
+    sampleTypes: [],
+    blockIds: [],
+    slideIds: [],
+    algorithmSelection: [],
+  },
+  setPathology: () => null,
 });
